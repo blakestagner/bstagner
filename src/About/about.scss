@@ -1,0 +1,85 @@
+#about {
+    color: #000;
+    margin: 1em;
+    min-height: 600px;
+    height: fit-content
+}
+#about h3 {
+    color: #404040;
+}
+.about-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+#browser, #os, #lang, #soft {
+    margin: 1em 0 4em;
+    width: 50%;
+}
+@media (max-width: 750px) {
+    .about-container {
+        flex-direction: column;
+    }
+    #browser, #os, #lang, #soft{
+        margin: 1em 0 4em;
+        width: 100%;
+    }
+}
+.glass-card {
+    border-radius: 1em;
+    position: relative;
+    background: inherit;
+    overflow: hidden;
+    top: 0;
+    padding: 1em;
+    color: #fff;
+    transition: all ease 500ms;
+    transition-delay: 500ms;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    height: 90%;
+    bottom: 0;
+    margin: auto !important;
+}
+.glass-card:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin: -20px;
+} 
+
+@supports not (backdrop-filter: none) {
+    .glass-box:after, .glass-box-transform:after  {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+.bottom-container {
+    display: flex;
+    margin: 1em auto;
+    justify-content: center;
+}
+.about-container svg {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+}
+#browser > div, #os > div, #lang > div, #soft > div {
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#browser > div > div, #os > div > div, #lang > div > div, #soft > div > div {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    align-items: center;
+}

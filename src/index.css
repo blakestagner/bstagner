@@ -5,9 +5,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1, h2, h3 h4 {
+  font-family: 'Teko', sans-serif;
+}
+h1 {
+  font-size: 4em;
+  margin: 0px;
+}
+h2 {
+  font-size: 2.5em;
+  margin: 0px;
+  font-weight: normal;
+}
+h3 {
+  font-size: 2em;
+  margin: 0px;
+  font-weight: normal;
+}
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
 }

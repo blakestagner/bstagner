@@ -1,0 +1,58 @@
+$shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+$color-primary: #3f51b5;
+
+.button {
+    color: #fff;
+    border-radius: 2em;
+    box-shadow: $shadow-lg;
+    border: none;
+    background-color: $color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1em;
+    overflow: hidden;
+    position: relative;
+}
+.button p {
+    margin: 0;
+}
+.button:focus {
+    outline: none;
+}
+.button:active {
+    box-shadow: none;
+}
+.ripple-animate {
+    content: '';
+    transition: all linear 100ms;
+    background: #fff;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+}
+.ripple {
+    content: '';
+    background: #fff;
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    border-radius: 50%;
+    opacity: .7;
+}
+  
+.md {
+    font-size: 1.5em;
+    width: 200px;
+    height: 1.5em;
+}
+
+.button.md.icon img {
+    height: 1.25em;
+    width: 1.25em;
+    padding: 0 5px 0 0;
+}
