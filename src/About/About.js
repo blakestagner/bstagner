@@ -141,7 +141,7 @@ function About() {
                         </div>
                     </div>
                     <div id="browser">
-                        <h3>Cross Browser support</h3>
+                        <h3>Cross Browser Support</h3>
                         <div>
                             <div>
                                 <svg viewBox="0 0 128 128">
