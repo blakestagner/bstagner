@@ -6,7 +6,7 @@ import inIcon from './social/In-White.png';
 
 function Footer() {
     return (
-        <div className='footer'>
+        <div className='footer' id="footer">
             <div className='footer-1'>
                 <div>
                     <div>

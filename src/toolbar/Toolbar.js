@@ -62,34 +62,7 @@ function Toolbar(props) {
         }
     }
 
-    useEffect(()=> {
-            const mainTitle = document.querySelector('#main-title')
-            const highlight = document.querySelector('#indicator')
-            const menu = document.querySelector('#mainMenuList')
-            const firstChild = menu.childNodes[0];
-            const secondChild = menu.childNodes[1];
-            const thirdChild = menu.childNodes[2];
 
-            switch(props.section) {
-                case 'hero':
-                    highlight.style.width = '0px';
-                    break;
-                case 'about':
-                    highlight.style.left = `${firstChild.getBoundingClientRect().left}px`;
-                    highlight.style.width = `${firstChild.getBoundingClientRect().width}px`
-                    break;
-                case 'portfolio':
-                    highlight.style.left = `${secondChild.getBoundingClientRect().left}px`;
-                    highlight.style.width = `${secondChild.getBoundingClientRect().width}px`
-                    break;
-                case 'components':
-                    highlight.style.left = `${thirdChild.getBoundingClientRect().left}px`;
-                    highlight.style.width = `${thirdChild.getBoundingClientRect().width}px`
-                    break;
-                default:
-            }
-        
-    }, [props.section])
 
     const handleClick = (link) => {
         const anchor = document.querySelector(link)
@@ -104,9 +77,7 @@ function Toolbar(props) {
                 <div>
                     <ul id="mainMenuList">
                         <li><a className="navList" onClick={() => handleClick('#about')}>About</a></li>
-                        <li><a className="navList" onClick={() => handleClick('#portfolio')}>Portfolio</a></li>
-                        <li><a className="navList" onClick={() => handleClick('#components')}>Components</a></li>
-                        <li><Link className="navList" to="#contact">Contact</Link></li>
+                        
                     </ul>
                     <span id="indicator"></span>    
                 </div>

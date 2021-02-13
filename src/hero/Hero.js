@@ -9,7 +9,8 @@ function Hero() {
     const [introDetails, setIntroDetails] = useState('') 
 
     const handleClick = () => {
-        console.log('test')
+        const footer = document.querySelector('#footer')
+         footer.scrollIntoView(true);
     }
 
     const introText = "Who's Blake?";
