@@ -12,7 +12,10 @@
 }
 .footer-1 > div div{
     width: 50%;
-    margin: 0 2em;
+    margin: 0 2em 3em;
+}
+.footer-1 > div div:nth-child(2) h3{
+    font-size: 1.5em;
 }
 .footer-2 {
     background-color: #1a252f;
@@ -32,3 +35,8 @@
     height: 3em;
     margin: 0 10px 10px;
 } 
+.social-icon svg {
+    width: 3em;
+    height: 3em;
+    margin: 0 10px 10px;
+}
