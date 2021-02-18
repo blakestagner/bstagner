@@ -12,7 +12,7 @@ function Footer() {
         window.open(resume, "_blank")
     }
     return (
-        <div className='footer' id="footer">
+        <div className='footer' id="contact">
             <div className='footer-1'>
                 <div>
                     <h2>Resume</h2>
