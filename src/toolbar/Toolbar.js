@@ -112,7 +112,7 @@ function Toolbar(props) {
         className={`${scrolled ? 'navBar scrollBar' : 'navBar'} ${navHide ? '' : 'scrolled'}`} 
         id="mainNav">
 			<div className='navBarContainer'>
-				<p id="main-title"><Link to="/">BS</Link></p>
+				<p id="main-title"><a onClick={() => handleClick('#hero')}>BS</a></p>
                 <div>
                     <ul id="mainMenuList">
                         <li><a className="navList" onClick={() => handleClick('#about')}>About</a></li>
