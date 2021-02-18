@@ -20,29 +20,29 @@ export default function PortfolioItems(props) {
     const [portfolio, setPortfolio] = useState(0)
 
     const portfolioDetails = [
-       { 
-        'name': 'Baz the Roadie',
-        'icon': bazLogo,
-        'site_home': bazSite,
-        'site_landing': null 
+        {
+            'name': 'Dean Johsnon',
+            'icon': deanLogo,
+            'site_home': deanHome,
+            'site_landing': null
+        },
+        { 
+            'name': 'Baz the Roadie',
+            'icon': bazLogo,
+            'site_home': bazSite,
+            'site_landing': null 
         },
         {
-        'name': 'Dean Johsnon',
-        'icon': deanLogo,
-        'site_home': deanHome,
-        'site_landing': null
+            'name': 'Mark Lindquist',
+            'icon': markLogo,
+            'site_home': markHome,
+            'site_landing': null
         },
         {
-        'name': 'Mark Lindquist',
-        'icon': markLogo,
-        'site_home': markHome,
-        'site_landing': null
-        },
-        {
-        'name': 'Deanna Keller',
-        'icon': deannaLogo,
-        'site_home': deannaHome,
-        'site_landing': null
+            'name': 'Deanna Keller',
+            'icon': deannaLogo,
+            'site_home': deannaHome,
+            'site_landing': null
         }
     ];
     
@@ -50,6 +50,7 @@ export default function PortfolioItems(props) {
         setAnimate('animate')
         setTimeout(() => {
             setItem(item)
+            setPortfolio(item)
             setAnimate('')
         }, 500)
     }
@@ -88,23 +89,18 @@ export default function PortfolioItems(props) {
         }
 
         const nextItem = () => {
+            setAnimate('animate')
             let portfolioCopy = portfolio;
             portfolioCopy++
             if(portfolio === 3 ) {
-                setTimeout(() => {
-                    setItem(0)
-                    setPortfolio(0)
-                    nextBefore(0)
-                    setAnimate('')
-                }, 500)
+                setItem(0)
+                setPortfolio(0)
+                nextBefore(0)
                 
             } else {
-                setTimeout(() => {
-                    setItem(item + 1)
-                    setPortfolio(portfolioCopy)
-                    nextBefore(portfolioCopy)
-                    setAnimate('')
-                }, 500)
+                setItem(item + 1)
+                setPortfolio(portfolioCopy)
+                nextBefore(portfolioCopy)
             }
         }
         const beforeItem = () => {
@@ -112,24 +108,17 @@ export default function PortfolioItems(props) {
             let portfolioCopy = portfolio;
             portfolioCopy--
             if(portfolio === 0 ) {
-                setTimeout(() => {
                     setPortfolio(3)
                     nextBefore(3)
                     setItem(3)
-                    setAnimate('')
-                }, 500)
             } else {
-                setTimeout(() => {
                     setPortfolio(portfolioCopy)
                     nextBefore(portfolioCopy)
                     setItem(item - 1)
-                    setAnimate('')
-                }, 500)
             }
         }
 
         direction === '+' ? nextItem() : beforeItem()
-
     }
 
 
@@ -146,7 +135,19 @@ export default function PortfolioItems(props) {
                     ))}
                 </ul>
             </div>
-            <div style={{position: 'relative'}}>
+            {/*<div
+                id="arrow-dekstop" 
+                style={{position: 'relative'}}>
+                    <i 
+                        onClick={() => togglePortfolioMobile('+')}
+                        className="arrow right"></i>
+                    <i 
+                        onClick={() => togglePortfolio('-')}
+                        className="arrow left"></i>
+            </div>*/}
+            <div
+                id="arrow-mobile" 
+                style={{position: 'relative'}}>
                     <i 
                         onClick={() => togglePortfolio('+')}
                         className="arrow right"></i>
