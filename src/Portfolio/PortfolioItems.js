@@ -73,8 +73,6 @@ export default function PortfolioItems(props) {
         carouselPositions.push([child.left ]);
         })
 
-        console.log(carouselPositions)
-
         for(let i in carouselPositions) {
             if(carouselPositions[i] > -100 && carouselPositions[i] < 100) {
                 

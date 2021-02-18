@@ -7,9 +7,7 @@ $gradient: radial-gradient(circle, #3f51b5, #5f18af);
 .button {
     color: #fff;
     border-radius: 1em;
-    box-shadow: $shadow-md;
-    border: none;
-    background: $gradient;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,7 +49,19 @@ $gradient: radial-gradient(circle, #3f51b5, #5f18af);
     width: 200px;
     height: 1.5em;
 }
-
+.color {
+    background: $gradient;
+    border: none;
+    box-shadow: $shadow-md;
+}
+.white {
+    background: none;
+    border: solid 2px #fff;
+    box-shadow: $shadow-lg;
+}
+.center {
+    margin: 0 auto;
+}
 .button.md.icon img {
     height: 1.25em;
     width: 1.25em;

@@ -29,8 +29,6 @@ function Toolbar(props) {
             let currentScrollPos = hero.getBoundingClientRect().y *-1;
             if(currentScrollPos * -1 === -0) {
                 setScrolled(false)
-                console.log('true')
-                console.log(mobileMenu)
                 if(mobileMenu === menuBlack || mobileMenu === closeBlack) {
                     if(mobileMenu === menuBlack) {
                         setMobileMenu(menuWhite)
@@ -114,7 +112,7 @@ function Toolbar(props) {
         className={`${scrolled ? 'navBar scrollBar' : 'navBar'} ${navHide ? '' : 'scrolled'}`} 
         id="mainNav">
 			<div className='navBarContainer'>
-				<p id="main-title"><Link to="/">BStagner</Link></p>
+				<p id="main-title"><Link to="/">BS</Link></p>
                 <div>
                     <ul id="mainMenuList">
                         <li><a className="navList" onClick={() => handleClick('#about')}>About</a></li>

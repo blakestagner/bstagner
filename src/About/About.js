@@ -1,22 +1,20 @@
 import './about.scss';
 import {useState, useEffect} from 'react';
-import ButtonIconMd from '../Components/Button/ButtonIconMd';
-import documentIcon from './img/document.svg';
-import resume from './blakeStagnerResume.pdf';
-import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
 function About() {
-    const [skills, setSkills] = useState(0)
+    const [skills, setSkills] = useState(0);
+    const [tabHeader, setTabHeader] = useState(0);
+    const [tabContent, setTabContent] = useState(0)
+    const [tabTransition, setTabTransition] = useState(0)
 
-    const resumeView = () => {
-        console.log('test')
-        window.open(resume, "_blank")
-    }
 
-    const rainAnimation = () => {
-        let rainArea = document.querySelector('#rain-container')
-
-     
+    const handleTabs = (tab) => {
+        setTabHeader(tab)
+        setTabTransition(1)
+        setTimeout(() => {
+            setTabTransition(0)
+            setTabContent(tab)
+        }, 500)
     }
 
     const indicator = (evt) => {
@@ -61,44 +59,62 @@ function About() {
             <div className="main-container">
                 <div className="heading">
                     <h1>About</h1>
-                    <h2>Technical Skills</h2>
+                    <div className="flex-center header-tab">
+                        <h2 
+                            onClick={() => handleTabs(0)}
+                            className={tabHeader === 0 ? 'active' : ''}>
+                            Technical Skills
+                        </h2>
+                        {/*<h2
+                            onClick={() => handleTabs(1)}
+                            className={tabHeader === 1 ? 'active' : ''}>
+                            Bio
+                        </h2>*/}
+                    </div>
                     <span
                         className={''} 
                         id="blue-animation2"></span>
                 </div>
-                <div className="about-container">
-                    <Language />
-                    <Software />
-                    <OperatingSystem />
-                    <Browser />
+                <div className={
+                                tabTransition === 0 ? 'about-tab' : 'about-tab tab-transition'
+                                }>
+                {tabContent === 0 ? 
+                    (
+                        <div>
+                            <div className="about-container">
+                                <Language />
+                                <Software />
+                                <OperatingSystem />
+                                <Browser />
+                            </div>
+                            <div className="section" id="section">
+                                <Language />
+                                <Software />
+                                <OperatingSystem />
+                                <Browser />
+                            </div>
+                            <span id="bottom-indicator">
+                                <div 
+                                    onClick={() => handleClick(0)}
+                                    className={skills === 0? 'active': ''}></div>
+                                <div 
+                                    onClick={() => handleClick(1)}
+                                    className={skills === 1? 'active': ''}></div>
+                                <div 
+                                    onClick={() => handleClick(2)}
+                                    className={skills === 2? 'active': ''}></div>
+                                <div 
+                                    onClick={() => handleClick(3)}
+                                    className={skills === 3? 'active': ''}></div>
+                            </span>
+                        </div>    
+                    ) : 
+                    (
+                        <div className="bio">
+                            <p>Blake Stagner</p>
+                        </div>
+                    )}
                 </div>
-                <div className="section" id="section">
-                    <Language />
-                    <Software />
-                    <OperatingSystem />
-                    <Browser />
-                </div>
-                <span id="bottom-indicator">
-                    <div 
-                        onClick={() => handleClick(0)}
-                        className={skills === 0? 'active': ''}></div>
-                    <div 
-                        onClick={() => handleClick(1)}
-                        className={skills === 1? 'active': ''}></div>
-                    <div 
-                        onClick={() => handleClick(2)}
-                        className={skills === 2? 'active': ''}></div>
-                    <div 
-                        onClick={() => handleClick(3)}
-                        className={skills === 3? 'active': ''}></div>
-                </span>
-                <div className="bottom-container">
-                    <ButtonIconMd 
-                        click={() => resumeView()}
-                        name="resume"
-                        icon={documentIcon}/>
-                </div>
-
             </div>
         </div>
     )

@@ -2,8 +2,9 @@ $shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 $shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
 $color-primary: #3f51b5;
-$gradient: radial-gradient(circle, #3f51b5, #5f18af);
+$gradient: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
 $gradient-2: linear-gradient(90deg, #3f51b5 0%, #0277bd 48%, #02bd79 100%);
+$grey-2: #BEBEBE;
 
 #about {
     color: #000;
@@ -15,6 +16,7 @@ $gradient-2: linear-gradient(90deg, #3f51b5 0%, #0277bd 48%, #02bd79 100%);
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin: 2em 0 0;
 }
 #browser, #os, #lang, #soft {
     margin: 1em 0 2em;
@@ -102,7 +104,7 @@ $gradient-2: linear-gradient(90deg, #3f51b5 0%, #0277bd 48%, #02bd79 100%);
 }
 
 #blue-animation2 {
-    background: radial-gradient(circle, #3f51b5, #5f18af);
+    background: $gradient;
     height: 25px;
     width: 60%;
     position: absolute;
@@ -115,4 +117,28 @@ $gradient-2: linear-gradient(90deg, #3f51b5 0%, #0277bd 48%, #02bd79 100%);
 .blue-strip2 {
     transform: translate3d(-100vw, 0px, 0px);
     transition: all ease-in-out 1000ms;
+}
+//heading tab
+.header-tab > h2 {
+    padding: 0 .5em;
+    transform: scale(.75, .75);
+    cursor: pointer;
+    transition: all ease-in 250ms;
+    background: linear-gradient(90deg, rgba(177,177,177,1) 0%, rgba(75,75,75,1) 48%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.header-tab > h2.active {
+    transform: scale(1, 1);
+    background: $gradient-2;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all ease-in 250ms;
+}
+.about-tab {
+    transition: all ease 250ms;
+}
+.tab-transition {
+    transform: translate3d(-100vw, 0px, 0px);
+    transition: all ease 250ms;
 }

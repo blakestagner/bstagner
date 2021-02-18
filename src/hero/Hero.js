@@ -28,6 +28,7 @@ function Hero() {
         const getRandomInt = () => {
             one.style.transform = `translate(${x().toString()}vw, ${y().toString()}vh) scale(${size()})`;
             two.style.transform = `translate(${y().toString()}vw, ${x().toString()}vh) scale(${size()})`;
+            
         }
 
         setInterval(() => {
@@ -56,7 +57,7 @@ function Hero() {
     useEffect(() => {
         
         if(intro.length !== introText.length) {
-            setTimeout(() => {setIntroCount(introCount + 1)}, 50)
+            setTimeout(() => {setIntroCount(introCount + 1)}, 25)
         }
         if(introCount === introText.length - 1) {
             setIntroDetails(['Front End Developer', 'Web Designer', 'Web Wizard'])
@@ -68,30 +69,33 @@ function Hero() {
         const hero = document.querySelector('#hero');
         const heroHeight = hero.offsetHeight;
         const heroPosition = hero.getBoundingClientRect().y;
-        const section = document.querySelector('#sections');
-        let pageTop = window.visualViewport.pageTop
         const headingOne = document.querySelector('#anim1');
         const headingTwo = document.querySelector('#anim2');
         const headingThree = document.querySelector('#anim3');
         const blueStrip = document.querySelector('#blue-animation');
-
         const heroAnimationPercent = Math.round((((heroPosition * -1) / heroHeight) *100) *100 ) / 100;
 
+
         headingOne.style.transition = 'all linear 0ms'
-        headingOne.style.transform = `translate(-${heroAnimationPercent *2.5}%, ${pageTop}px)`;
+        headingOne.style.transform = 
+            `translate3d(-${heroAnimationPercent *2.5}%, 0px, 0px)`;
         //headingOne.style.fontSize = `calc(${((100 - heroAnimationPercent)) / 10}em)`
 
         headingTwo.style.transition = 'all linear 0ms'
         headingTwo.style.transitionDelay = '0ms'
-        headingTwo.style.transform = `translate3d(-${heroAnimationPercent *3 }%, ${pageTop}px, 0px)`;
+        headingTwo.style.transform = 
+            `translate3d(-${heroAnimationPercent *3 }%, 0px, 0px)`;
 
         headingThree.style.transition = 'all linear 0ms'
         headingThree.style.transitionDelay = '0ms'
-        headingThree.style.transform = `translate3d(${heroAnimationPercent * 3}%, ${pageTop}px, 0px)`;
+        headingThree.style.transform = 
+            `translate3d(${heroAnimationPercent * 3}%, 0px, 0px)`;
+        
 
         blueStrip.style.transition = 'all linear 0ms'
         blueStrip.style.transitionDelay = '0ms'
-        blueStrip.style.transform = `translate3d(-${heroAnimationPercent * 3}%, ${pageTop}px, 0px)`;
+        blueStrip.style.transform = 
+            `translate3d(-${heroAnimationPercent * 1}%, 0px, 0px)`;
     }
 
     window.addEventListener('load', () => {
@@ -105,6 +109,7 @@ function Hero() {
             <div
                 id="hero" 
                 className="hero">
+                <span className="hero-background"></span>
                 <div>
                     <div className="blake-stagner">
                         <h1 
@@ -136,6 +141,7 @@ function Hero() {
                                 <p>{introDetails[1]}</p>
                                 <p>{introDetails[2]}</p>
                             </span>
+                            <div className="ring"></div>
                         </div>
                         <div>
                         </div>
@@ -143,6 +149,7 @@ function Hero() {
                 </div>
                 <span id="circle-1" className="circle-1"></span>
                 <span id="circle-2" className="circle-2"></span>
+                <span id="circle-3" className="circle-3"></span>
             </div>
 
     )

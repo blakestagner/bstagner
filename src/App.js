@@ -39,7 +39,6 @@ function App() {
           section={section}/>
         <div id="sections">
           <Hero />
-          <span className="spacer"></span>
           <About />
           <Portfolio />
           {/*<Components /> */}
