@@ -1,19 +1,21 @@
+$neu-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25), -2px -2px 5px rgba(255, 255, 255, 0.3);
+$gradient: linear-gradient(90deg, rgba(63,81,181,1) 0%, rgba(2,119,189,1) 48%, rgba(2,189,121,1) 100%);
+$color-main: rgba(2,119,189,1);
+
+$shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
 .hero {
-    height: 500px;
+    
     display: flex;
-    margin: 50px 0 0 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    margin: 0;
     position: relative;
-    background: rgb(0,8,94);
-    //background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-    //background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
-    background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
-    //background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
+    background: rgb(63,81,181);
+    background: linear-gradient(90deg, rgba(63,81,181,1) 0%, rgba(2,119,189,1) 48%, rgba(2,189,121,1) 100%);
 }
 .hero > div {
     width: 50%;
+    margin: 1em;
 }
 .glass-box {
     max-width: 600px;
@@ -24,7 +26,7 @@
     z-index: 1;
     background: inherit;
     overflow: hidden;
-    top: 100px;
+    top: calc(50% - 150px);
     margin: 0 auto 0 0;
     padding: 1em;
     color: #fff;
@@ -79,15 +81,16 @@
     color: #fff;
     max-width: 500px;
     margin: 0 0 0 auto;
-    align-items: flex-start;
+    align-items: center;
 }
 .blake-stagner h1 {
     margin: 0;
     line-height: .8;
+    z-index: 2;
 }
 .heading-1 {
     font-size: 1em;
-    transition: font-size ease 500ms;
+    transition: all ease 500ms;
 }
 .heading-animate-1 {
     font-size: 10em;
@@ -104,46 +107,29 @@
     transition: all ease 500ms;
     transition-delay: 500ms;
 }
-@media (max-width: 900px) {
-    .hero {
-        height: 800px;
-        flex-direction: column;
-    }
-    .glass-box {
-        margin: 0 auto;
-        width: 90%;
-    }
-    .hero > div {
-        width: 100%;
-    }
-    .hero > div:first-child {
-        z-index: 2;
-    }
-    .blake-stagner {
-        margin: 70px auto 0;
-        align-items: center;
-    }
-}
-
 .circle-1 {
     top: 50px;
-    right: calc(200px + (100vw - 1300px) / 12);
     width: 200px;
     height: 200px;
     border-radius: 100px;
-    background: radial-gradient(circle ,#3f51b5, #5f18af);
+    background: rgb(131,58,180);
+    background: radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(92,58,180,1) 100%);
     position: absolute;
-    z-index: 1;
+    z-index: 0;
+    transition: all ease-in-out 5000ms;
+    box-shadow: $shadow-lg;
 }
 .circle-2 {
     top: 200px;
-    right: calc(150px + (100vw - 1300px) / 12);
     width: 200px;
     height: 200px;
     border-radius: 100px;
-    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+    background: rgb(218,174,81);
+    background: radial-gradient(circle, rgba(218,174,81,1) 0%, rgba(213,51,105,1) 100%);
     position: absolute;
-    z-index: 1;
+    z-index: 0;
+    transition: all ease-in-out 6000ms;
+    box-shadow: $shadow-md;
 }
 .details-text p {
     margin: 8px;
@@ -176,4 +162,67 @@
     font-size: 1em;
     transition: all ease 250ms;
     transform: translate3d(100vw, 0px, 0px);
+}
+#blue-animation {
+    background: $color-main;
+    height: 125px;
+    width: 50vw;
+    position: absolute;
+    left: 0;
+    border-bottom-right-radius: 50px;
+    top: 50vh;
+    transition: all ease-in-out 1000ms;
+    z-index: 1;
+    box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.25),
+                -2px -2px 4px 0 rgba(255, 255, 255, 0.3);
+}
+.blue-strip {
+    transform: translate3d(-100vw, 0px, 0px);
+    transition: all ease-in-out 1000ms;
+}
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+    }
+    .glass-box {
+        margin: 0 auto;
+        width: 90%;
+        top: 0;
+    }
+    .hero > div {
+        width: auto;
+        height: 50%;
+    }
+    .hero > div:first-child {
+        z-index: 2;
+    }
+    .blake-stagner {
+        margin: 50px auto 0;
+        align-items: center;
+    }
+    #blue-animation {
+        top: 32vh !important;
+        width: 75vw !important;
+        height: 100px !important;
+    }
+}
+@media (max-width: 320px) {
+    .heading-animate-1 {
+        font-size: 7em;
+    }
+    .heading-animate-2 {
+        font-size: 6em;
+        left: 100px;
+        transition: all ease 500ms;
+    }
+    #blue-animation {
+        height: 80px;
+        top: 34vh !important;
+    }
+    .glass-box div:first-child > p:first-child {
+        font-size: 2em;
+    }
+    .glass-box {
+        height: 220px;
+    }
 }

@@ -2,34 +2,40 @@
   background-color: transparent;
   color: #fff !important;
   position: fixed;
-  width: 100%;
+  width: 100vw;
   z-index: 30;
   font-weight: bold;
-  height: 70px;
+  height: 50px;
   overflow: hidden;
   top: 0;
   border-bottom-left-radius: 2em;
   border-bottom-right-radius: 2em;
+  transition: all ease 500ms;
+  transition-delay: 250ms;
 }
 .scrollBar {
     background: #fff;
     color: #000 !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     overflow: hidden;
-  }
+}
+.scrolled {
+  transform: translate3d(0px, -50px, 0px);
+  transition: all ease 500ms;
+}
 .navBarContainer {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     margin: 5px;
-    height: 60px;
+    height: 40px;
 }
-.navBarTitle p {
+#main-title > a {
     display: inline-block;
     font-weight: bold;
     margin: 0 .5em 0;
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: inherit;
     white-space: nowrap;
 }
@@ -54,35 +60,16 @@
 }
 
 @media (max-width: 650px) {
-  .navBarTitle {
-    font-size: 0.75em;
+  #main-title > a {
+    font-size: 1em;
   }
 }
 @media (max-width: 600px) {
   #mainMenuList {
     display: none;
   }
-
-}
-.navBar:after {
-  content: "";
-  position: absolute;
-  background: inherit;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-  backdrop-filter: blur(10px);
-  margin: -20px;
-} 
-@supports not (backdrop-filter: none) {
-  .navBar:after  {
-      background-color: rgba(0, 0, 0, 0.3);
-  }
-  .navBar.scrollBar:after {
-    background-color: #fff;
+  .menu-icon, .menu-icon-animation {
+    display: block !important;
   }
 }
 .menu-icon {

@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
-h1, h2, h3 h4 {
+h1, h2 {
   font-family: 'Teko', sans-serif;
 }
 h1 {
@@ -15,7 +15,7 @@ h1 {
   margin: 0px;
 }
 h2 {
-  font-size: 2.5em;
+  font-size: 3em;
   margin: 0px;
   font-weight: normal;
 }
@@ -27,4 +27,9 @@ h3 {
 p {
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
+}
+@media (max-width: 320px) {
+  h3 {
+    font-size: 1.5em
+  }
 }

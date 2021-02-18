@@ -6,7 +6,8 @@ function Hero() {
     const [loading, setLoading] = useState(true);
     const [intro, setIntro] = useState('');
     const [introCount, setIntroCount] = useState();
-    const [introDetails, setIntroDetails] = useState('') 
+    const [introDetails, setIntroDetails] = useState('');
+
 
     const handleClick = () => {
         const footer = document.querySelector('#footer')
@@ -15,9 +16,32 @@ function Hero() {
 
     const introText = "Who's Blake?";
 
+
+    const circleAnimation = () => {
+        const one = document.querySelector('#circle-1');
+        const two = document.querySelector('#circle-2');
+        const x = () => { return Math.floor(Math.random() * Math.floor(70)) };
+        const y = () => { return Math.floor(Math.random() * Math.floor(60))};
+        const size = () => {return Math.round(( (Math.random() * (1500 - 500) + 500) * .001) * 100) / 100}
+
+
+        const getRandomInt = () => {
+            one.style.transform = `translate(${x().toString()}vw, ${y().toString()}vh) scale(${size()})`;
+            two.style.transform = `translate(${y().toString()}vw, ${x().toString()}vh) scale(${size()})`;
+        }
+
+        setInterval(() => {
+            getRandomInt()
+        }, 5000)
+        getRandomInt()
+    }
+
+
+
     useEffect(() => {
         setLoading(false)
         setTimeout(() => { setIntroCount(0) }, 1000)
+        circleAnimation()
     }, [])
 
     useEffect(() => {
@@ -39,25 +63,69 @@ function Hero() {
         }
     }, [intro])
 
+
+    const heroScroll = () => {
+        const hero = document.querySelector('#hero');
+        const heroHeight = hero.offsetHeight;
+        const heroPosition = hero.getBoundingClientRect().y;
+        const section = document.querySelector('#sections');
+        let pageTop = window.visualViewport.pageTop
+        const headingOne = document.querySelector('#anim1');
+        const headingTwo = document.querySelector('#anim2');
+        const headingThree = document.querySelector('#anim3');
+        const blueStrip = document.querySelector('#blue-animation');
+
+        const heroAnimationPercent = Math.round((((heroPosition * -1) / heroHeight) *100) *100 ) / 100;
+
+        headingOne.style.transition = 'all linear 0ms'
+        headingOne.style.transform = `translate(-${heroAnimationPercent *2.5}%, ${pageTop}px)`;
+        //headingOne.style.fontSize = `calc(${((100 - heroAnimationPercent)) / 10}em)`
+
+        headingTwo.style.transition = 'all linear 0ms'
+        headingTwo.style.transitionDelay = '0ms'
+        headingTwo.style.transform = `translate3d(-${heroAnimationPercent *3 }%, ${pageTop}px, 0px)`;
+
+        headingThree.style.transition = 'all linear 0ms'
+        headingThree.style.transitionDelay = '0ms'
+        headingThree.style.transform = `translate3d(${heroAnimationPercent * 3}%, ${pageTop}px, 0px)`;
+
+        blueStrip.style.transition = 'all linear 0ms'
+        blueStrip.style.transitionDelay = '0ms'
+        blueStrip.style.transform = `translate3d(-${heroAnimationPercent * 3}%, ${pageTop}px, 0px)`;
+    }
+
+    window.addEventListener('load', () => {
+        const section = document.querySelector('#sections');
+        section.addEventListener('scroll', heroScroll)
+    })
+
+
+    
     return (
-        <div id="hero">
-            <span className="circle-1"></span>
-            <span className="circle-2"></span>
-            <div className="hero">
+            <div
+                id="hero" 
+                className="hero">
                 <div>
                     <div className="blake-stagner">
                         <h1 
+                            id="anim1"
                             className={loading ? 'heading-1' : 'heading-animate-1'}>
                             Blake
                         </h1>
                         <h1
+                            id="anim2"
                             className={loading ? 'heading-2' : 'heading-animate-2'}>
                             Stagner
                         </h1>
+                        <span
+                            className={loading ? 'blue-strip' : ''} 
+                            id="blue-animation"></span>
                     </div>
                 </div>
                 <div>
-                    <div className={loading ? 'glass-box glass-box-transform' : 'glass-box'}>
+                    <div
+                        id="anim3" 
+                        className={loading ? 'glass-box glass-box-transform' : 'glass-box'}>
                         <div>
                             <p>{intro}</p>
                             <span 
@@ -70,15 +138,13 @@ function Hero() {
                             </span>
                         </div>
                         <div>
-                            <ButtonMd
-                                click={() => handleClick()}
-                                name="contact"
-                                />
                         </div>
                     </div>
                 </div>
+                <span id="circle-1" className="circle-1"></span>
+                <span id="circle-2" className="circle-2"></span>
             </div>
-        </div>
+
     )
 }
 export default Hero;

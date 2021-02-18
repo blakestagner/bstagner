@@ -9,31 +9,73 @@ import menuBlack from './img/menu-black.svg';
 
 function Toolbar(props) {
     const [scrolled, setScrolled] = useState(false);
-    const [menuToggle, setMenuToggle] = useState(false)
-    const [mobileMenu, setMobileMenu] = useState(menuWhite)
+    const [menuToggle, setMenuToggle] = useState(false);
+    const [mobileMenu, setMobileMenu] = useState(menuWhite);
+    const [navHide, setNavHide ] = useState(true);
+    let prevScrollpos = window.pageYOffset;
+    
 
-    window.onscroll = () => {
-        if(window.scrollY <= 10) {
-            setScrolled(false)
-            if(mobileMenu === menuBlack || mobileMenu === closeBlack) {
-                if(mobileMenu === menuBlack) {
-                    setMobileMenu(menuWhite)
-                } else setMobileMenu(closeWhite)
-            }
-        } 
-        else {
-            setScrolled(true)
-            if(mobileMenu === menuWhite || mobileMenu === closeWhite) {
-                if(mobileMenu === menuWhite) {
-                    setMobileMenu(menuBlack)
-                } else setMobileMenu(closeBlack)
+
+    window.addEventListener('load', () => {
+        const section = document.querySelector('#sections');
+        section.addEventListener('scroll', sectionScroll)
+    })
+
+    const sectionScroll = () => {
+
+        
+        const windowScroll = () => {
+            const hero = document.querySelector('#hero')
+            let currentScrollPos = hero.getBoundingClientRect().y *-1;
+            if(currentScrollPos * -1 === -0) {
+                setScrolled(false)
+                console.log('true')
+                console.log(mobileMenu)
+                if(mobileMenu === menuBlack || mobileMenu === closeBlack) {
+                    if(mobileMenu === menuBlack) {
+                        setMobileMenu(menuWhite)
+                    } else {
+                        setMobileMenu(closeWhite)
+                    }
+                } else {
+                    if(mobileMenu === menuWhite) {
+                        setMobileMenu(menuWhite)
+                    } else {
+                        setMobileMenu(closeWhite)
+                    }
+                }
+            } 
+            else {
+                setScrolled(true)
+                if(mobileMenu === menuWhite || mobileMenu === closeWhite) {
+                    if(mobileMenu === menuWhite) {
+                        setMobileMenu(menuBlack)
+                    } else setMobileMenu(closeBlack)
+                }
             }
         }
+        
+        const scrollNavHide = () => {
+            const hero = document.querySelector('#hero')
+            let currentScrollPos = hero.getBoundingClientRect().y *-1;
+            if(currentScrollPos * -1 === -0 ) {
+                setNavHide(true)
+            }
+            else if (prevScrollpos > currentScrollPos) {
+                setNavHide(true)
+            } else  {
+                setNavHide(false)
+            }
+            prevScrollpos = currentScrollPos;
+        }
+        windowScroll()
+        scrollNavHide()
     }   
+
+
 
     const mobileMenuToggle = () => {
         setMenuToggle(true)
-
         if(mobileMenu === menuWhite || mobileMenu === menuBlack) {
             if(mobileMenu === menuWhite) {
                 setTimeout(() => {
@@ -63,30 +105,30 @@ function Toolbar(props) {
     }
 
 
-
     const handleClick = (link) => {
         const anchor = document.querySelector(link)
         anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
     return (
-    <div className={scrolled ? 'navBar scrollBar' : 'navBar'} id="mainNav">
+    <div 
+        className={`${scrolled ? 'navBar scrollBar' : 'navBar'} ${navHide ? '' : 'scrolled'}`} 
+        id="mainNav">
 			<div className='navBarContainer'>
-				<div className='navBarTitle'>
-					<p id="main-title"><Link to="/">BStagner</Link></p>
-				</div>
+				<p id="main-title"><Link to="/">BStagner</Link></p>
                 <div>
                     <ul id="mainMenuList">
                         <li><a className="navList" onClick={() => handleClick('#about')}>About</a></li>
-                        
+                        <li><a className="navList" onClick={() => handleClick('#portfolio')}>Portfolio</a></li>
+                        {/*<li><a className="navList" onClick={() => handleClick('#components')}>Components</a></li>*/}
+                        <li><Link className="navList" to="#contact">Contact</Link></li>
                     </ul>
-                    <span id="indicator"></span>    
                 </div>
                 
-                <img
+                {/*<img
                     onClick={() => mobileMenuToggle()}
                     className={menuToggle ? 'menu-icon' : 'menu-icon-animation'} 
                     src={mobileMenu}
-                    alt="menu toggle"/>
+                alt="menu toggle"/>*/}
 			</div>
 		</div>
     )

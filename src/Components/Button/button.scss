@@ -2,13 +2,14 @@ $shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 $shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
 $color-primary: #3f51b5;
+$gradient: radial-gradient(circle, #3f51b5, #5f18af);
 
 .button {
     color: #fff;
-    border-radius: 2em;
-    box-shadow: $shadow-lg;
+    border-radius: 1em;
+    box-shadow: $shadow-md;
     border: none;
-    background-color: $color-primary;
+    background: $gradient;
     display: flex;
     align-items: center;
     justify-content: center;

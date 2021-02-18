@@ -1,6 +1,9 @@
 .App {
   text-align: center;
-  margin-top: -50px;
+  margin-top: 0px;
+  background: white;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 a {
   color: inherit;
@@ -10,4 +13,53 @@ a {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  padding: 4em 1em 2em;
+  height: calc(100vh - 6em);
+}
+#sections {
+  height: 100vh;
+  overflow: hidden;
+  scroll-snap-type: y proximity;
+  overflow-y: scroll;
+}
+#sections > div {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+#sections > div#about, div#portfolio, div#components  {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+#sections > div:last-of-type  {
+  padding: 0;
+}
+.heading {
+  position: relative;
+}
+.heading h1, .heading h2 {
+  z-index: 2;
+  color: #282828;
+}
+.heading h2 {
+  margin: 1em 0 .5em;
+}
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 4em 1em 2em;
+  height: calc(100vh - 6em);
+}
+@media (max-width: 400px) {
+  .main-container {
+    text-align: center;
+    padding: 2em 1em;
+    height: calc(100vh - 4em);
+  }
+  .heading h2 {
+    margin: .25em 0 0;
+  }
+}
+@media (max-width: 320px) {
+
 }
