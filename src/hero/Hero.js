@@ -141,10 +141,9 @@ function Hero() {
                                 <p>{introDetails[1]}</p>
                                 <p>{introDetails[2]}</p>
                             </span>
-                            <div className="ring"></div>
+                            
                         </div>
-                        <div>
-                        </div>
+                        <div className="ring"></div>
                     </div>
                 </div>
                 <span id="circle-1" className="circle-1"></span>
