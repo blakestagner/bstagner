@@ -5,7 +5,7 @@
 }
 .footer-1 {
     background: radial-gradient(circle, #3f51b5, #5f18af);
-    height: calc(80vh - 6em);
+    height: calc(90vh - 6em);
     display: flex;
     padding: 5em 1em 1em;
 }
@@ -17,7 +17,7 @@
 }
 .footer-2 {
     background-color: #282828;
-    height: 20vh;
+    height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,20 +53,11 @@
 }
 @media (max-width: 380px) {
     .footer-1 {
-        height: calc(80vh - 2em);
+        height: calc(85vh - 2em);
         padding: 1em;
     }
-    h2 {
-        font-size: 2.5em;
-    }
-    h3 {
-        font-size: 1em;
-    }
-}
-@media (max-width: 320px) {
-    .footer-1 {
-        height: calc(80vh - 2em);
-        padding: 1em;
+    .footer-2 {
+        height: 15vh;
     }
     h2 {
         font-size: 2.5em;

@@ -60,7 +60,7 @@ function Hero() {
             setTimeout(() => {setIntroCount(introCount + 1)}, 25)
         }
         if(introCount === introText.length - 1) {
-            setIntroDetails(['Front End Developer', 'Web Designer', 'Web Wizard'])
+            setIntroDetails(['Frontend Developer', 'Web Designer', 'Backend Enthusiast', 'Web Wizard'])
         }
     }, [intro])
 
@@ -140,10 +140,12 @@ function Hero() {
                                 <p>{introDetails[0]}</p>
                                 <p>{introDetails[1]}</p>
                                 <p>{introDetails[2]}</p>
+                                <p>{introDetails[3]}</p>
                             </span>
                             
                         </div>
                         <div className="ring"></div>
+                        <div className="ring-2"></div>
                     </div>
                 </div>
                 <span id="circle-1" className="circle-1"></span>

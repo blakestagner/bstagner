@@ -7,7 +7,6 @@ import Footer from './footer/Footer';
 import Portfolio from './Portfolio/Portfolio';
 import About from './About/About.js';
 import Components from './Components/Components';
-import './styles/grid.css'
 
 function App() {
   const [section, setSection] = useState('hero')
