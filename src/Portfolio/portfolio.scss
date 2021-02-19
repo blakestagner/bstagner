@@ -134,7 +134,7 @@ $color-primary: #3f51b5;
     padding: 3px;
     height: 50px;
     width: 50px;
-    top: 150px;
+    top: 10px;
     position: absolute;
     cursor: pointer;
   }
@@ -194,9 +194,6 @@ $color-primary: #3f51b5;
         justify-content: center;
         margin: 0;
     }
-    #arrow-desktop {
-        display: none;
-    }
     #arrow-mobile {
         display: block;
     }
@@ -209,7 +206,6 @@ $color-primary: #3f51b5;
     }
 }
 @media (max-width: 800px) {
-       
     .arrow {
         height: 25px;
         width: 25px;
@@ -219,4 +215,9 @@ $color-primary: #3f51b5;
     .portfolio-proj-title {
         font-size: 2em;
     }
+    .arrow {
+        height: 15px;
+        width: 15px;
+        top: 22px;
+      }
 }

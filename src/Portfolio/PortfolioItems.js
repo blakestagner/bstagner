@@ -18,7 +18,6 @@ export default function PortfolioItems(props) {
     const [animate, setAnimate] = useState('')
     const [enlarged, setEnlarged] = useState(null)
     const [portfolio, setPortfolio] = useState(0)
-
     const portfolioDetails = [
         {
             'name': 'Dean Johsnon',
@@ -56,15 +55,12 @@ export default function PortfolioItems(props) {
     }
 
     const enlargeImage = (img) => {
-        console.log(img)
         setEnlarged(img)
     }
+
     const togglePortfolio = (direction) => {
-        
         const section = document.querySelector('#portfolio-items');
-        const sectionChildren = section.childNodes.length;
         const sectionChildrenWidth = section.getBoundingClientRect().width
-        const sectionWidth = sectionChildrenWidth * sectionChildren;
 
 
         let carouselPositions = [];
@@ -75,10 +71,8 @@ export default function PortfolioItems(props) {
 
         for(let i in carouselPositions) {
             if(carouselPositions[i] > -100 && carouselPositions[i] < 100) {
-                
             }
         }
-
         const nextBefore = (num) => {
             section.scrollTo({
                 left: num * sectionChildrenWidth,
@@ -87,7 +81,6 @@ export default function PortfolioItems(props) {
         }
 
         const nextItem = () => {
-            setAnimate('animate')
             let portfolioCopy = portfolio;
             portfolioCopy++
             if(portfolio === 3 ) {
@@ -102,7 +95,6 @@ export default function PortfolioItems(props) {
             }
         }
         const beforeItem = () => {
-            setAnimate('animate')
             let portfolioCopy = portfolio;
             portfolioCopy--
             if(portfolio === 0 ) {
@@ -119,10 +111,24 @@ export default function PortfolioItems(props) {
         direction === '+' ? nextItem() : beforeItem()
     }
 
-
-    useEffect(() => {
-        console.log(portfolio)
-    }, [portfolio])
+    const swipePortfolio = () => {
+        let carouselPositions = [];
+        document.querySelectorAll('#portfolio-items > div').forEach(function(div) {
+        let child = div.getBoundingClientRect()
+        carouselPositions.push([child.left ]);
+        })
+        for(let i in carouselPositions) {
+            if(carouselPositions[i] > -100 && carouselPositions[i] < 100) {
+                setItem(parseInt(i))
+                setPortfolio(parseInt(i))
+            }
+        }
+    }
+    
+    window.addEventListener('load', () => {
+        const portfolioSwipe = document.querySelector('#portfolio-items')
+        portfolioSwipe.addEventListener('scroll', swipePortfolio, false);
+    })
 
     return (
         <div className="portfolio">
@@ -133,18 +139,8 @@ export default function PortfolioItems(props) {
                     ))}
                 </ul>
             </div>
-            {/*<div
-                id="arrow-dekstop" 
-                style={{position: 'relative'}}>
-                    <i 
-                        onClick={() => togglePortfolioMobile('+')}
-                        className="arrow right"></i>
-                    <i 
-                        onClick={() => togglePortfolio('-')}
-                        className="arrow left"></i>
-            </div>*/}
             <div
-                id="arrow-mobile" 
+                id="arrow" 
                 style={{position: 'relative'}}>
                     <i 
                         onClick={() => togglePortfolio('+')}
