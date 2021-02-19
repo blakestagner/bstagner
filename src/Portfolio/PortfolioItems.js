@@ -206,7 +206,8 @@ export default function PortfolioItems() {
                     {enlarged === null ? '' :
                         <div className="overlay">
                             <img 
-                                width="auto" height="auto"
+                                width="auto" 
+                                height="auto"
                                 src={closeBlack}
                                 onClick={() => setEnlarged(null)} />
                             <img src={enlarged}/>
