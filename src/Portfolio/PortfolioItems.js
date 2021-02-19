@@ -1,12 +1,12 @@
 import './portfolio.scss'
 import bazLogo from './img/portfolio/baztheroadielogo.png';
-import bazSite from './img/portfolio/baztheroadie.jpg';
+import bazSite from './img/portfolio/baztheroadie.webp';
 import deanLogo from './img/portfolio/djv3.png';
-import deanHome from './img/portfolio/electdeanjohnson.jpg'
+import deanHome from './img/portfolio/electdeanjohnson.webp'
 import markLogo from './img/portfolio/mllogo4.png';
-import markHome from './img/portfolio/mlhome.jpg';
+import markHome from './img/portfolio/mlhome.webp';
 import deannaLogo from './img/portfolio/deannakellerlogo.png';
-import deannaHome from './img/portfolio/deannakeller.jpg';
+import deannaHome from './img/portfolio/deannakeller.webp';
 
 import closeBlack from '../toolbar/img/close-black.svg'
 
@@ -206,6 +206,7 @@ export default function PortfolioItems() {
                     {enlarged === null ? '' :
                         <div className="overlay">
                             <img 
+                                width="auto" height="auto"
                                 src={closeBlack}
                                 onClick={() => setEnlarged(null)} />
                             <img src={enlarged}/>
