@@ -65,11 +65,11 @@ function About() {
                             className={tabHeader === 0 ? 'active' : ''}>
                             Technical Skills
                         </h2>
-                        <h2
+                        {/*<h2
                             onClick={() => handleTabs(1)}
                             className={tabHeader === 1 ? 'active' : ''}>
                             Bio
-                        </h2>
+                        </h2>*/}
                     </div>
                     <span
                         className={''} 
