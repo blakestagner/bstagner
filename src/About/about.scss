@@ -47,7 +47,7 @@ $grey-2: #BEBEBE;
 #browser > div > div, #os > div > div, #lang > div > div, #soft > div > div {
     display: flex;
     flex-direction: column;
-    margin: 1em;
+    margin: .5em;
     align-items: center;
 }
 .rain {
@@ -74,11 +74,18 @@ $grey-2: #BEBEBE;
     display: inline-table;
     scroll-snap-align: center;
 }
+.bottom-indicator-container {
+    position: relative;
+}
 #bottom-indicator {
     display: flex;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    bottom: -5vh;
+    left: 0;
+    right: 0;
 }
 #bottom-indicator > div {
     width: 10px;
