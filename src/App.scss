@@ -42,8 +42,8 @@ a {
 }
 .heading {
   position: relative;
+  z-index: 3;
 }
-.heading
 .heading h1, .heading h2 {
   z-index: 2;
   color: #282828;
