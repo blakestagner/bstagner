@@ -1,19 +1,18 @@
 import './portfolio.scss'
 import bazLogo from './img/portfolio/baztheroadielogo.png';
-import bazSite from './img/portfolio/baztheroadie.png';
+import bazSite from './img/portfolio/baztheroadie.jpg';
 import deanLogo from './img/portfolio/djv3.png';
-import deanHome from './img/portfolio/electdeanjohnson.png'
+import deanHome from './img/portfolio/electdeanjohnson.jpg'
 import markLogo from './img/portfolio/mllogo4.png';
-import markHome from './img/portfolio/mlhome.png';
-import markLanding from './img/portfolio/ml_index.png';
+import markHome from './img/portfolio/mlhome.jpg';
 import deannaLogo from './img/portfolio/deannakellerlogo.png';
-import deannaHome from './img/portfolio/deannakeller.png';
+import deannaHome from './img/portfolio/deannakeller.jpg';
 
 import closeBlack from '../toolbar/img/close-black.svg'
 
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
-export default function PortfolioItems(props) {
+export default function PortfolioItems() {
     const [item, setItem] = useState(0);
     const [animate, setAnimate] = useState('')
     const [enlarged, setEnlarged] = useState(null)

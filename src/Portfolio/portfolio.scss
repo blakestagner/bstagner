@@ -102,6 +102,9 @@ $color-primary: #3f51b5;
     left: 0;
     top: 0;
     overflow: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .overlay > img:nth-child(1) {
     margin: 10px 0 0 0;
@@ -112,6 +115,7 @@ $color-primary: #3f51b5;
     background-color: #fff;
     position: absolute;
     right: 5%;
+    top: 5px;
     box-shadow: $shadow-lg;
 } 
 .overlay > img:nth-child(2) {
@@ -203,6 +207,7 @@ $color-primary: #3f51b5;
         width: 80%;
         height: 60vh;
         object-fit: cover;
+        object-position: 100% 0;
     }
 }
 @media (max-width: 800px) {
