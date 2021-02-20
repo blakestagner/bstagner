@@ -76,6 +76,12 @@ $color-primary: #3f51b5;
 .portfolio-sidenav ul li p {
     margin: 0;
     font-size: 1em;
+    transition: all ease 250ms;
+} 
+.portfolio-sidenav ul li p:hover {
+    transform: scale(1.25);
+    transition: all ease 250ms;
+    padding: 0 5px;
 } 
 .portfolio-details {
     width: 100%;
@@ -132,15 +138,7 @@ $color-primary: #3f51b5;
 }
 //arrow
 .arrow {
-    border: solid #808080;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    height: 50px;
-    width: 50px;
-    top: 10px;
-    position: absolute;
-    cursor: pointer;
+    display: none;
   }
   .right {
     transform: rotate(-45deg);
@@ -201,6 +199,17 @@ $color-primary: #3f51b5;
     #arrow-mobile {
         display: block;
     }
+    .arrow {
+        border: solid #808080;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+        height: 15px;
+        width: 15px;
+        top: 22px;
+        position: absolute;
+        cursor: pointer;
+      }
 }
 @media (max-width: 900px) {
     .portfolio-site-img img {
@@ -210,19 +219,8 @@ $color-primary: #3f51b5;
         object-position: 100% 0;
     }
 }
-@media (max-width: 800px) {
-    .arrow {
-        height: 25px;
-        width: 25px;
-      }
-}
 @media (max-width: 500px) {
     .portfolio-proj-title {
         font-size: 2em;
     }
-    .arrow {
-        height: 15px;
-        width: 15px;
-        top: 22px;
-      }
 }
