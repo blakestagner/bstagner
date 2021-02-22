@@ -5,9 +5,10 @@
 }
 .footer-1 {
     background: radial-gradient(circle, #3f51b5, #5f18af);
-    height: calc(90vh - 6em);
+    height: calc(90vh - 2em);
     display: flex;
-    padding: 5em 1em 1em;
+    padding: 1em 1em;
+    align-items: center;
 }
 .footer-1 > div {
     width: 33vw;
