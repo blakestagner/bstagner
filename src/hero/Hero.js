@@ -16,6 +16,11 @@ function Hero() {
 
     const introText = "Who's Blake?";
 
+    const gradientAnimation = () => {
+        const colorOne = '63,81,181,1';
+        const colorTwo = '2,119,189,1';
+        const colorThree = '2,189,121,1';
+    }
 
     const circleAnimation = () => {
         const one = document.querySelector('#circle-1');
@@ -115,12 +120,12 @@ function Hero() {
                         <h1 
                             id="anim1"
                             className={loading ? 'heading-1' : 'heading-animate-1'}>
-                            Blake
+                            BLAKE
                         </h1>
                         <h1
                             id="anim2"
                             className={loading ? 'heading-2' : 'heading-animate-2'}>
-                            Stagner
+                            STAGNER
                         </h1>
                         <span
                             className={loading ? 'blue-strip' : ''} 

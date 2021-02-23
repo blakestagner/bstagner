@@ -78,6 +78,17 @@ $color-primary: #3f51b5;
     font-size: 1em;
     transition: all ease 250ms;
 } 
+.portfolio-sidenav ul li{
+    transition: all ease-in 250ms;
+}
+.portfolio-sidenav ul li.active {
+    transform: scale(1.5);
+    padding: 0 5px;
+    transition: all ease-in 250ms;
+    background: linear-gradient(90deg, rgba(177,177,177,1) 0%, rgba(75,75,75,1) 48%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .portfolio-sidenav ul li p:hover {
     transform: scale(1.25);
     transition: all ease 250ms;

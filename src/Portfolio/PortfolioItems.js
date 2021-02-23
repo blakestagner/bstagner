@@ -134,7 +134,11 @@ export default function PortfolioItems() {
             <div className="portfolio-sidenav">
                 <ul>
                     {portfolioDetails.map((obj, i) => (
-                        <li key={i} onClick={() => handleClick(i)}><p>{obj.name}</p></li>
+                        <li
+                            key={i} 
+                            onClick={() => handleClick(i)}>
+                            <p className={item === i ? 'active' : ''} >{obj.name}</p>
+                        </li>
                     ))}
                 </ul>
             </div>

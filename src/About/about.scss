@@ -149,3 +149,63 @@ $grey-2: #BEBEBE;
     transform: translate3d(-100vw, 0px, 0px);
     transition: all ease 250ms;
 }
+.bio {
+    display: flex;
+    justify-content: space-around;
+}
+.blake-img {
+    margin-top: 1.5em;
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    height: 100%;
+    width: 200px;
+}
+.bio > div {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.bio > div > p {
+    line-height: 1.5;
+    text-align: left;
+}
+.bio > div > p > span {
+    background: $gradient-2;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.25em;
+}
+@media (max-width: 900px) {
+    .blake-img {
+        height: 100%;
+        width: 175px;
+    }
+    .bio > div {
+        max-width: 350px;
+    }
+}
+@media (max-width: 650px) {
+    .blake-img {
+        height: 100%;
+        width: 150px;
+    }
+    .bio > div {
+        max-width: 300px;
+    }
+}
+@media (max-width: 600px) {
+    .blake-img {
+        height: 100px;
+        width: 100px;
+        margin: 0 auto;
+        object-fit: cover;
+        object-position: 100% 0;
+    }
+    .bio {
+        flex-direction: column;
+    }
+    .bio > div {
+        margin: 0 auto;
+        max-width: 80vw;
+    }
+}

@@ -1,5 +1,6 @@
 import './about.scss';
 import {useState, useEffect} from 'react';
+import blakeImg from './img/blake.jpg';
 
 function About() {
     const [skills, setSkills] = useState(0);
@@ -65,11 +66,11 @@ function About() {
                             className={tabHeader === 0 ? 'active' : ''}>
                             Technical Skills
                         </h2>
-                        {/*<h2
+                        <h2
                             onClick={() => handleTabs(1)}
                             className={tabHeader === 1 ? 'active' : ''}>
                             Bio
-                        </h2>*/}
+                        </h2>
                     </div>
                     <span
                         className={''} 
@@ -113,7 +114,14 @@ function About() {
                     ) : 
                     (
                         <div className="bio">
-                            <p>Blake Stagner</p>
+                            <img
+                                className="blake-img" 
+                                src={blakeImg} alt="Blake Stagner"/>
+                            <div>
+                                <p><span>2014</span> Took my first intro to web development class, and I never stopped learning and creating.</p>
+                                <p><span>2016</span> Started my first freelance projects</p>
+                                <p><span>2019</span> Started my first full time Frontend Development/Web Designer role at Highline College</p>
+                            </div>
                         </div>
                     )}
                 </div>
