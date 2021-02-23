@@ -7,6 +7,7 @@ import markLogo from './img/portfolio/mllogo4.png';
 import markHome from './img/portfolio/mlhome.webp';
 import deannaLogo from './img/portfolio/deannakellerlogo.png';
 import deannaHome from './img/portfolio/deannakeller.webp';
+import maeBlake from './img/portfolio/wedding.webp'
 
 import closeBlack from '../toolbar/img/close-black.svg'
 
@@ -18,6 +19,12 @@ export default function PortfolioItems() {
     const [enlarged, setEnlarged] = useState(null)
     const [portfolio, setPortfolio] = useState(0)
     const portfolioDetails = [
+        {
+            'name': 'Mae Blake Wedding',
+            'icon': deanLogo,
+            'site_home': maeBlake,
+            'site_landing': null
+        },
         {
             'name': 'Dean Johsnon',
             'icon': deanLogo,
