@@ -20,7 +20,7 @@ export default function PortfolioItems() {
     const [portfolio, setPortfolio] = useState(0)
     const portfolioDetails = [
         {
-            'name': 'Mae Blake Wedding',
+            'name': 'My Wedding',
             'icon': deanLogo,
             'site_home': maeBlake,
             'site_landing': null
