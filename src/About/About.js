@@ -39,10 +39,8 @@ function About() {
         }
 
     }
-    window.addEventListener('load', () => {
-        const section = document.querySelector('#section');
-        section.addEventListener('scroll', indicator)
-    })
+
+
 
     const handleClick = (num) => {
         const section = document.querySelector('#section');
@@ -55,6 +53,13 @@ function About() {
           });
     }
 
+    useEffect(() => {
+        if(tabContent === 1) {
+            const section = document.querySelector('#section');
+            section.addEventListener('scroll', indicator)
+        } else;
+    }, [tabContent])
+
     return (
         <div id="about">
             <div className="main-container">
@@ -64,12 +69,12 @@ function About() {
                         <h2 
                             onClick={() => handleTabs(0)}
                             className={tabHeader === 0 ? 'active' : ''}>
-                            Technical Skills
+                            About Me
                         </h2>
                         <h2
                             onClick={() => handleTabs(1)}
                             className={tabHeader === 1 ? 'active' : ''}>
-                            Bio
+                            Tech Stack
                         </h2>
                     </div>
                     <span
@@ -81,6 +86,20 @@ function About() {
                                 }>
                 {tabContent === 0 ? 
                     (
+                        <div className="bio">
+                            <img
+                                className="blake-img" 
+                                src={blakeImg} alt="Blake Stagner"/>
+                            <div>
+                                <p><span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more</p>
+                                <p><span>2019</span> Started being a full time Developer and never looked back.</p>
+                                <p><span>2014</span> Built my first website, and I never stopped learning and creating.</p>
+                                
+                            </div>
+                        </div>
+                    ) : 
+                    (
+
                         <div>
                             <div className="about-container">
                                 <Language />
@@ -109,18 +128,6 @@ function About() {
                                         onClick={() => handleClick(3)}
                                         className={skills === 3? 'active': ''}></div>
                                 </span>
-                            </div>
-                        </div>    
-                    ) : 
-                    (
-                        <div className="bio">
-                            <img
-                                className="blake-img" 
-                                src={blakeImg} alt="Blake Stagner"/>
-                            <div>
-                                <p><span>2014</span> Took my first intro to web development class, and I never stopped learning and creating.</p>
-                                <p><span>2016</span> Started my first freelance projects</p>
-                                <p><span>2019</span> Started my first full time Frontend Development/Web Designer role at Highline College</p>
                             </div>
                         </div>
                     )}

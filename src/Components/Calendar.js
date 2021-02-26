@@ -5,9 +5,13 @@ export default function Calendar(props) {
     const [value, setValue] = useState(moment());
     const [calendar, setCalendar] = useState([]);
 
+
+    const monthStart =  value.clone().startOf("month");
+    const monthEnd = value.clone().endOf("month")
+
     const startDay = value.clone().startOf("month").startOf("week");
     const endDay = value.clone().endOf("month").endOf("week")
-    
+
 
     useEffect(() => {
         const day = startDay.clone().subtract(1, 'day');
@@ -38,7 +42,9 @@ export default function Calendar(props) {
                         {week.map((day, i) => (
                             <div
                                 onClick={()=> setValue(day)} 
-                                className="day" 
+                                className={(day._d < monthStart._d) 
+                                        ? 'day not-month' : day._d > monthEnd._d
+                                            ? 'day not-month' : 'day same-month'}
                                 key={i}>
                                 <div
                                     className={value.isSame(day, "day") ? 'today' : ''}
@@ -51,6 +57,7 @@ export default function Calendar(props) {
                 ))}
                 </div>
             </div>
+            {console.log(monthEnd._d < endDay._d ? 'true' : 'false')}
         </div>
     )
 }

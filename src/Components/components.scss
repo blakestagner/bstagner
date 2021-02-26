@@ -1,5 +1,9 @@
 $shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 $shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$neu-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25), -2px -2px 5px rgba(255, 255, 255, 0.3);
+$gradient: linear-gradient(90deg, rgba(63,81,181,1) 0%, rgba(2,119,189,1) 48%, rgba(2,189,121,1) 100%);
+$gradient-2: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
+$color-main: rgba(2,119,189,1);
 
 #components {
     color: #000;
@@ -30,6 +34,7 @@ $shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     margin: 0 10px;
     text-decoration: none;
     color: #000;
+    cursor: pointer;
 }
 .components-menu-inner div p {
     margin: 0px;
@@ -77,7 +82,68 @@ $shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .calendar-header {
     color: #fff;
-    background-color: #000;
+    background: $gradient;
     padding: 5px;
     font-size: 1.5em;
+}
+.not-month {
+    color: lightgrey;
+}
+input {
+    border-radius: 10px;
+    border: solid 1px lightgrey;
+    padding: 5px;
+    margin: 0 5px;
+}
+input:focus {
+    outline: none;
+}
+.submit-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+ul#notes {
+    max-width: 400px;
+    width: auto;
+    margin: 1em auto;
+    overflow-y: scroll;
+    max-height: 60vh;
+}
+ul#notes li {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    width: 100%;
+    animation: notes ease-out 500ms forwards; 
+}
+ul#notes li > span {
+    box-shadow: $shadow-md;
+    padding: 5px;
+    margin: 5px 0;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    text-align: left;
+}
+ul#notes li > span > span:first-child{
+    padding: 0 5px;
+    color: $color-main;
+}
+ul#notes li img {
+    width: 2em;
+    height: 2em;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+@keyframes notes {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

@@ -1,7 +1,7 @@
 import './button.scss';
 
 
-function ButtonMd(props) {
+function ButtonSm(props) {
     
     const handleClick = (e) => {
         
@@ -14,10 +14,11 @@ function ButtonMd(props) {
     return (
         <button 
             onClick={handleClick}
-            className="button md color">
+            type={props.type}
+            className="button sm color">
             <p>{props.name}</p>
             <span className="ripple"></span>
         </button>
     )
 }
-export default ButtonMd;
+export default ButtonSm;

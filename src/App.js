@@ -9,7 +9,9 @@ import About from './About/About.js';
 import Components from './Components/Components';
 
 function App() {
-  const [section, setSection] = useState('hero')
+  const [section, setSection] = useState('hero');
+
+
 
   window.addEventListener('scroll', () => {
     let scrollPosition = window.pageYOffset;
@@ -40,7 +42,7 @@ function App() {
           <Hero />
           <About />
           <Portfolio />
-          {/*<Components /> */}
+          <Components />
           <Footer />
         </div>
       </Router>

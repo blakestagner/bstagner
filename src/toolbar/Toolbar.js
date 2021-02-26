@@ -117,7 +117,7 @@ function Toolbar(props) {
                     <ul id="mainMenuList">
                         <li><a className="navList" onClick={() => handleClick('#about')}>About</a></li>
                         <li><a className="navList" onClick={() => handleClick('#portfolio')}>Portfolio</a></li>
-                        {/*<li><a className="navList" onClick={() => handleClick('#components')}>Components</a></li>*/}
+                        <li><a className="navList" onClick={() => handleClick('#components')}>Components</a></li>
                         <li><a className="navList" onClick={() => handleClick('#contact')}>Contact</a></li>
                     </ul>
                 </div>

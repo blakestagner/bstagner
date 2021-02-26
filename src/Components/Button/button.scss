@@ -43,7 +43,12 @@ $gradient: radial-gradient(circle, #3f51b5, #5f18af);
     border-radius: 50%;
     opacity: .7;
 }
-  
+.sm {
+    font-size: 1em;
+    width: auto;
+    max-width: 100px;
+    height: 1.5em;
+}
 .md {
     font-size: 1.5em;
     width: 200px;
