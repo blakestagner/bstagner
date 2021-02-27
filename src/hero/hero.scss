@@ -143,7 +143,6 @@ $gradient-galaxy:
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
-    animation: sunInitialX 4000ms forwards, sunInitialY 4000ms forwards;
     box-shadow: 0 0 60px rgba(255, 160, 60, 0.4); 
     border-radius: 50%;
     top: 10vh;
@@ -152,6 +151,9 @@ $gradient-galaxy:
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.sun-animate {
+    animation: sunInitialX 4000ms forwards, sunInitialY 4000ms forwards; 
 }
 .sun {
     width: 200px;
@@ -328,7 +330,7 @@ $gradient-galaxy:
     width: 700px;
     height: 700px;
     animation: galaxy-outer 100000ms linear infinite;
-    animation-delay: 1000ms;
+    animation-delay: 1500ms;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -449,7 +451,7 @@ $gradient-galaxy:
     width: 550px;
     height: 550px;
     animation: galaxy-outer 100000ms linear infinite;
-    animation-delay: 1000ms;
+    animation-delay: 1500ms;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -553,28 +555,32 @@ $gradient-galaxy:
     height: auto;
     position: absolute;
 }
-//dead star
-#dead-star-outer {
-    position: absolute;
-    top: 100vh;
-    left: 30vw;
-    height: 500px;
-    width: 500px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@-webkit-keyframes sub-text {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
-#dead-star-inner {
-    height: 300px;
-    width: 300px;
-    border-radius: 50%;
-    overflow: hidden;
+@-moz-keyframes sub-text {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
-#dead-star {
-    height: 100%;
-    width: 100%;
+@-o-keyframes sub-text {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 @keyframes sub-text {
     from {
@@ -596,29 +602,7 @@ $gradient-galaxy:
         text-shadow: 0 0 20px #fff, 0 0 30px #49fb35, 0 0 40px #49fb35,;
     }
 }
-@keyframes planets-emergeX {
-    0% {
-        top: -25vh;
-        animation-timing-function: ease-in;
-        transform: scale(0.15) rotate(-360deg);
-    }
-    100% {
-        top: 0;
-        animation-timing-function: ease-in-out;
-        transform: scale(1) rotate(0deg);
-    }
-}
-@keyframes planets-emergeY {
-    0% {
-        left: -100vh;
-        animation-timing-function: ease-in;
-    }
 
-    100% {
-        left: 0;
-        animation-timing-function: ease-in-out;
-    }
-}
 @keyframes sunInitialX {
     0% {
         top: 10vh;
@@ -640,7 +624,7 @@ $gradient-galaxy:
         animation-timing-function: ease-in-out;
         transform: scale(1)
     }
-  }
+}
 @keyframes sunInitialY {
     0% {
       left: 0;

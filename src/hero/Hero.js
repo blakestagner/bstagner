@@ -18,6 +18,11 @@ function Hero() {
 
 
     useEffect(() => {
+        stars();
+        galaxyStars2();
+        galaxyStars();
+        const section = document.querySelector('#sections');
+        section.addEventListener('scroll', heroScroll)
         setLoading(false)
     }, [])
 
@@ -53,14 +58,6 @@ function Hero() {
         }   
     }
 
-    window.addEventListener('load', () => {
-        stars();
-        galaxyStars2();
-        galaxyStars();
-
-        const section = document.querySelector('#sections');
-        section.addEventListener('scroll', heroScroll)
-    })
 
     const stars = () => {
         let canvas = document.querySelector("#starfield");
@@ -132,7 +129,7 @@ function Hero() {
                             <span> UNIVERSE</span></p>
                     </div>
                 </div>
-                <span id="sun" >
+                <span id="sun" className={!loading ? 'sun-animate': ''}>
                     <span className="sun" style={{backgroundImage: (`url(${sunImg})`) }} >
                     </span>
                     <div className="earth-orbit">
