@@ -19,12 +19,6 @@ function About() {
     }
 
     const indicator = (evt) => {
-        const section = document.querySelector('#section');
-        const sectionChildren = section.childNodes.length;
-        const sectionChildrenWidth = section.getBoundingClientRect().width
-        const sectionWidth = sectionChildrenWidth * sectionChildren;
-
-
         let carouselPositions = [];
         document.querySelectorAll('#section > div').forEach(function(div) {
         let child = div.getBoundingClientRect()
@@ -39,9 +33,6 @@ function About() {
         }
 
     }
-
-
-
     const handleClick = (num) => {
         const section = document.querySelector('#section');
         const sectionChildrenWidth = section.getBoundingClientRect().width;

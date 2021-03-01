@@ -625,7 +625,43 @@ $gradient-galaxy:
         transform: scale(1)
     }
 }
+@-webkit-keyframes sunInitialX {
+    0% {
+        top: 10vh;
+        animation-timing-function: ease-out;
+        transform: scale(0.15)
+    }
+    25% {
+        top: 0vh;
+        animation-timing-function: ease-in-out;
+        transform: scale(0.3)
+    }
+    75% {
+        top: 50vh;
+        animation-timing-function: ease-in-out;
+        transform: scale(1.2)
+    }
+    100% {
+        top: 40vh;
+        animation-timing-function: ease-in-out;
+        transform: scale(1)
+    }
+}
 @keyframes sunInitialY {
+    0% {
+      left: 0;
+      animation-timing-function: ease-out;
+    }
+    50% {
+      left: 80vw;
+      animation-timing-function: ease-in-out;
+    }
+    100% {
+        left: 55vw;
+        animation-timing-function: ease-in-out;
+      }
+}
+@-webkit-keyframes sunInitialY {
     0% {
       left: 0;
       animation-timing-function: ease-out;
@@ -772,9 +808,9 @@ $gradient-galaxy:
 
 @keyframes galaxy-outer {
     0% {
-        transform: rotateX(70deg) rotateY(0deg) rotate(0deg);
+        transform: rotateX(75deg) rotateY(0deg) rotate(0deg);
     }
     100% {
-        transform: rotateX(70deg)  rotateY(0deg) rotate(360deg);
+        transform: rotateX(75deg)  rotateY(0deg) rotate(360deg);
     }
 }

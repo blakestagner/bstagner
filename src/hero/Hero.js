@@ -5,18 +5,6 @@ import sunImg from './img/sun.png';
 function Hero() {
     const [loading, setLoading] = useState(true);
 
-
-    const handleClick = () => {
-        const footer = document.querySelector('#footer')
-         footer.scrollIntoView(true);
-    }
-
-    const introText = "Welcome to my";
-    const universeText = "UNIVERSE";
-
-
-
-
     useEffect(() => {
         stars();
         galaxyStars2();
@@ -25,10 +13,6 @@ function Hero() {
         section.addEventListener('scroll', heroScroll)
         setLoading(false)
     }, [])
-
-    
-
-
 
     const heroScroll = () => {
         const hero = document.querySelector('#hero');
@@ -130,7 +114,7 @@ function Hero() {
                     </div>
                 </div>
                 <span id="sun" className={!loading ? 'sun-animate': ''}>
-                    <span className="sun" style={{backgroundImage: (`url(${sunImg})`) }} >
+                    <span className="sun" style={{backgroundImage: (`url(${sunImg})`)}} >
                     </span>
                     <div className="earth-orbit">
                         <span id="earth" className="earth"></span>
