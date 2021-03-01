@@ -37,7 +37,7 @@ a {
   margin: 0 auto;
 }
 #sections > div:first-of-type {
-  scroll-snap-align: start;
+  scroll-snap-align: none;
   height: 200vh;
 }
 #sections > div:last-of-type  {
