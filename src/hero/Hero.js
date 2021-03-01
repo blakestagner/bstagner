@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import './hero.scss';
-import sunImg from './img/sun.png';
-
 function Hero() {
     const [loading, setLoading] = useState(true);
 
@@ -114,7 +112,7 @@ function Hero() {
                     </div>
                 </div>
                 <span id="sun" className={!loading ? 'sun-animate': ''}>
-                    <span className="sun" style={{backgroundImage: (`url(${sunImg})`)}} >
+                    <span className="sun" >
                     </span>
                     <div className="earth-orbit">
                         <span id="earth" className="earth"></span>
