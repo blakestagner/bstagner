@@ -34,10 +34,15 @@ function Hero() {
         headingTwo.style.transform = 
             `translate3d(-${heroAnimationPercent *3 }%, 0px, 0px)`;
 
+        headingThree.style.transition = 
+            'all linear 0ms'
+        headingThree.style.transitionDelay = 
+            '0ms'
+        headingThree.style.transform = 
+            `translate3d(-${heroAnimationPercent *3 }%, 0px, 0px)`;
 
-        if(heroAnimationPercent >= 0 && heroAnimationPercent <= 30) {
-            headingThree.style.transform =`translate3d(-0, ${heroAnimationPercent}%, 0) `;
-        }   
+
+        
     }
 
 

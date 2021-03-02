@@ -84,7 +84,7 @@ function About() {
                             <div>
                                 <p><span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more</p>
                                 <p><span>2019</span> Started being a full time Developer and never looked back.</p>
-                                <p><span>2014</span> Built my first website, and I never stopped learning and creating.</p>
+                                <p><span>2014</span> Built my first website and begun my web development journey.</p>
                                 
                             </div>
                         </div>
