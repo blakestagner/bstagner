@@ -309,7 +309,7 @@ $gradient-galaxy:
 //galaxy one
 .galaxy-1-container {
     position: absolute;
-    top: 45vh;
+    top: 40vh;
     left: 5vw;
     width: 700px;
     height: 700px;
@@ -430,12 +430,12 @@ $gradient-galaxy:
 //galaxy 2
 .galaxy-2-container {
     position: absolute;
-    top: 100vh;
+    top: 85vh;
     right: 5vw;
     width: 550px;
     height: 550px;
     animation: galaxy-outer 100000ms linear infinite;
-    animation-delay: 1500ms;
+    animation-delay: 50ms;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -36,7 +36,7 @@ function ComponentsMenu(props) {
 
         
         if(direction === 'right') {
-            if (compState === 1) {
+            if (compState === 2) {
                 setCompState(0)
             } else {
                 setCompState(compState + 1)
@@ -44,7 +44,7 @@ function ComponentsMenu(props) {
 
         } else {
             if (compState === 0) {
-                setCompState(1)
+                setCompState(2)
             } 
             else { 
                 setCompState(compState - 1)
