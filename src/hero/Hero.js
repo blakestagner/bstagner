@@ -91,9 +91,6 @@ function Hero() {
                     <div className="mars-orbit">
                         <span id="mars" className="mars"></span>
                     </div>
-                    <div className="jupiter-orbit">
-                        <span id="jupiter" className="jupiter"></span>
-                    </div>
                 </span>
                 <div className="galaxy-1-container">
                     <canvas id="galaxy-stars" height="750" width="750"></canvas>

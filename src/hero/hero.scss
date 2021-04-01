@@ -219,30 +219,6 @@ $gradient-galaxy:
     animation: mars-spin 16000ms infinite linear;
     transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
 }
-.jupiter {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    border-radius: 100px;
-    background: rgb(218,174,81);
-    background: radial-gradient(circle at bottom, rgba(0,255,170,1) 0%, rgba(0,82,54,1) 100%);
-    position: absolute;
-    z-index: 2;
-    box-shadow: $shadow-md;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    animation: jupiter-spin 16000ms infinite linear;
-    transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
-}
-.jupiter-orbit {
-    position: absolute;
-    animation: jupiter-orbit 16000ms infinite linear;
-    height: 100em;
-    width: 100em;
-    transform-style: preserve-3d;
-    border-radius: 50%;
-    transform: rotateX(75deg);
-}
 //Black Hole 
 .black-hole-orbit {
     position: absolute;
@@ -821,76 +797,6 @@ $gradient-galaxy:
         transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
     }
     
-    100% {
-        transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
-    }
-}
-@keyframes jupiter-orbit {
-    0% {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transform: rotateX(75deg) rotateY(15deg) rotate(0deg) ;
-        z-index: 1;
-    }
-    25% {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 5;
-        transform: rotateX(75deg) rotateY(15deg) rotate(90deg);
-    }
-    50% {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 8;
-        transform: rotateX(75deg) rotateY(15deg) rotate(180deg);
-    }
-    75% {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 1;
-        transform: rotateX(75deg) rotateY(15deg) rotate(270deg);
-    }
-    100% {    
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 1;
-        transform: rotateX(75deg) rotateY(15deg) rotate(360deg);
-    }
-}
-@-webkit-keyframes jupiter-orbit {
-    0% {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transform: rotateX(75deg) rotateY(15deg) rotate(0deg) ;
-        z-index: 1;
-    }
-    25% {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 5;
-        transform: rotateX(75deg) rotateY(15deg) rotate(90deg);
-    }
-    50% {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 8;
-        transform: rotateX(75deg) rotateY(15deg) rotate(180deg);
-    }
-    75% {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 1;
-        transform: rotateX(75deg) rotateY(15deg) rotate(270deg);
-    }
-    100% {    
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        z-index: 1;
-        transform: rotateX(75deg) rotateY(15deg) rotate(360deg);
-    }
-}
-@keyframes jupiter-spin {
-    0% {
-        transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
-    }
-    100% {
-        transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
-    }
-}
-@-webkit-keyframes jupiter-spin {
-    0% {
-        transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
-    }
     100% {
         transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
     }
