@@ -6,39 +6,44 @@ export default function Todo() {
     const [currentItem, setCurrentItem] = useState('')
     const [list, setList] = useState(['Type some notes!'])
     const [completed, setCompleted] = useState([])
+    const [placeholderMsg, setPlaceholderMsg] = useState('Enter a Task!')
+    const [error, setError] = useState('')
 
     const handleInput = (e) => {
-        console.log(e.target.value)
         setCurrentItem(e.target.value)
     }
 
     const handleSubmit = (e) => {
-        
-        setList([...list, currentItem])
-        setCurrentItem('')
+        if(currentItem.length === 0) {
+            setError('error')
+            setPlaceholderMsg('No task Given')
+            setTimeout(() => {
+                setError('')
+                setPlaceholderMsg('Enter a Task!')
+            }, 1000)
+        } else {
+            setList([...list, currentItem])
+            setCurrentItem('')
+        }
     }
 
     const handleDelete = (index) => {
-        console.log(index)
         setList(list.filter((item, i) => i !== index))
     }
-
-    useEffect(() => {
-        console.log(list.length)
-    }, [list])
 
     return (
         <div>
             <div className="submit-row">
-                <input 
-                    type="text" 
-                    placeholder="Enter task"
+                <input
+                    className={error}
+                    type="text"
+                    placeholder={placeholderMsg}
                     value={currentItem} 
                     onChange={handleInput}></input>
                 <ButtonSm 
                     type="submit" 
                     name="add" 
-                    click={() => handleSubmit()}/>
+                    click={error.length !== 0 ? () => {} : () => handleSubmit()}/>
             </div>
             <ul id="notes">
             {list.map((items, i) => (

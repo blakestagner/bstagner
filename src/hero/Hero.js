@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react'
 import './hero.scss';
+import spaceImg from './img/space.jpg';
+
 function Hero() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        stars();
-        galaxyStars2();
-        galaxyStars();
+        stars("starfield", 700);
+        stars("galaxy-stars", 500)
+        stars("galaxy-2-stars", 500)
         const section = document.querySelector('#sections');
         section.addEventListener('scroll', heroScroll)
         setLoading(false)
     }, [])
+
 
     const heroScroll = () => {
         const hero = document.querySelector('#hero');
@@ -25,64 +28,27 @@ function Hero() {
             'all linear 0ms';
         headingOne.style.transform = 
             `translate3d(-${heroAnimationPercent *2.5}%, 0px, 0px)`;
-        //headingOne.style.fontSize = `calc(${((100 - heroAnimationPercent)) / 10}em)`
-
         headingTwo.style.transition = 
             'all linear 0ms'
         headingTwo.style.transitionDelay = 
             '0ms'
         headingTwo.style.transform = 
             `translate3d(-${heroAnimationPercent *3 }%, 0px, 0px)`;
-
         headingThree.style.transition = 
             'all linear 0ms'
         headingThree.style.transitionDelay = 
             '0ms'
         headingThree.style.transform = 
             `translate3d(-${heroAnimationPercent *3 }%, 0px, 0px)`;
-
-
-        
     }
 
 
-    const stars = () => {
-        let canvas = document.querySelector("#starfield");
+    const stars = (objId, count) => {
+        let canvas = document.querySelector(`#${objId}`);
         let context = canvas.getContext("2d");
-        let stars = 700;
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
-    
-        for (var i = 0; i < stars; i++) {
-            let x = Math.random() * canvas.getBoundingClientRect().width;
-            let y = Math.random() * canvas.getBoundingClientRect().height,
-            radius = Math.random() * 1.2;
-            context.beginPath();
-            context.arc(x, y, radius, 0, 360);
-            context.fillStyle = "hsla(200,100%,100%,0.8)";
-            context.fill();
-        }
-    }
-    const galaxyStars = () => {
-        let canvas = document.querySelector("#galaxy-stars");
-        let context = canvas.getContext("2d");
-        let stars = 500;
-        
-    
-        for (var i = 0; i < stars; i++) {
-            let x = Math.random() * canvas.getBoundingClientRect().width;
-            let y = Math.random() * canvas.getBoundingClientRect().height,
-            radius = Math.random() * 1.2;
-            context.beginPath();
-            context.arc(x, y, radius, 0, 360);
-            context.fillStyle = "hsla(200,100%,100%,0.8)";
-            context.fill();
-        }
-    }
-    const galaxyStars2 = () => {
-        let canvas = document.querySelector("#galaxy-2-stars");
-        let context = canvas.getContext("2d");
-        let stars = 500;
+        let stars = count;
         for (var i = 0; i < stars; i++) {
             let x = Math.random() * canvas.getBoundingClientRect().width;
             let y = Math.random() * canvas.getBoundingClientRect().height,
@@ -164,15 +130,6 @@ function Hero() {
                         </div>
                     </div>
                 </div>
-
-                {/*<div id="dead-star-outer">
-                    <div id="dead-star-inner">
-                    </div>
-                    <canvas id="dead-star" width='500' height="500">
-                    </canvas>
-                </div>*/}
-
-
                 <div className="black-hole-orbit"> 
                     <span id="black-hole" className="black-hole"></span>
                     <span className="tails one"></span>

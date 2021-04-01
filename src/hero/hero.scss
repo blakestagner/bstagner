@@ -17,6 +17,14 @@ $gradient-galaxy:
     background: rgb(0,7,65);
     background: linear-gradient(180deg, rgba(0,7,65,1) 0%, rgba(52,0,82,1) 30%, rgba(20,20,20,1) 100%);
 }
+.hero-initial {
+    display: flex;
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+    background: rgb(0,7,65);
+    background: linear-gradient(180deg, rgba(0,7,65,1) 0%, rgba(52,0,82,1) 30%, rgba(20,20,20,1) 100%);
+}
 .hero-background {
     width: 100vw;
     height: 200vh;

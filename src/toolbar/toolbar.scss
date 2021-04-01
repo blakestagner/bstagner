@@ -94,3 +94,27 @@
   position: absolute;
   transition: all ease-in 100ms;
 }
+.mobile-nav {
+  height: calc(100vh - 140px);
+  width: calc(100vw - 4em);
+  position: fixed;
+  background-color: #000;
+  z-index: 10;
+  transition: all ease-in 250ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px 2em;
+}
+.mobile-nav a {
+  font-size: 3em;
+  padding: 20px 0;
+  color: #fff;
+}
+.mobile-nav.closed {
+  left: -120vw;
+}
+.mobile-nav.open {
+  left: 0;
+}

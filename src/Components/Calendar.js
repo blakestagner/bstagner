@@ -57,7 +57,6 @@ export default function Calendar(props) {
                 ))}
                 </div>
             </div>
-            {console.log(monthEnd._d < endDay._d ? 'true' : 'false')}
         </div>
     )
 }

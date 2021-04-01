@@ -4,6 +4,7 @@ import rightIcon from './img/right.svg';
 import leftIcon from './img/left.svg';
 import Calendar from './Calendar';
 import Todo from './Todo';
+import MeasurmentConvert from './MeasurmentConvert'
 
 function Components() {
     const [displayComponent, setDisplayComponent] = useState(0);
@@ -19,6 +20,8 @@ function Components() {
                     <Calendar /> : '' }
                 { displayComponent === 1 ? 
                     <Todo /> : '' }
+                { displayComponent === 2 ?
+                    <MeasurmentConvert /> : '' }
             </div>
         </div>
     )
@@ -33,7 +36,7 @@ function ComponentsMenu(props) {
 
         
         if(direction === 'right') {
-            if (compState === 4) {
+            if (compState === 1) {
                 setCompState(0)
             } else {
                 setCompState(compState + 1)
@@ -67,8 +70,13 @@ function ComponentsMenu(props) {
                 </div>
                 <div className={compState === 1 ? 'selected' : ''}>
                     <p 
-                        value='2'
+                        value='1'
                         onClick={() => setCompState(1)}>Todo</p>
+                </div>
+                <div className={compState === 2 ? 'selected' : ''}>
+                    <p 
+                        value='2'
+                        onClick={() => setCompState(2)}>Measurement</p>
                 </div>
             </div>
             <img

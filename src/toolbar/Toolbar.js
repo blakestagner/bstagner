@@ -11,6 +11,7 @@ function Toolbar(props) {
     const [scrolled, setScrolled] = useState(false);
     const [menuToggle, setMenuToggle] = useState(false);
     const [mobileMenu, setMobileMenu] = useState(menuWhite);
+    const [mobileNav, setMobileNav] = useState(false)
     const [navHide, setNavHide ] = useState(true);
     let prevScrollpos = window.pageYOffset;
     
@@ -74,6 +75,7 @@ function Toolbar(props) {
 
     const mobileMenuToggle = () => {
         setMenuToggle(true)
+        setMobileNav(mobileNav === true ? false : true)
         if(mobileMenu === menuWhite || mobileMenu === menuBlack) {
             if(mobileMenu === menuWhite) {
                 setTimeout(() => {
@@ -101,9 +103,8 @@ function Toolbar(props) {
             }
         }
     }
-
-
     const handleClick = (link) => {
+        setMobileNav(false)
         const anchor = document.querySelector(link)
         anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
@@ -122,13 +123,30 @@ function Toolbar(props) {
                     </ul>
                 </div>
                 
-                {/*<img
+                <img
                     onClick={() => mobileMenuToggle()}
                     className={menuToggle ? 'menu-icon' : 'menu-icon-animation'} 
                     src={mobileMenu}
-                alt="menu toggle"/>*/}
+                alt="menu toggle"/>
+
 			</div>
+            <MobileNavMenu
+                handleClick={(section) => handleClick(section)} 
+                toggled={mobileNav}/>
 		</div>
     )
 } 
 export default Toolbar;
+
+function MobileNavMenu({toggled, handleClick}) {
+
+    return (
+        <div className={toggled ? 'mobile-nav open' : 'mobile-nav closed'} >
+            <a onClick={() => handleClick('#about')}>About</a>
+            <a onClick={() => handleClick('#portfolio')}>Portfolio</a>
+            <a onClick={() => handleClick('#components')}>Components</a>
+            <a onClick={() => handleClick('#contact')}>Contact</a>
+            <span className="hero-background"></span>
+        </div>
+    )
+}

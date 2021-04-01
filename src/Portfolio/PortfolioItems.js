@@ -89,7 +89,7 @@ export default function PortfolioItems() {
         const nextItem = () => {
             let portfolioCopy = portfolio;
             portfolioCopy++
-            if(portfolio === 3 ) {
+            if(portfolio === 4 ) {
                 setItem(0)
                 setPortfolio(0)
                 nextBefore(0)
@@ -104,9 +104,9 @@ export default function PortfolioItems() {
             let portfolioCopy = portfolio;
             portfolioCopy--
             if(portfolio === 0 ) {
-                    setPortfolio(3)
-                    nextBefore(3)
-                    setItem(3)
+                    setPortfolio(4)
+                    nextBefore(4)
+                    setItem(4)
             } else {
                     setPortfolio(portfolioCopy)
                     nextBefore(portfolioCopy)
