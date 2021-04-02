@@ -4,7 +4,8 @@ import rightIcon from './img/right.svg';
 import leftIcon from './img/left.svg';
 import Calendar from './Calendar';
 import Todo from './Todo';
-import MeasurmentConvert from './MeasurmentConvert'
+import MeasurmentConvert from './MeasurmentConvert';
+import TicTacToe from './TicTacToe'
 
 function Components() {
     const [displayComponent, setDisplayComponent] = useState(0);
@@ -22,21 +23,23 @@ function Components() {
                     <Todo /> : '' }
                 { displayComponent === 2 ?
                     <MeasurmentConvert /> : '' }
+                { displayComponent === 3 ?
+                    <TicTacToe/> : ''}
             </div>
         </div>
     )
 }
 export default Components;
 
-function ComponentsMenu(props) {
+function ComponentsMenu({component}) {
     const [compState, setCompState] = useState(0);
     
 
     const leftRight = (direction) => {
+        const menu = document.querySelector('#components-menu-inner');
 
-        
         if(direction === 'right') {
-            if (compState === 2) {
+            if (compState === 3) {
                 setCompState(0)
             } else {
                 setCompState(compState + 1)
@@ -44,7 +47,7 @@ function ComponentsMenu(props) {
 
         } else {
             if (compState === 0) {
-                setCompState(2)
+                setCompState(3)
             } 
             else { 
                 setCompState(compState - 1)
@@ -53,7 +56,22 @@ function ComponentsMenu(props) {
     }
 
     useEffect(() => {
-        props.component(compState)
+        component(compState)
+        const menu = document.querySelector('#components-menu-inner')
+        const menuWidth = menu.scrollWidth
+
+        const selected = () => {
+            var selectedChild;
+            for (let i in menu.childNodes) {
+                if(menu.childNodes[i].className === "selected" ) {
+                    selectedChild = menu.childNodes[i];
+                    break;
+                }
+            }
+            return selectedChild.getBoundingClientRect();
+        }
+        const scrollAmount = selected().x - 56
+        menu.scrollTo(scrollAmount, 0)
     }, [compState])
 
     return (
@@ -77,6 +95,11 @@ function ComponentsMenu(props) {
                     <p 
                         value='2'
                         onClick={() => setCompState(2)}>Measurement</p>
+                </div>
+                <div className={compState === 3 ? 'selected' : ''}>
+                    <p 
+                        value='2'
+                        onClick={() => setCompState(3)}>TicTacToe</p>
                 </div>
             </div>
             <img

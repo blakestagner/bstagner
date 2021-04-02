@@ -132,7 +132,9 @@ export default function MeasurmentConvert() {
                     <option value="mi">mile</option>
                     <option value="km">kilometer</option>
                 </select>
-                <ButtonSm 
+            </div>
+            <div className="submit-row"> 
+            <ButtonSm 
                     type="submit" 
                     name="convert" 
                     click={() => convert() }

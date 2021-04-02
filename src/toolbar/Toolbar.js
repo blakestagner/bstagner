@@ -74,7 +74,7 @@ function Toolbar(props) {
 
 
     const mobileMenuToggle = () => {
-        setMenuToggle(true)
+        setMenuToggle(menuToggle === true ? false : true)
         setMobileNav(mobileNav === true ? false : true)
         if(mobileMenu === menuWhite || mobileMenu === menuBlack) {
             if(mobileMenu === menuWhite) {
@@ -146,7 +146,6 @@ function MobileNavMenu({toggled, handleClick}) {
             <a onClick={() => handleClick('#portfolio')}>Portfolio</a>
             <a onClick={() => handleClick('#components')}>Components</a>
             <a onClick={() => handleClick('#contact')}>Contact</a>
-            <span className="hero-background"></span>
         </div>
     )
 }

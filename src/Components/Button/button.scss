@@ -44,9 +44,9 @@ $gradient: radial-gradient(circle, #3f51b5, #5f18af);
     opacity: .7;
 }
 .sm {
-    font-size: 1em;
+    font-size: .9em;
     width: auto;
-    max-width: 100px;
+    max-width: 150px;
     height: 1.5em;
 }
 .md {
@@ -55,7 +55,7 @@ $gradient: radial-gradient(circle, #3f51b5, #5f18af);
     height: 1.5em;
 }
 .color {
-    background: $gradient;
+    background: $color-primary;
     border: none;
     box-shadow: $shadow-md;
 }
@@ -71,4 +71,10 @@ $gradient: radial-gradient(circle, #3f51b5, #5f18af);
     height: 1.25em;
     width: 1.25em;
     padding: 0 5px 0 0;
+}
+.secondary {
+    color: #000;
+    background: #fff;
+    border: 1px solid #808080;
+    box-shadow: $shadow-md;
 }
