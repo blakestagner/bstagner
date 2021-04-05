@@ -122,13 +122,11 @@ function Toolbar(props) {
                         <li><a className="navList" onClick={() => handleClick('#contact')}>Contact</a></li>
                     </ul>
                 </div>
-                
                 <img
                     onClick={() => mobileMenuToggle()}
                     className={menuToggle ? 'menu-icon' : 'menu-icon-animation'} 
                     src={mobileMenu}
                 alt="menu toggle"/>
-
 			</div>
             <MobileNavMenu
                 handleClick={(section) => handleClick(section)} 
