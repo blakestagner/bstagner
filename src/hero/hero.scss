@@ -80,6 +80,7 @@ $gradient-galaxy:
     animation: universe-text 2s linear forwards;
     animation-delay: 4500ms;
     opacity: 0;
+    text-shadow: 0 0 20px #fff, 0 0 30px #49fb35, 0 0 40px #49fb35;
 }
 .heading-1 {
     font-size: 0em;
@@ -577,13 +578,11 @@ $gradient-galaxy:
 }
 @keyframes universe-text {
     from {
-        text-shadow: none;
         opacity: 0;
     }
 
     to {
         opacity: 1;
-        text-shadow: 0 0 20px #fff, 0 0 30px #49fb35, 0 0 40px #49fb35,;
     }
 }
 
