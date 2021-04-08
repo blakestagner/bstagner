@@ -1,11 +1,10 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import deleteIcon from './img/delete.svg';
 import ButtonSm from './Button/ButtonSm'
 
 export default function Todo() {
     const [currentItem, setCurrentItem] = useState('')
     const [list, setList] = useState(['Type some notes!'])
-    const [completed, setCompleted] = useState([])
     const [placeholderMsg, setPlaceholderMsg] = useState('Enter a Task!')
     const [error, setError] = useState('')
 

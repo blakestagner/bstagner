@@ -1,11 +1,7 @@
 import './portfolio.scss'
-import bazLogo from './img/portfolio/baztheroadielogo.png';
 import bazSite from './img/portfolio/baztheroadie.webp';
-import deanLogo from './img/portfolio/djv3.png';
 import deanHome from './img/portfolio/electdeanjohnson.webp'
-import markLogo from './img/portfolio/mllogo4.png';
 import markHome from './img/portfolio/mlhome.webp';
-import deannaLogo from './img/portfolio/deannakellerlogo.png';
 import deannaHome from './img/portfolio/deannakeller.webp';
 import maeBlake from './img/portfolio/wedding.webp'
 

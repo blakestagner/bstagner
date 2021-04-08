@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {stars} from './Stars';
-export default function PurpleGalaxy({loading}) {
+export default function PurpleGalaxy() {
     
 
     useEffect(()=> {

@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {stars} from './Stars';
-export default function MobileGalaxy({loading}) {
+export default function MobileGalaxy() {
     
 
     useEffect(()=> {

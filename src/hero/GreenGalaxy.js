@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {stars} from './Stars';
 
-export default function GreenGalaxy({loading}) {
+export default function GreenGalaxy() {
     
     useEffect(()=> {
         stars("galaxy-2-stars", 500)

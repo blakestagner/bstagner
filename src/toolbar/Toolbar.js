@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
 import './toolbar.scss';
 
 import closeWhite from './img/close-white.svg';
@@ -7,7 +6,7 @@ import closeBlack from './img/close-black.svg';
 import menuWhite from './img/menu-white.svg';
 import menuBlack from './img/menu-black.svg';
 
-function Toolbar(props) {
+function Toolbar() {
     const [scrolled, setScrolled] = useState(false);
     const [menuToggle, setMenuToggle] = useState(false);
     const [mobileMenu, setMobileMenu] = useState(menuWhite);

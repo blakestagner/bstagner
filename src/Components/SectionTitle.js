@@ -1,4 +1,3 @@
-import {useState, useEffect} from 'react';
 import './components.scss';
 
 export default function SectionTitle({inView, title}) {
