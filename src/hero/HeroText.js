@@ -1,19 +1,19 @@
 import {useEffect} from 'react'; 
 import MobileGalaxy from './MobileGalaxy';
 import {
-    BrowserView,
-    MobileView,
     isDesktop,
     isTablet,
-    isMobile
   } from "react-device-detect";
 
 export default function HeroText({loading}) {
 
     useEffect(() => {
         const section = document.querySelector('#sections');
-        section.addEventListener('scroll', heroScroll)
+        if(isDesktop) {
+            section.addEventListener('scroll', heroScroll)
+        }
     }, [])
+
 
     const heroScroll = () => {
         const hero = document.querySelector('#hero');
@@ -45,8 +45,7 @@ export default function HeroText({loading}) {
     const headingBlakeStagner = isDesktop
         ? 'blake-stagner'
             : isTablet
-                ? 'blake-stagner' : 'blake-stagner blake-stagner-mobile'
-
+                ? 'blake-stagner' : 'blake-stagner blake-stagner-mobile';
     const headingBlake =  isDesktop 
         ? 'heading-animate-1 heading-transition'
             : isTablet 
@@ -55,19 +54,14 @@ export default function HeroText({loading}) {
         ? 'heading-animate-2 heading-transition'
             : isTablet 
                 ? 'heading-animate-2 heading-transition' : 'heading-animate-2';
-
-
     const headingWelcome = isDesktop 
         ? "welcome-text heading-sub-text" 
             : isTablet 
                 ? "welcome-text heading-sub-text" : 'welcome-text-mobile';
-
-
     const headingUniverse = isDesktop 
         ? 'universe-text-glow heading-sub-text-2'
             : isTablet 
                 ? 'universe-text-glow heading-sub-text-2' : "universe-text-glow heading-sub-text-mobile";
-
     const mobileGalaxyView = isDesktop 
         ? '' : isTablet ? '' : <MobileGalaxy />
 

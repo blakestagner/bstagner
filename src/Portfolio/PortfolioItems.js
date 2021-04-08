@@ -21,31 +21,26 @@ export default function PortfolioItems() {
     const portfolioDetails = [
         {
             'name': 'My Wedding',
-            'icon': deanLogo,
             'site_home': maeBlake,
             'site_landing': null
         },
         {
             'name': 'Dean Johsnon',
-            'icon': deanLogo,
             'site_home': deanHome,
             'site_landing': null
         },
         { 
             'name': 'Baz the Roadie',
-            'icon': bazLogo,
             'site_home': bazSite,
             'site_landing': null 
         },
         {
             'name': 'Mark Lindquist',
-            'icon': markLogo,
             'site_home': markHome,
             'site_landing': null
         },
         {
             'name': 'Deanna Keller',
-            'icon': deannaLogo,
             'site_home': deannaHome,
             'site_landing': null
         }
@@ -167,10 +162,6 @@ export default function PortfolioItems() {
                             className={`portfolio-card ${animate}` } 
                             key={i}>
                             <p className="portfolio-proj-title">{obj.name}</p>
-                            {/*<img
-                                alt="list details"
-                                className="portfolio-icons" 
-                            src={obj.icon}/> */}
                         </div>
                         <div className={`portfolio-site-img ${animate}` } >
                             {obj.site_landing === null ? '' : 
@@ -199,10 +190,6 @@ export default function PortfolioItems() {
                         className={`portfolio-card` }
                         key={i}>
                         <p className="portfolio-proj-title">{obj.name}</p>
-                        {/*<img
-                            alt="list details"
-                            className="portfolio-icons" 
-                        src={obj.icon}/> */}
                     </div>
                     <div className={`portfolio-site-img` } >
                         {obj.site_landing === null ? '' : 

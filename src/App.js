@@ -12,9 +12,7 @@ export default function App() {
 
 
   const scrollView = () => {
-    var parentSection = document.querySelector('#sections')
     var windowHeight = window.innerHeight * 0.75;
-    var hero = document.querySelector('#hero').getBoundingClientRect();
     var about = document.querySelector('#about').getBoundingClientRect();
     var components = document.querySelector('#components').getBoundingClientRect();
     var portfolio = document.querySelector('#portfolio').getBoundingClientRect();
@@ -25,10 +23,9 @@ export default function App() {
         setSection('Portfolio')
     } else if(components.y - 70 <= windowHeight && components.y >= windowHeight) {
         setSection('Components')
-        parentSection.removeEventListener('scroll', scrollView)
     } else {
-        setSection('Hero')
-    }
+        setSection("Hero")
+      }
   }
 
   useEffect(()=> {
@@ -38,11 +35,10 @@ export default function App() {
 
   return (
     <div className="App">
-
         <Toolbar 
           section={section}/>
         <div id="sections">
-          <Hero />
+          <Hero/>
           <About section={section}/>
           <Portfolio section={section}/>
           <Components section={section}/>

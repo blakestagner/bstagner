@@ -6,11 +6,8 @@ import PurpleGalaxy from './PurpleGalaxy';
 import GreenGalaxy from './GreenGalaxy';
 import HeroText from './HeroText';
 import {
-    BrowserView,
-    MobileView,
     isDesktop,
     isTablet,
-    isMobile
   } from "react-device-detect";
 
 
@@ -18,10 +15,12 @@ export default function Hero() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        stars("starfield", 700);
+        stars("starfield", 500);
         setLoading(false)
     }, [])
 
+    var windowHeight = window.innerHeight + (window.innerHeight / 4);
+    var windowWidth = window.innerWidth
 
     const sunView = isDesktop 
         ? <Sun loading={loading}/> 
@@ -40,8 +39,9 @@ export default function Hero() {
                 id="hero" 
                 className="hero">
                 <span className="hero-background"></span>
-                <canvas id="starfield" width="1920" height="1920"></canvas>
-                <HeroText loading={loading}/>
+                <canvas id="starfield" width={windowWidth} height={windowHeight}></canvas>
+                <HeroText
+                    loading={loading}/>
                 {sunView}
                 {purpleGalaxyView}
                 {greenGalaxyView}
