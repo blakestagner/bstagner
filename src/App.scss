@@ -47,7 +47,22 @@ a {
   position: relative;
   z-index: 3;
 }
-.heading h1, .heading h2 {
+.heading h1 {
+  z-index: 2;
+  color: #282828;
+}
+.header-title-text {
+  z-index: 2;
+  color: #282828;
+  opacity: 0;
+  transform: translateY(-20px) translateX(-10px);
+  transition: all ease-in-out 1000ms;
+}
+.animate {
+  opacity: 1;
+  transform: translateY(0px) translateX(0px);
+}
+.heading h2 {
   z-index: 2;
   color: #282828;
 }
@@ -72,6 +87,7 @@ a {
   justify-content: center;
 }
 @media (max-width: 400px) {
+
   .main-container {
     text-align: center;
     padding: 2em 1em;

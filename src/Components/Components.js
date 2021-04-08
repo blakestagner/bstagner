@@ -5,16 +5,27 @@ import leftIcon from './img/left.svg';
 import Calendar from './Calendar';
 import Todo from './Todo';
 import MeasurmentConvert from './MeasurmentConvert';
-import TicTacToe from './TicTacToe'
+import TicTacToe from './TicTacToe';
+import SectionTitle from '../Components/SectionTitle';
 
-function Components() {
+function Components({section}) {
     const [displayComponent, setDisplayComponent] = useState(0);
+    const [inView, setInView] = useState(false)
 
+    useEffect(()=> {
+        if(section === 'Components') {
+            setInView(true)
+        };
+    }, [section])
 
     return (
         <div id="components">
             <div className="main-container">
-                <h1>Components</h1>
+                <div className="heading">
+                    <SectionTitle 
+                        inView={inView}
+                        title="Components"/>
+                </div>
                 <ComponentsMenu 
                     component={(state) => setDisplayComponent(state)}/>
                 { displayComponent === 0 ? 

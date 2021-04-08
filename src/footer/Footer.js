@@ -8,7 +8,7 @@ import inIcon from './social/In-White.png';
 
 function Footer() {
     const resumeView = () => {
-        console.log('test')
+
         window.open(resume, "_blank")
     }
     return (

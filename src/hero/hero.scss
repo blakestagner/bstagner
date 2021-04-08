@@ -60,6 +60,11 @@ $gradient-galaxy:
     margin: 0 0 0 auto;
     align-items: center;
 }
+.blake-stagner-mobile {
+    margin: 0 auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
 .blake-stagner h1 {
     margin: 0;
     line-height: .8;
@@ -70,15 +75,17 @@ $gradient-galaxy:
     font-size: 1.5em;
     margin: 0;
 }
-.blake-stagner > p > span:first-child {
+.welcome-text {
     animation: sub-text 0.5s linear forwards;
-    animation-delay: 4000ms;
     opacity: 0;
 }
-.blake-stagner > p > span:nth-child(2) {
+.welcome-text-mobile {
+    animation: sub-text 0.5s linear 0.5s forwards;
+    opacity: 0;
+}
+.universe-text-glow {
     font-weight: bold;
     animation: universe-text 2s linear forwards;
-    animation-delay: 4500ms;
     opacity: 0;
     text-shadow: 0 0 20px #fff, 0 0 30px #49fb35, 0 0 40px #49fb35;
 }
@@ -90,7 +97,6 @@ $gradient-galaxy:
     font-size: 10em;
     left: 100px;
     transition: all ease 500ms;
-    transition-delay: 4000ms;
 }
 .heading-2 {
     font-size: 0em;
@@ -100,8 +106,19 @@ $gradient-galaxy:
     font-size: 7em;
     left: 100px;
     transition: all ease 500ms;
-    transition-delay: 4000ms;
     font-weight: 500;
+}
+.heading-transition {
+    transition-delay: 4000ms; 
+}
+.heading-sub-text {
+    animation-delay: 4000ms; 
+}
+.heading-sub-text-2 {
+    animation-delay: 4500ms; 
+}
+.heading-sub-text-mobile {
+    animation-delay: 500ms; 
 }
 @media (max-width: 900px) {
     .hero {
@@ -188,19 +205,22 @@ $gradient-galaxy:
     width: 50px;
     height: 50px;
     border-radius: 100%;
-    background: radial-gradient(circle at bottom, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+    background: url('./img/earth.webp') 0 0 repeat;
     position: absolute;
     z-index: 2;
     overflow: hidden;
     transform-style: preserve-3d;
-    animation: spin 9000ms infinite linear;
+    animation: spin-earth 9000ms infinite linear;
     transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
+    background-size: 110px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    top: -25px;
 }
 .mars-orbit {
     position: absolute;
     animation: mars-orbit 16000ms infinite linear;
-    height: 40em;
-    width: 40em;
+    height: 50em;
+    width: 50em;
     transform-style: preserve-3d;
     border-radius: 50%;
     transform: rotateX(75deg);
@@ -210,8 +230,8 @@ $gradient-galaxy:
     width: 40px;
     height: 40px;
     border-radius: 100px;
-    background: rgb(218,174,81);
-    background: radial-gradient(circle at bottom, rgba(218,174,81,1) 0%, rgba(213,51,105,1) 100%);
+    background: url("./img/mars.webp") 0 0 repeat;
+    background-size: 90px;
     position: absolute;
     z-index: 2;
     box-shadow: $shadow-md;
@@ -219,6 +239,8 @@ $gradient-galaxy:
     transform-style: preserve-3d;
     animation: mars-spin 16000ms infinite linear;
     transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    top: -20px;
 }
 //Black Hole 
 .black-hole-orbit {
@@ -311,7 +333,21 @@ $gradient-galaxy:
 .galaxy-1-container {
     position: absolute;
     top: 40vh;
-    left: 5vw;
+    left: calc(50vw - (700px/2));
+    width: 700px;
+    height: 700px;
+    animation: galaxy-outer 100000ms linear infinite;
+    animation-delay: 50ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.mobile-galaxy-container {
+    position: absolute;
+    top: calc(75vh - (700px/2));
+    left: calc(25vh - (700px/2));
     width: 700px;
     height: 700px;
     animation: galaxy-outer 100000ms linear infinite;
@@ -358,7 +394,7 @@ $gradient-galaxy:
 }
 .galaxy-1.ring-2 {
     position: absolute;
-    width: 200px;
+    width: 150px;
     height: 200px;
     border-radius: 100%;
     box-shadow: 0 0 50px rgba(255, 204, 255, 1);
@@ -435,7 +471,7 @@ $gradient-galaxy:
     right: 5vw;
     width: 550px;
     height: 550px;
-    animation: galaxy-outer 100000ms linear infinite;
+    animation: galaxy-outer-2 120000ms linear infinite;
     animation-delay: 50ms;
     display: flex;
     justify-content: center;
@@ -728,6 +764,26 @@ $gradient-galaxy:
         transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
     }
 }
+@keyframes spin-earth {
+    0% {
+        background-position: 0 0;
+        transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
+    }
+    100% {
+        background-position: 110px 0;
+        transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+    }
+}
+@-webkit-keyframes spin-earth {
+    0% {
+        background-position: 0 0;
+        transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
+    }
+    100% {
+        background-position: 110px 0;
+        transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+    }
+}
 @keyframes mars-orbit {
     0% {
         border: 1px solid rgba(255, 255, 255, 0.2);
@@ -784,19 +840,23 @@ $gradient-galaxy:
 }
 @keyframes mars-spin {
     0% {
+        background-position: 0 0;
         transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
     }
     
     100% {
+        background-position: 90px 0;
         transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
     }
 }
 @-webkit-keyframes mars-spin {
     0% {
+        background-position: 0 0;
         transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
     }
     
     100% {
+        background-position: 0 0;
         transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
     }
 }
@@ -849,3 +909,24 @@ $gradient-galaxy:
         transform: rotateX(75deg)  rotateY(0deg) rotate(360deg);
     }
 }
+@keyframes galaxy-outer-2 {
+    0% {
+        transform: rotateX(75deg) rotateY(0deg) rotate(0deg);
+    }
+    100% {
+        transform: rotateX(75deg)  rotateY(0deg) rotate(-360deg);
+    }
+}
+@-webkit-keyframes galaxy-outer-2 {
+    0% {
+        transform: rotateX(75deg) rotateY(0deg) rotate(0deg);
+    }
+    100% {
+        transform: rotateX(75deg)  rotateY(0deg) rotate(-0deg);
+    }
+}
+
+@keyframes rotate {
+    0% {background-position: 0 0;}
+    100% {background-position: 630px 0;}
+  }

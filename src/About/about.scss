@@ -109,22 +109,6 @@ $grey-2: #BEBEBE;
         display: none;
     }
 }
-
-#blue-animation2 {
-    background: $gradient;
-    height: 25px;
-    width: 60%;
-    position: absolute;
-    left: 0;
-    border-bottom-right-radius: 50px;
-    top: 70px;
-    transition: all ease-in-out 1000ms;
-    z-index: 1;
-}
-.blue-strip2 {
-    transform: translate3d(-100vw, 0px, 0px);
-    transition: all ease-in-out 1000ms;
-}
 //heading tab
 .header-tab > h2 {
     padding: 0 .25em;

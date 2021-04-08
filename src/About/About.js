@@ -1,13 +1,14 @@
 import './about.scss';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import blakeImg from './img/blake.jpg';
+import SectionTitle from '../Components/SectionTitle';
 
-function About() {
+export default function About({section}) {
+    const [inView, setInView] = useState(false)
     const [skills, setSkills] = useState(0);
     const [tabHeader, setTabHeader] = useState(0);
-    const [tabContent, setTabContent] = useState(0)
-    const [tabTransition, setTabTransition] = useState(0)
-
+    const [tabContent, setTabContent] = useState(0);
+    const [tabTransition, setTabTransition] = useState(0);
 
     const handleTabs = (tab) => {
         setTabHeader(tab)
@@ -51,11 +52,19 @@ function About() {
         } else;
     }, [tabContent])
 
+    useEffect(()=> {
+        if(section === 'About') {
+            setInView(true)
+        };
+    }, [section])
+
     return (
         <div id="about">
             <div className="main-container">
                 <div className="heading">
-                    <h1>About</h1>
+                    <SectionTitle 
+                        title="About"
+                        inView={inView}/>
                     <div className="flex-center header-tab">
                         <h2 
                             onClick={() => handleTabs(0)}
@@ -68,9 +77,6 @@ function About() {
                             Tech Stack
                         </h2>
                     </div>
-                    <span
-                        className={''} 
-                        id="blue-animation2"></span>
                 </div>
                 <div className={
                                 tabTransition === 0 ? 'about-tab' : 'about-tab tab-transition'
@@ -127,7 +133,6 @@ function About() {
         </div>
     )
 }
-export default About;
 
 function Language() {
     return (
