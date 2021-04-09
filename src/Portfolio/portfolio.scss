@@ -96,6 +96,8 @@ $color-primary: #3f51b5;
 } 
 .portfolio-details {
     width: 100%;
+    position: relative;
+    z-index: 4;
 }
 .portfolio-site-img {
     height: 100%;
@@ -111,7 +113,7 @@ $color-primary: #3f51b5;
     transform: translate3d(100vw, 0px, 0px);
 }
 .overlay {
-    position: absolute;
+    position: fixed;
     background: #000;
     height: 100vh;
     width: 100vw;
