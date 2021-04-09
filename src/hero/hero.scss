@@ -64,6 +64,7 @@ $gradient-galaxy:
     margin: 0 auto !important;
     align-items: center !important;
     justify-content: center !important;
+
 }
 .blake-stagner h1 {
     margin: 0;
@@ -117,8 +118,11 @@ $gradient-galaxy:
 .heading-sub-text-2 {
     animation-delay: 4500ms; 
 }
-.heading-sub-text-mobile {
+.heading-text-mobile {
     animation-delay: 500ms; 
+}
+.heading-sub-text-mobile {
+    animation-delay: 1000ms; 
 }
 @media (max-width: 900px) {
     .hero {

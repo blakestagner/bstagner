@@ -105,8 +105,9 @@ function Toolbar() {
     const handleClick = (link) => {
         setMobileNav(false)
         const anchor = document.querySelector(link)
-        anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        anchor.scrollIntoView({ behavior: 'smooth', block: 'center' }, true)
     }
+
     return (
     <div 
         className={`${scrolled ? 'navBar scrollBar' : 'navBar'} ${navHide ? '' : 'scrolled'}`} 
