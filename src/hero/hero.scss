@@ -78,15 +78,18 @@ $gradient-galaxy:
 }
 .welcome-text {
     animation: sub-text 0.5s linear forwards;
+    -webkit-animation: sub-text 0.5s linear forwards;
     opacity: 0;
 }
 .welcome-text-mobile {
     animation: sub-text 0.5s linear 0.5s forwards;
+    -webkit-animation: sub-text 0.5s linear 0.5s forwards;
     opacity: 0;
 }
 .universe-text-glow {
     font-weight: bold;
     animation: universe-text 2s linear forwards;
+    -webkit-animation: universe-text 2s linear forwards;
     opacity: 0;
     text-shadow: 0 0 20px #fff, 0 0 30px #49fb35, 0 0 40px #49fb35;
 }
@@ -112,17 +115,24 @@ $gradient-galaxy:
 .heading-transition {
     transition-delay: 4000ms; 
 }
+.heading-transition-mobile {
+    transition-delay: 500ms; 
+}
 .heading-sub-text {
-    animation-delay: 4000ms; 
+    animation-delay: 4250ms; 
+    -webkit-animation-delay: 4250ms;
 }
 .heading-sub-text-2 {
     animation-delay: 4500ms; 
+    -webkit-animation-delay: 4500ms;
 }
 .heading-text-mobile {
-    animation-delay: 500ms; 
+    animation-delay: 750ms; 
+    -webkit-animation-delay: 750ms;
 }
 .heading-sub-text-mobile {
     animation-delay: 1000ms; 
+    -webkit-animation-delay: 1000ms
 }
 @media (max-width: 900px) {
     .hero {
@@ -184,6 +194,7 @@ $gradient-galaxy:
 }
 .sun-animate {
     animation: sunInitialX 4000ms forwards, sunInitialY 4000ms forwards; 
+    -webkit-animation: sunInitialX 4000ms forwards, sunInitialY 4000ms forwards;
 }
 .sun {
     width: 200px;

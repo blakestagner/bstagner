@@ -49,11 +49,11 @@ export default function HeroText({loading}) {
     const headingBlake =  isDesktop 
         ? 'heading-animate-1 heading-transition'
             : isTablet 
-                ? 'heading-animate-1 heading-transition' : 'heading-animate-1';
+                ? 'heading-animate-1 heading-transition' : 'heading-transition-mobile heading-animate-1';
     const headingStagner = isDesktop 
         ? 'heading-animate-2 heading-transition'
             : isTablet 
-                ? 'heading-animate-2 heading-transition' : 'heading-animate-2';
+                ? 'heading-animate-2 heading-transition' : 'heading-transition-mobile heading-animate-2';
     const headingWelcome = isDesktop 
         ? "welcome-text heading-sub-text" 
             : isTablet 
