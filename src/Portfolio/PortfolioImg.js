@@ -8,7 +8,10 @@ export default function PortfolioImg(props) {
         if(props.image) {
             setLoading(true);
         }
+        console.log(props.imgIndex)
     }, [props.image])
+
+    const imageLoading = props.imgIndex !== 0 ? 'lazy' : ''; 
 
     return (
         <div>
@@ -17,6 +20,7 @@ export default function PortfolioImg(props) {
                     <div className="portfolio-placeholder"> 
                         <Loading />
                         <img
+                            loading={imageLoading}
                             style={{visibility: "hidden"}}
                             onLoad={() => setLoading(false)}
                             onClick={props.click}
@@ -25,6 +29,7 @@ export default function PortfolioImg(props) {
                     </div> 
                     :
                     <img
+                        loading={imageLoading}
                         onLoad={() => setLoading(false)}
                         onClick={props.click}
                         alt="site home"
