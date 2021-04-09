@@ -57,7 +57,7 @@ export default function HeroText({loading}) {
     const headingWelcome = isDesktop 
         ? "welcome-text heading-sub-text" 
             : isTablet 
-                ? "welcome-text heading-sub-text" : 'welcome-text-mobile';
+                ? "welcome-text heading-sub-text" : 'heading-text-mobile welcome-text-mobile';
     const headingUniverse = isDesktop 
         ? 'universe-text-glow heading-sub-text-2'
             : isTablet 
