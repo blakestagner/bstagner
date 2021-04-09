@@ -84,7 +84,7 @@ function Toolbar() {
             } else {
                 setTimeout(() => {
                     setMenuToggle(false)
-                    setMobileMenu(closeBlack) 
+                    setMobileMenu(closeBlack)
                 }, 200)
             }
         }

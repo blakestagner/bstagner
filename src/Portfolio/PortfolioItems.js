@@ -4,7 +4,7 @@ import deanHome from './img/portfolio/electdeanjohnson.webp'
 import markHome from './img/portfolio/mlhome.webp';
 import deannaHome from './img/portfolio/deannakeller.webp';
 import maeBlake from './img/portfolio/wedding.webp'
-
+import soundHome from './img/portfolio/soundMedical.webp';
 import closeBlack from '../toolbar/img/close-black.svg'
 
 import {useState} from 'react';
@@ -18,6 +18,11 @@ export default function PortfolioItems() {
         {
             'name': 'My Wedding',
             'site_home': maeBlake,
+            'site_landing': null
+        },
+        {
+            'name': 'Sound Medical',
+            'site_home': soundHome,
             'site_landing': null
         },
         {
@@ -71,6 +76,7 @@ export default function PortfolioItems() {
             }
         }
         const nextBefore = (num) => {
+            const section = document.querySelector('#portfolio-items');
             section.scrollTo({
                 left: num * sectionChildrenWidth,
                 behavior: 'smooth'
@@ -80,7 +86,7 @@ export default function PortfolioItems() {
         const nextItem = () => {
             let portfolioCopy = portfolio;
             portfolioCopy++
-            if(portfolio === 4 ) {
+            if(portfolio === 5 ) {
                 setItem(0)
                 setPortfolio(0)
                 nextBefore(0)
@@ -95,9 +101,9 @@ export default function PortfolioItems() {
             let portfolioCopy = portfolio;
             portfolioCopy--
             if(portfolio === 0 ) {
-                    setPortfolio(4)
-                    nextBefore(4)
-                    setItem(4)
+                    setPortfolio(5)
+                    nextBefore(5)
+                    setItem(5)
             } else {
                     setPortfolio(portfolioCopy)
                     nextBefore(portfolioCopy)
@@ -168,11 +174,8 @@ export default function PortfolioItems() {
                             <p className="portfolio-proj-title">{obj.name}</p>
                         </div>
                         <div className={`portfolio-site-img ${animate}` } >
-                            {obj.site_landing === null ? '' : 
-                            <img
-                                onClick={() => enlargeImage(obj.site_landing)} 
-                                src={obj.site_landing} alt ="site landing"/>}
                             <img 
+                                loading="lazy"
                                 onClick={() => enlargeImage(obj.site_home)}
                                 alt="site home"
                                 src={obj.site_home} />
@@ -189,11 +192,8 @@ export default function PortfolioItems() {
                         <p className="portfolio-proj-title">{obj.name}</p>
                     </div>
                     <div className={`portfolio-site-img` } >
-                        {obj.site_landing === null ? '' : 
-                        <img
-                            onClick={() => enlargeImage(obj.site_landing)} 
-                            src={obj.site_landing} alt ="site landing"/>}
                         <img 
+                            loading="lazy"
                             onClick={() => enlargeImage(obj.site_home)}
                             alt="site home"
                             src={obj.site_home} />

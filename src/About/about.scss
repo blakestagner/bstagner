@@ -143,7 +143,10 @@ $grey-2: #BEBEBE;
     height: 100%;
     width: 200px;
 }
-.bio > div {
+.mobile-intro {
+    display: none;
+}
+.bio > div:nth-child(2) {
     max-width: 500px;
     display: flex;
     flex-direction: column;
@@ -181,7 +184,7 @@ $grey-2: #BEBEBE;
     .blake-img {
         height: 100px;
         width: 100px;
-        margin: 0 auto;
+        margin: 0 1em 0 0;
         object-fit: cover;
         object-position: 100% 0;
     }
@@ -190,6 +193,17 @@ $grey-2: #BEBEBE;
     }
     .bio > div {
         margin: 0 auto;
-        max-width: 80vw;
+        max-width: 500px;
+    }
+    .bio > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .bio > div:nth-child(2) > p:first-child {
+        display: none;
+    }
+    .mobile-intro {
+        display: block;
     }
 }

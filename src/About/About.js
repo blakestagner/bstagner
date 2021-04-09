@@ -1,6 +1,6 @@
 import './about.scss';
 import {useState, useEffect, useContext} from 'react';
-import blakeImg from './img/blake.jpg';
+import blakeImg from './img/blake.webp';
 import SectionTitle from '../Components/SectionTitle';
 
 export default function About({section}) {
@@ -84,9 +84,12 @@ export default function About({section}) {
                 {tabContent === 0 ? 
                     (
                         <div className="bio">
-                            <img
-                                className="blake-img" 
-                                src={blakeImg} alt="Blake Stagner"/>
+                            <div>
+                                <img
+                                    className="blake-img" 
+                                    src={blakeImg} alt="Blake Stagner"/>
+                                <p className="mobile-intro"><span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more</p>
+                            </div>
                             <div>
                                 <p><span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more</p>
                                 <p><span>2019</span> Started being a full time Developer and never looked back.</p>
