@@ -3,7 +3,7 @@ export default function Loading() {
 
     return (
         <div 
-            class="lds-default">
+            className="lds-default">
             <div></div>
             <div></div>
             <div></div>

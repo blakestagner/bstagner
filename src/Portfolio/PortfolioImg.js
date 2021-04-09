@@ -19,7 +19,6 @@ export default function PortfolioImg(props) {
                         <img
                             style={{visibility: "hidden"}}
                             onLoad={() => setLoading(false)}
-                            loading={props.imgIndex !== 0 ? 'Lazy' : ''}
                             onClick={props.click}
                             alt="site home"
                             src={props.image} /> 

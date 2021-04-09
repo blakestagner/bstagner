@@ -165,17 +165,15 @@ export default function PortfolioItems() {
                         className="arrow left"></div>
             </div>
             <div className="portfolio-details">
-                {portfolioDetails.filter((obj, i) => i === item)
-                    .map((obj, i) => (
-                    <div key={i}>
+                {portfolioDetails.filter((projects) => projects === item)
+                    .map((obj) => (
+                    <div key={obj.name}>
                         <div
-                            className={`portfolio-card ${animate}` } 
-                            key={i}>
+                            className={`portfolio-card ${animate}` } >
                             <p className="portfolio-proj-title">{obj.name}</p>
                         </div>
                         <div className={`portfolio-site-img ${animate}` } >
                             <PortfolioImg 
-                                imgIndex={i}
                                 click={() => enlargeImage(obj.site_home)}
                                 image={obj.site_home}
                                 />
