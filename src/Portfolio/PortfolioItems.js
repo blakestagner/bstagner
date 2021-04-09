@@ -6,8 +6,8 @@ import deannaHome from './img/portfolio/deannakeller.webp';
 import maeBlake from './img/portfolio/wedding.webp'
 import soundHome from './img/portfolio/soundMedical.webp';
 import closeBlack from '../toolbar/img/close-black.svg'
-
 import {useState} from 'react';
+import PortfolioImg from './PortfolioImg';
 
 export default function PortfolioItems() {
     const [item, setItem] = useState(0);
@@ -174,11 +174,10 @@ export default function PortfolioItems() {
                             <p className="portfolio-proj-title">{obj.name}</p>
                         </div>
                         <div className={`portfolio-site-img ${animate}` } >
-                            <img 
-                                loading="lazy"
-                                onClick={() => enlargeImage(obj.site_home)}
-                                alt="site home"
-                                src={obj.site_home} />
+                            <PortfolioImg 
+                                click={() => enlargeImage(obj.site_home)}
+                                image={obj.site_home}
+                                />
                         </div>
                     </div>
                 ))}
@@ -192,11 +191,10 @@ export default function PortfolioItems() {
                         <p className="portfolio-proj-title">{obj.name}</p>
                     </div>
                     <div className={`portfolio-site-img` } >
-                        <img 
-                            loading="lazy"
-                            onClick={() => enlargeImage(obj.site_home)}
-                            alt="site home"
-                            src={obj.site_home} />
+                        <PortfolioImg 
+                            click={() => enlargeImage(obj.site_home)}
+                            image={obj.site_home}
+                            />
                     </div>
                 </div>
                 ))}

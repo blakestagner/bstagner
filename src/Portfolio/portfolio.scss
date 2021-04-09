@@ -102,8 +102,8 @@ $color-primary: #3f51b5;
     overflow: hidden;
 }
 .portfolio-site-img img{
-    padding: 1em;
-    height: 450px;
+    margin: 1em;
+    height: 55vh;
     transition: all ease 500ms;
     cursor: pointer;
 }
@@ -224,16 +224,31 @@ $color-primary: #3f51b5;
         cursor: pointer;
       }
 }
-@media (max-width: 900px) {
+@media only screen and (max-width: 900px) {
     .portfolio-site-img img {
         width: 80%;
         height: 60vh;
         object-fit: cover;
         object-position: 100% 0;
     }
+    .portfolio-placeholder {
+        height: 60vh !important;
+    }
 }
 @media (max-width: 500px) {
     .portfolio-proj-title {
         font-size: 2em;
     }
+}
+.portfolio-placeholder {
+    border: solid 2px #d8dfe6;
+    height: 55vh;
+    width: 85vw;
+    max-width: 350px;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 1em auto;
 }

@@ -50,17 +50,6 @@ $grey-2: #BEBEBE;
     margin: .5em;
     align-items: center;
 }
-.rain {
-    content: '';
-    width: 50px;
-    height: 80px;
-    border-top-left-radius: 60%;
-    border-bottom-left-radius: 60%;
-    border-top-right-radius: 60%;
-    border-bottom-right-radius: 60%;
-    background-color: black;
-}
-
 .section {
     display: flex;
     overflow-x: auto;
@@ -138,10 +127,10 @@ $grey-2: #BEBEBE;
     justify-content: space-around;
 }
 .blake-img {
-    margin-top: 1.5em;
     clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
-    height: 100%;
+    height: auto;
     width: 200px;
+    margin: 1.5em 1em 0 0;
 }
 .mobile-intro {
     display: none;
@@ -184,9 +173,9 @@ $grey-2: #BEBEBE;
     .blake-img {
         height: 100px;
         width: 100px;
-        margin: 0 1em 0 0;
         object-fit: cover;
         object-position: 100% 0;
+        margin: 0 1em 0 0;
     }
     .bio {
         flex-direction: column;
