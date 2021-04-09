@@ -129,6 +129,36 @@ export default function PortfolioItems() {
 
     return (
         <div className="portfolio">
+            <div id="portfolio-items">
+            {portfolioDetails.map((obj, i) => (
+                <div key={i}>
+                    <div
+                        className={`portfolio-card` }
+                        key={i}>
+                        <p className="portfolio-proj-title">{obj.name}</p>
+                    </div>
+                    <div className={`portfolio-site-img` } >
+                        {obj.site_landing === null ? '' : 
+                        <img
+                            onClick={() => enlargeImage(obj.site_landing)} 
+                            src={obj.site_landing} alt ="site landing"/>}
+                        <img 
+                            onClick={() => enlargeImage(obj.site_home)}
+                            alt="site home"
+                            src={obj.site_home} />
+                    </div>
+                    {enlarged === null ? '' :
+                        <div className="overlay">
+                            <img 
+                                width="auto" 
+                                height="auto"
+                                src={closeBlack}
+                                onClick={() => setEnlarged(null)} />
+                            <img src={enlarged}/>
+                        </div>}
+                </div>
+                ))}
+            </div>
             <div className="portfolio-sidenav">
                 <ul>
                     {portfolioDetails.map((obj, i) => (
@@ -177,36 +207,6 @@ export default function PortfolioItems() {
                                 <img src={enlarged}/>
                             </div>}
                     </div>
-                ))}
-            </div>
-            <div id="portfolio-items">
-            {portfolioDetails.map((obj, i) => (
-                <div key={i}>
-                    <div
-                        className={`portfolio-card` }
-                        key={i}>
-                        <p className="portfolio-proj-title">{obj.name}</p>
-                    </div>
-                    <div className={`portfolio-site-img` } >
-                        {obj.site_landing === null ? '' : 
-                        <img
-                            onClick={() => enlargeImage(obj.site_landing)} 
-                            src={obj.site_landing} alt ="site landing"/>}
-                        <img 
-                            onClick={() => enlargeImage(obj.site_home)}
-                            alt="site home"
-                            src={obj.site_home} />
-                    </div>
-                    {enlarged === null ? '' :
-                        <div className="overlay">
-                            <img 
-                                width="auto" 
-                                height="auto"
-                                src={closeBlack}
-                                onClick={() => setEnlarged(null)} />
-                            <img src={enlarged}/>
-                        </div>}
-                </div>
                 ))}
             </div>
         </div>
