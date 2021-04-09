@@ -157,12 +157,12 @@ export default function PortfolioItems() {
             <div
                 id="arrow" 
                 style={{position: 'relative'}}>
-                    <i 
+                    <div 
                         onClick={() => togglePortfolio('+')}
-                        className="arrow right"></i>
-                    <i 
+                        className="arrow right"></div>
+                    <div 
                         onClick={() => togglePortfolio('-')}
-                        className="arrow left"></i>
+                        className="arrow left"></div>
             </div>
             <div className="portfolio-details">
                 {portfolioDetails.filter((obj, i) => i === item)
@@ -175,6 +175,7 @@ export default function PortfolioItems() {
                         </div>
                         <div className={`portfolio-site-img ${animate}` } >
                             <PortfolioImg 
+                                imgIndex={i}
                                 click={() => enlargeImage(obj.site_home)}
                                 image={obj.site_home}
                                 />

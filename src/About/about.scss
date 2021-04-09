@@ -153,8 +153,9 @@ $grey-2: #BEBEBE;
 }
 @media (max-width: 900px) {
     .blake-img {
-        height: 100%;
+        height: auto;
         width: 175px;
+        object-fit: cover;
     }
     .bio > div {
         max-width: 350px;
@@ -162,8 +163,9 @@ $grey-2: #BEBEBE;
 }
 @media (max-width: 650px) {
     .blake-img {
-        height: 100%;
+        height: auto;
         width: 150px;
+        object-fit: cover;
     }
     .bio > div {
         max-width: 300px;
@@ -171,7 +173,7 @@ $grey-2: #BEBEBE;
 }
 @media (max-width: 600px) {
     .blake-img {
-        height: 100px;
+        height: auto;
         width: 100px;
         object-fit: cover;
         object-position: 100% 0;
