@@ -53,7 +53,7 @@ $gradient-galaxy:
 .blake-stagner {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 2em);
     justify-content: center;
     color: #fff;
     max-width: 500px;
@@ -64,6 +64,7 @@ $gradient-galaxy:
     margin: 0 auto !important;
     align-items: center !important;
     justify-content: center !important;
+    height: 75vh !important;
 
 }
 .blake-stagner h1 {
@@ -226,6 +227,7 @@ $gradient-galaxy:
     overflow: hidden;
     transform-style: preserve-3d;
     animation: spin-earth 9000ms infinite linear;
+    -webkit-animation: spin-earth 9000ms infinite linear;
     transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
     background-size: 110px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -234,6 +236,7 @@ $gradient-galaxy:
 .mars-orbit {
     position: absolute;
     animation: mars-orbit 16000ms infinite linear;
+    -webkit-animation: mars-orbit 16000ms infinite linear;
     height: 50em;
     width: 50em;
     transform-style: preserve-3d;
@@ -253,6 +256,7 @@ $gradient-galaxy:
     overflow: hidden;
     transform-style: preserve-3d;
     animation: mars-spin 16000ms infinite linear;
+    -webkit-animation: mars-spin 16000ms infinite linear;
     transform: rotateX(-90deg) rotateY(-360deg) rotateZ(0deg);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     top: -20px;
@@ -271,6 +275,7 @@ $gradient-galaxy:
     align-items: center;
     justify-content: center;
     animation: black-home-outer 5000ms linear infinite;
+    -webkit-animation: black-home-outer 5000ms linear infinite;
 }
 .black-hole {
     display: inline-block;
@@ -352,6 +357,7 @@ $gradient-galaxy:
     width: 700px;
     height: 700px;
     animation: galaxy-outer 100000ms linear infinite;
+    -webkit-animation: galaxy-outer 100000ms linear infinite;
     animation-delay: 50ms;
     display: flex;
     justify-content: center;
@@ -361,11 +367,12 @@ $gradient-galaxy:
 }
 .mobile-galaxy-container {
     position: absolute;
-    top: calc(75vh - (700px/2));
+    top: calc(55vh - (700px/2));
     left: calc(25vh - (700px/2));
     width: 700px;
     height: 700px;
     animation: galaxy-outer 100000ms linear infinite;
+    -webkit-animation: galaxy-outer 100000ms linear infinite;
     animation-delay: 50ms;
     display: flex;
     justify-content: center;
@@ -487,7 +494,9 @@ $gradient-galaxy:
     width: 550px;
     height: 550px;
     animation: galaxy-outer-2 120000ms linear infinite;
+    -webkit-animation: galaxy-outer-2 120000ms linear infinite;
     animation-delay: 50ms;
+    -webkit-animation-delay: 50ms;
     display: flex;
     justify-content: center;
     align-items: center;
