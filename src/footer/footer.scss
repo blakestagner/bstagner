@@ -2,13 +2,16 @@
     display: block;
     height: fit-content;
     color: #fff;
+    background: radial-gradient(circle, #3f51b5, #5f18af);
 }
 .footer-1 {
-    background: radial-gradient(circle, #3f51b5, #5f18af);
     height: calc(90vh - 2em);
     display: flex;
     padding: 1em 1em;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
 }
 .footer-1 > div {
     width: 33vw;
@@ -44,22 +47,11 @@
     }
 }
 @media (max-width: 750px) {
-    .footer-1 {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
     .footer-1 > div{
         width: 100%;
     }
 }
 @media (max-width: 380px) {
-    .footer-1 {
-        height: calc(85vh - 2em);
-        padding: 1em;
-    }
-    .footer-2 {
-        height: 15vh;
-    }
     h2 {
         font-size: 2.5em;
     }

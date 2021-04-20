@@ -124,7 +124,7 @@ $grey-2: #BEBEBE;
 }
 .bio {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 .blake-img {
     clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);

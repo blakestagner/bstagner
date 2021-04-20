@@ -54,16 +54,19 @@ export default function HeroText({loading}) {
         ? 'heading-animate-2 heading-transition'
             : isTablet 
                 ? 'heading-animate-2 heading-transition' : 'heading-transition-mobile heading-animate-2';
-    const headingWelcome = isDesktop 
-        ? "welcome-text heading-sub-text" 
-            : isTablet 
-                ? "welcome-text heading-sub-text" : 'heading-text-mobile welcome-text-mobile';
+
     const headingUniverse = isDesktop 
-        ? 'universe-text-glow heading-sub-text-2'
+        ? 'universe-text universe-text-animation'
             : isTablet 
-                ? 'universe-text-glow heading-sub-text-2' : "universe-text-glow heading-sub-text-mobile";
+                ? 'universe-text universe-text-animation' : "universe-text universe-text-animation-mobile";
     const mobileGalaxyView = isDesktop 
         ? '' : isTablet ? '' : <MobileGalaxy />
+
+        const headingWelcome = isDesktop 
+        ? "welcome-text welcome-text-animation" 
+            : isTablet 
+                ? "welcome-text welcome-text-animation" : 'welcome-text welcome-text-animation-mobile';
+
 
     return (
         <div>
@@ -79,8 +82,8 @@ export default function HeroText({loading}) {
                     STAGNER
                 </h1>
                 <p id="anim3">
-                    <span className={headingWelcome}>Welcome to my</span> 
-                    <span className={headingUniverse}> UNIVERSE</span>
+                    <span className={loading? 'welcome-text' : headingWelcome}>Welcome to my</span> 
+                    <span className={loading ? 'universe-text' : headingUniverse}> UNIVERSE</span>
                 </p>
             </div>
             {mobileGalaxyView}

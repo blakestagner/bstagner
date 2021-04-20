@@ -91,9 +91,9 @@ export default function About({section}) {
                                 <p className="mobile-intro"><span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more</p>
                             </div>
                             <div>
-                                <p><span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more</p>
-                                <p><span>2019</span> Started being a full time Developer and never looked back.</p>
-                                <p><span>2014</span> Built my first website and begun my web development journey.</p>
+                                <p><span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more.</p>
+                                <p><span>Experiance? </span> 7+ years using variouse Web technologies.</p>
+                                <p><span>What's new?</span> Using WebSocket protocol to create real time multyplayer games.</p>
                                 
                             </div>
                         </div>

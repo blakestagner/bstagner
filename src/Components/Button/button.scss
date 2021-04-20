@@ -83,3 +83,9 @@ $gradient: radial-gradient(circle, #3f51b5, #5f18af);
     border: 1px solid #808080;
     box-shadow: $shadow-md;
 }
+.fixed {
+    position: absolute;
+    bottom: 0;
+    margin: 1em 2em;
+    right: 0;
+}
