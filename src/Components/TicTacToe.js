@@ -51,9 +51,11 @@ export default function TicTacToe() {
         ]
         const winningBoard = (ind) => [board[wins[ind][0]], board[wins[ind][1]], board[wins[ind][2]]]
         const allEqual = arr => arr.every(val => val === arr[0] && val !== null);
-        
+        const catsGame = (arr, i) => arr.every(val => val !== null);
+
         for (let i in wins) {
             const result = allEqual(winningBoard(i))
+            const noWin = catsGame(board, i)
             if(result === true) {
                 setWinner(turn)
                 let sqOne = document.querySelector(`#square-${wins[i][0]}`)
@@ -63,7 +65,11 @@ export default function TicTacToe() {
                 sqTwo.className = "winner"
                 sqThree.className = "winner"
                 break;
-            }
+            } else if (noWin && !result ) {
+                setWinner("Cats Game!")
+           }
+           console.log(noWin)
+           console.log(board)
                 
         }
         let whosTurn = turn === "Player 1" ? "Player 2" : "Player 1"
