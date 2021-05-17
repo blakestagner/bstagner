@@ -8,7 +8,6 @@ export default function PortfolioImg(props) {
         if(props.image) {
             setLoading(true);
         }
-        console.log(props.imgIndex)
     }, [props.image])
 
     const imageLoading = props.imgIndex !== 0 ? 'lazy' : ''; 
