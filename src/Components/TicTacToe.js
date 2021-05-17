@@ -67,10 +67,7 @@ export default function TicTacToe() {
                 break;
             } else if (noWin && !result ) {
                 setWinner("Cats Game!")
-           }
-           console.log(noWin)
-           console.log(board)
-                
+           }    
         }
         let whosTurn = turn === "Player 1" ? "Player 2" : "Player 1"
         setTurn(whosTurn)
