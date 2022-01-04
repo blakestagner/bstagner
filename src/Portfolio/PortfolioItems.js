@@ -78,7 +78,6 @@ export default function PortfolioItems() {
         left: num * sectionChildrenWidth,
         behavior: 'smooth',
       });
-      console.log(item);
     };
 
     const nextItem = () => {
