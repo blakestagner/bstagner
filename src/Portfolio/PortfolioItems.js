@@ -1,71 +1,69 @@
-import "./portfolio.scss";
-import bazSite from "./img/portfolio/baztheroadie.webp";
-import deanHome from "./img/portfolio/electdeanjohnson.webp";
-import markHome from "./img/portfolio/mlhome.webp";
-import deannaHome from "./img/portfolio/deannakeller.webp";
-import maeBlake from "./img/portfolio/wedding.webp";
-import soundHome from "./img/portfolio/soundMedical.webp";
-import closeBlack from "../toolbar/img/close-black.svg";
-import { useState } from "react";
-import PortfolioImg from "./PortfolioImg";
+import './portfolio.scss';
+import bazSite from './img/portfolio/baztheroadie.webp';
+import deanHome from './img/portfolio/electdeanjohnson.webp';
+import markHome from './img/portfolio/mlhome.webp';
+import deannaHome from './img/portfolio/deannakeller.webp';
+import maeBlake from './img/portfolio/wedding.webp';
+import soundHome from './img/portfolio/soundMedical.webp';
+import closeBlack from '../toolbar/img/close-black.svg';
+import { useState } from 'react';
+import PortfolioImg from './PortfolioImg';
 
 export default function PortfolioItems() {
   const [item, setItem] = useState(0);
-  const [animate, setAnimate] = useState("");
+  const [animate, setAnimate] = useState('');
   const [enlarged, setEnlarged] = useState(null);
-  const [portfolio, setPortfolio] = useState(0);
   const portfolioDetails = [
     {
-      name: "My Wedding",
+      name: 'My Wedding',
       site_home: maeBlake,
       site_landing: null,
     },
     {
-      name: "Sound Medical",
+      name: 'Sound Medical',
       site_home: soundHome,
       site_landing: null,
     },
     {
-      name: "Dean Johsnon",
+      name: 'Dean Johsnon',
       site_home: deanHome,
       site_landing: null,
     },
     {
-      name: "Baz the Roadie",
+      name: 'Baz the Roadie',
       site_home: bazSite,
       site_landing: null,
     },
     {
-      name: "Mark Lindquist",
+      name: 'Mark Lindquist',
       site_home: markHome,
       site_landing: null,
     },
     {
-      name: "Deanna Keller",
+      name: 'Deanna Keller',
       site_home: deannaHome,
       site_landing: null,
     },
   ];
 
-  const handleClick = item => {
-    setAnimate("animate");
+  const handleClick = (item) => {
+    setAnimate('animate');
     setTimeout(() => {
       setItem(item);
-      setPortfolio(item);
-      setAnimate("");
+      setAnimate('');
     }, 500);
   };
 
-  const enlargeImage = img => {
+  const enlargeImage = (img) => {
     setEnlarged(img);
   };
 
-  const togglePortfolio = direction => {
-    const section = document.querySelector("#portfolio-items");
+  const togglePortfolio = (direction) => {
+    const section = document.querySelector('#portfolio-items');
     const sectionChildrenWidth = section.getBoundingClientRect().width;
 
     let carouselPositions = [];
-    document.querySelectorAll("#portfolio-items > div").forEach(function (div) {
+    document.querySelectorAll('#portfolio-items > div').forEach(function (div) {
       let child = div.getBoundingClientRect();
       carouselPositions.push([child.left]);
     });
@@ -74,93 +72,89 @@ export default function PortfolioItems() {
       if (carouselPositions[i] > -100 && carouselPositions[i] < 100) {
       }
     }
-    const nextBefore = num => {
-      const section = document.querySelector("#portfolio-items");
+    const nextBefore = (num) => {
+      const section = document.querySelector('#portfolio-items');
       section.scrollTo({
         left: num * sectionChildrenWidth,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
+      console.log(item);
     };
 
     const nextItem = () => {
-      let portfolioCopy = portfolio;
-      portfolioCopy++;
-      if (portfolio === 6) {
+      if (item > 5) {
         setItem(0);
-        setPortfolio(0);
         nextBefore(0);
       } else {
+        nextBefore(item + 1);
         setItem(item + 1);
-        setPortfolio(portfolioCopy);
-        nextBefore(portfolioCopy);
       }
     };
     const beforeItem = () => {
-      let portfolioCopy = portfolio;
-      portfolioCopy--;
-      if (portfolio === 0) {
-        setPortfolio(6);
+      if (item === 0) {
         nextBefore(6);
         setItem(6);
       } else {
-        setPortfolio(portfolioCopy);
-        nextBefore(portfolioCopy);
+        nextBefore(item - 1);
         setItem(item - 1);
       }
     };
 
-    direction === "+" ? nextItem() : beforeItem();
+    direction === '+' ? nextItem() : beforeItem();
   };
 
   const swipePortfolio = () => {
     let carouselPositions = [];
-    document.querySelectorAll("#portfolio-items > div").forEach(function (div) {
+    document.querySelectorAll('#portfolio-items > div').forEach(function (div) {
       let child = div.getBoundingClientRect();
       carouselPositions.push([child.left]);
     });
     for (let i in carouselPositions) {
       if (carouselPositions[i] > -100 && carouselPositions[i] < 100) {
         setItem(parseInt(i));
-        setPortfolio(parseInt(i));
       }
     }
   };
 
-  window.addEventListener("load", () => {
-    const portfolioSwipe = document.querySelector("#portfolio-items");
-    portfolioSwipe.addEventListener("scroll", swipePortfolio, false);
+  window.addEventListener('load', () => {
+    const portfolioSwipe = document.querySelector('#portfolio-items');
+    portfolioSwipe.addEventListener('scroll', swipePortfolio, false);
   });
 
   return (
-    <div className="portfolio">
+    <div className='portfolio'>
       {enlarged === null ? (
-        ""
+        ''
       ) : (
-        <div className="overlay">
-          <img src={closeBlack} onClick={() => setEnlarged(null)} />
-          <img src={enlarged} />
+        <div className='overlay'>
+          <img
+            src={closeBlack}
+            alt='close back'
+            onClick={() => setEnlarged(null)}
+          />
+          <img src={enlarged} alt='enlarge' />
         </div>
       )}
-      <div className="portfolio-sidenav">
+      <div className='portfolio-sidenav'>
         <ul>
           {portfolioDetails.map((obj, i) => (
             <li key={i} onClick={() => handleClick(i)}>
-              <p className={item === i ? "active" : ""}>{obj.name}</p>
+              <p className={item === i ? 'active' : ''}>{obj.name}</p>
             </li>
           ))}
         </ul>
       </div>
-      <div id="arrow" style={{ position: "relative" }}>
-        <div onClick={() => togglePortfolio("+")} className="arrow right"></div>
-        <div onClick={() => togglePortfolio("-")} className="arrow left"></div>
+      <div id='arrow' style={{ position: 'relative' }}>
+        <div onClick={() => togglePortfolio('+')} className='arrow right'></div>
+        <div onClick={() => togglePortfolio('-')} className='arrow left'></div>
       </div>
-      <div className="portfolio-details">
+      <div className='portfolio-details'>
         {portfolioDetails
           .filter((obj, i) => i === item)
-          .map(obj => (
+          .map((obj) => (
             <div key={obj.name}>
               <div className={`portfolio-card ${animate}`}>
-                <p className="portfolio-proj-title">{obj.name}</p>
+                <p className='portfolio-proj-title'>{obj.name}</p>
               </div>
               <div className={`portfolio-site-img ${animate}`}>
                 <PortfolioImg
@@ -172,11 +166,11 @@ export default function PortfolioItems() {
             </div>
           ))}
       </div>
-      <div id="portfolio-items">
+      <div id='portfolio-items'>
         {portfolioDetails.map((obj, i) => (
           <div key={obj.name}>
             <div className={`portfolio-card`}>
-              <p className="portfolio-proj-title">{obj.name}</p>
+              <p className='portfolio-proj-title'>{obj.name}</p>
             </div>
             <div className={`portfolio-site-img`}>
               <PortfolioImg
