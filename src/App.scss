@@ -1,7 +1,12 @@
-$gradient: linear-gradient(90deg, rgba(63,81,181,1) 0%, rgba(2,119,189,1) 48%, rgba(2,189,121,1) 100%);
+$gradient: linear-gradient(
+  90deg,
+  rgba(63, 81, 181, 1) 0%,
+  rgba(2, 119, 189, 1) 48%,
+  rgba(2, 189, 121, 1) 100%
+);
 $gradient-2: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
-$color-main: rgba(2,119,189,1);
-$white:  #F0F8FF;
+$color-main: rgba(2, 119, 189, 1);
+$white: #f0f8ff;
 $shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 $shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
@@ -10,18 +15,11 @@ $shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   margin-top: 0px;
   background-size: 100%;
   background-repeat: no-repeat;
-  background: #F0F8FF;
+  background: #f0f8ff;
 }
 a {
   color: inherit;
   text-decoration: none;
-}
-.main-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 4em 1em 2em;
-  height: calc(100vh - 6em);
 }
 #sections {
   height: 100vh;
@@ -33,14 +31,17 @@ a {
   scroll-snap-align: start;
   height: 100vh;
 }
-#sections > div#about, div#portfolio, div#components, div#contact  {
+#sections > div#about,
+div#portfolio,
+div#components,
+div#contact {
   margin: 0 auto;
 }
 #sections > div:first-of-type {
   scroll-snap-align: none;
   height: 125vh;
 }
-#sections > div:last-of-type  {
+#sections > div:last-of-type {
   padding: 0;
 }
 .heading {
@@ -67,11 +68,11 @@ a {
   color: #282828;
 }
 .heading h2 {
-  margin: .25em 0 0;
+  margin: 0.25em 0 0;
 }
 @media (max-width: 320px) {
   h3 {
-    font-size: 1.5em
+    font-size: 1.5em;
   }
 }
 .main-container {
@@ -87,13 +88,12 @@ a {
   justify-content: center;
 }
 @media (max-width: 400px) {
-
   .main-container {
     text-align: center;
     padding: 2em 1em;
     height: calc(100vh - 4em);
   }
   .heading h2 {
-    margin: .25em 0 0;
+    margin: 0.25em 0 0;
   }
 }

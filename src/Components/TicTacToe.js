@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import ButtonSm from "./Button/ButtonSm";
-import ButtonSecondary from "./Button/ButtonSecondary";
+import { useEffect, useState } from 'react';
+import ButtonSm from './Button/ButtonSm';
+import ButtonSecondary from './Button/ButtonSecondary';
 
 export default function TicTacToe() {
   const [firstRender, setFirstRedner] = useState(true);
-  const [turn, setTurn] = useState("Player 1");
+  const [turn, setTurn] = useState('Player 1');
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [winner, setWinner] = useState(null);
   const [wins, setWins] = useState({
     p1: 0,
     p2: 0,
   });
 
-  const check = num => {
+  const check = (num) => {
     const boardCopy = [...board];
-    let checkMark = turn === "Player 1" ? "x" : "o";
+    let checkMark = turn === 'Player 1' ? 'x' : 'o';
 
     const errorTimeOut = () => {
       setTimeout(() => {
-        setError("");
+        setError('');
       }, 1000);
     };
 
@@ -28,11 +28,11 @@ export default function TicTacToe() {
         boardCopy[num] = checkMark;
         setBoard(boardCopy);
       } else {
-        setError("The Square is already Full!");
+        setError('The Square is already Full!');
         errorTimeOut();
       }
     } else {
-      setError("Reset the board to play again!");
+      setError('Reset the board to play again!');
       errorTimeOut();
     }
   };
@@ -48,13 +48,14 @@ export default function TicTacToe() {
       [0, 4, 8],
       [2, 4, 6],
     ];
-    const winningBoard = ind => [
+    const winningBoard = (ind) => [
       board[wins[ind][0]],
       board[wins[ind][1]],
       board[wins[ind][2]],
     ];
-    const allEqual = arr => arr.every(val => val === arr[0] && val !== null);
-    const catsGame = (arr, i) => arr.every(val => val !== null);
+    const allEqual = (arr) =>
+      arr.every((val) => val === arr[0] && val !== null);
+    const catsGame = (arr, i) => arr.every((val) => val !== null);
 
     for (let i in wins) {
       const result = allEqual(winningBoard(i));
@@ -64,15 +65,15 @@ export default function TicTacToe() {
         let sqOne = document.querySelector(`#square-${wins[i][0]}`);
         let sqTwo = document.querySelector(`#square-${wins[i][1]}`);
         let sqThree = document.querySelector(`#square-${wins[i][2]}`);
-        sqOne.className = "winner";
-        sqTwo.className = "winner";
-        sqThree.className = "winner";
+        sqOne.className = 'winner';
+        sqTwo.className = 'winner';
+        sqThree.className = 'winner';
         break;
       } else if (noWin && !result) {
-        setWinner("Cats Game!");
+        setWinner('Cats Game!');
       }
     }
-    let whosTurn = turn === "Player 1" ? "Player 2" : "Player 1";
+    let whosTurn = turn === 'Player 1' ? 'Player 2' : 'Player 1';
     setTurn(whosTurn);
   };
 
@@ -84,14 +85,14 @@ export default function TicTacToe() {
     }
   }, [board]);
 
-  const reset = type => {
+  const reset = (type) => {
     const resetBoard = () => {
       setBoard(Array(9).fill(null));
       setWinner(null);
-      turn === "Player 1" ? setTurn("Player 2") : setTurn("Player 1");
-      let winningSquares = document.querySelectorAll(".winner");
+      turn === 'Player 1' ? setTurn('Player 2') : setTurn('Player 1');
+      let winningSquares = document.querySelectorAll('.winner');
       if (winningSquares.length > 0) {
-        winningSquares.forEach(square => (square.className = ""));
+        winningSquares.forEach((square) => (square.className = ''));
       }
     };
     const resetGame = () => {
@@ -99,31 +100,33 @@ export default function TicTacToe() {
       setWins({ ...wins, p1: 0, p2: 0 });
     };
 
-    type === "game" ? resetGame() : resetBoard();
+    type === 'game' ? resetGame() : resetBoard();
   };
 
   useEffect(() => {
     const roundWinner = () =>
       winner === null
         ? null
-        : winner === "Player 1"
+        : winner === 'Cats Game!'
+        ? null
+        : winner === 'Player 1'
         ? setWins({ ...wins, p1: (wins.p1 += 1) })
         : setWins({ ...wins, p2: (wins.p2 += 1) });
     roundWinner();
   }, [winner]);
 
   return (
-    <div className="tictactoe-main">
+    <div className='tictactoe-main'>
       {winner ? (
-        <p className="heading">
+        <p className='heading'>
           The Winner is: <span>{winner}</span>
         </p>
       ) : (
-        <p className="heading">
+        <p className='heading'>
           Turn: <span>{turn}</span>
         </p>
       )}
-      <div className="ttt-controller">
+      <div className='ttt-controller'>
         <p>
           Player 1: <span>{wins.p1}</span>
         </p>
@@ -131,13 +134,12 @@ export default function TicTacToe() {
           Player 2: <span>{wins.p2}</span>
         </p>
       </div>
-      <div className="ttt-controller">
-        <ButtonSm name="reset board" click={() => reset("board")} />
-        <ButtonSecondary name="reset game" click={() => reset("game")} />
+      <div className='board'>
+        <Square board={board} check={(num) => check(num)} />
       </div>
-
-      <div className="board">
-        <Square board={board} check={num => check(num)} />
+      <div className='ttt-controller'>
+        <ButtonSm name='reset board' click={() => reset('board')} />
+        <ButtonSecondary name='reset game' click={() => reset('game')} />
       </div>
       <p>{error}</p>
     </div>
