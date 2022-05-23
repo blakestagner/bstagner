@@ -1,61 +1,62 @@
 .footer {
-    display: block;
-    height: fit-content;
-    color: #fff;
-    background: radial-gradient(circle, #3f51b5, #5f18af);
+  display: block;
+  height: fit-content;
+  color: #fff;
+  background: radial-gradient(circle, #3f51b5, #5f18af);
 }
 .footer-1 {
-    height: calc(90vh - 2em);
-    display: flex;
-    padding: 1em 1em;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
+  height: calc(90vh - 2em);
+  display: flex;
+  padding: 1em 1em;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 .footer-1 > div {
-    width: 33vw;
+  width: 33vw;
 }
-.footer-1 > div:nth-child(2) h3{
-    font-size: 1.5em;
+.footer-1 > div:nth-child(2) h3 {
+  font-size: 1.5em;
 }
 .footer-2 {
-    background-color: #282828;
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+  background-color: #282828;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .footer-2 p {
-    margin: 0;
+  margin: 0;
 }
 .social-icon {
-    width: 3em;
-    height: 3em;
-    margin: 0 10px 10px;
-} 
+  width: 3em;
+  height: 3em;
+  margin: 0 10px 10px;
+}
 .social-icon svg {
-    width: 3em;
-    height: 3em;
-    margin: 0 10px 10px;
+  width: 3em;
+  height: 3em;
+  margin: 0 10px 10px;
 }
 @media (max-width: 1200px) {
-    .footer-1 {
-        flex-wrap: wrap; 
-        justify-content: center;
-    }
+  .footer-1 {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 @media (max-width: 750px) {
-    .footer-1 > div{
-        width: 100%;
-    }
+  .footer-1 > div {
+    width: 100%;
+  }
 }
 @media (max-width: 380px) {
-    h2 {
-        font-size: 2.5em;
-    }
-    h3 {
-        font-size: 1em;
-    }
+  h2 {
+    font-size: 2.5em;
+  }
+  h3 {
+    font-size: 1em;
+  }
 }
