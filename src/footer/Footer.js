@@ -51,7 +51,7 @@ function Footer() {
         </div>
       </div>
       <div className='footer-2'>
-        <p>Copyright© BlakeStagner.com 2022</p>
+        <p>Copyright© BlakeStagner.com 2023</p>
       </div>
     </div>
   );
