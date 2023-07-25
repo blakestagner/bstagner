@@ -93,7 +93,7 @@ export default function About({ section }) {
                   Backend Enthusiast, & more.
                 </p>
                 <p>
-                  <span>Experiance? </span> 7+ years using variouse Web
+                  <span>Experiance? </span> 8+ years using variouse Web
                   technologies.
                 </p>
               </div>
