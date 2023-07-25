@@ -14,10 +14,10 @@
   transition-delay: 250ms;
 }
 .scrollBar {
-    overflow: hidden;
-    color: #000 !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    overflow: hidden;
+  overflow: hidden;
+  color: #000 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
 }
 .scrollBar:after {
   content: '';
@@ -26,48 +26,47 @@
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
   filter: blur(10px);
   margin: -20px;
-
 }
 .scrolled {
   transform: translate3d(0px, -50px, 0px);
   transition: all ease 500ms;
 }
 .navBarContainer {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-    height: 35px;
-    padding: 5px;
-    z-index: 1;
-    position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 35px;
+  padding: 5px;
+  z-index: 1;
+  position: relative;
 }
 #main-title > a {
-    display: inline-block;
-    font-weight: bold;
-    margin: 0 .5em 0;
-    font-size: 1.5em;
-    line-height: inherit;
-    white-space: nowrap;
-    cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 0.5em 0;
+  font-size: 1.5em;
+  line-height: inherit;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .navBar ul {
-    flex-direction: row;
-    display: flex;
-    flex-basis: auto;
-    margin-left: auto;
-    padding-right: 50px;
+  flex-direction: row;
+  display: flex;
+  flex-basis: auto;
+  margin-left: auto;
+  padding-right: 50px;
 }
 .navBar ul li {
-    display: flex;
-    margin-left: 10px;
-    margin-right: 10px;
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
 }
-#mainMenuList li a {
+#mainMenuList li p {
   cursor: pointer;
 }
 .navList {
@@ -87,7 +86,8 @@
   #mainMenuList {
     display: none;
   }
-  .menu-icon, .menu-icon-animation {
+  .menu-icon,
+  .menu-icon-animation {
     display: block !important;
   }
 }
