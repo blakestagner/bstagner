@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './toolbar.scss';
 
 import closeWhite from './img/close-white.svg';
@@ -14,10 +14,10 @@ function Toolbar() {
   const [navHide, setNavHide] = useState(true);
   let prevScrollpos = window.pageYOffset;
 
-  window.addEventListener('load', () => {
+  useEffect(() => {
     const section = document.querySelector('#sections');
     section.addEventListener('scroll', sectionScroll);
-  });
+  }, [])
 
   const sectionScroll = () => {
     const windowScroll = () => {

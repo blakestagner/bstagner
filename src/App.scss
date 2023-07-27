@@ -23,6 +23,7 @@ a {
 }
 #sections {
   height: 100vh;
+  max-height: 100dvh;
   overflow: hidden;
   scroll-snap-type: y proximity;
   overflow-y: scroll;
@@ -30,6 +31,7 @@ a {
 #sections > div {
   scroll-snap-align: start;
   height: 100vh;
+  max-height: 100dvh;
 }
 #sections > div#about,
 div#portfolio,
