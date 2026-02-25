@@ -1,22 +1,21 @@
 $neu-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25),
   -2px -2px 5px rgba(255, 255, 255, 0.3);
 $gradient: linear-gradient(
-  90deg,
-  rgba(63, 81, 181, 1) 0%,
-  rgba(2, 119, 189, 1) 50%,
-  rgba(2, 189, 121, 1) 100%
+  135deg,
+  rgba(79, 195, 247, 1) 0%,
+  rgba(124, 77, 255, 1) 100%
 );
-$color-main: rgba(2, 119, 189, 1);
-$gradient-2: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
+$color-main: rgba(79, 195, 247, 1);
+$gradient-2: linear-gradient(135deg, #4fc3f7 0%, #7c4dff 100%);
 
-$shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
 
 $gradient-galaxy: linear-gradient(
   0deg,
-  rgba(63, 81, 181, 0.01) 0%,
-  rgba(2, 119, 189, 0.4) 50%,
-  rgba(2, 189, 121, 0.5) 100%
+  rgba(79, 195, 247, 0.01) 0%,
+  rgba(79, 195, 247, 0.25) 50%,
+  rgba(124, 77, 255, 0.35) 100%
 );
 
 .hero {
@@ -24,12 +23,12 @@ $gradient-galaxy: linear-gradient(
   overflow: hidden;
   margin: 0;
   position: relative;
-  background: rgb(0, 7, 65);
+  background: rgb(2, 2, 14);
   background: linear-gradient(
     180deg,
-    rgba(0, 7, 65, 1) 0%,
-    rgba(52, 0, 82, 1) 30%,
-    rgba(20, 20, 20, 1) 100%
+    rgba(2, 2, 14, 1) 0%,
+    rgba(20, 4, 48, 1) 35%,
+    rgba(8, 8, 16, 1) 100%
   );
 }
 .hero-initial {
@@ -37,12 +36,12 @@ $gradient-galaxy: linear-gradient(
   overflow: hidden;
   margin: 0;
   position: relative;
-  background: rgb(0, 7, 65);
+  background: rgb(2, 2, 14);
   background: linear-gradient(
     180deg,
-    rgba(0, 7, 65, 1) 0%,
-    rgba(52, 0, 82, 1) 30%,
-    rgba(20, 20, 20, 1) 100%
+    rgba(2, 2, 14, 1) 0%,
+    rgba(20, 4, 48, 1) 35%,
+    rgba(8, 8, 16, 1) 100%
   );
 }
 .hero-background {
@@ -89,11 +88,14 @@ $gradient-galaxy: linear-gradient(
   margin: 0;
   line-height: 0.8;
   z-index: 5;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 60px rgba(79, 195, 247, 0.2), 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 .blake-stagner > p {
   z-index: 5;
   font-size: 1.5em;
-  margin: 0;
+  margin: 0.4em 0 0;
+  letter-spacing: 0.02em;
 }
 .welcome-text {
   opacity: 0;
@@ -116,7 +118,7 @@ $gradient-galaxy: linear-gradient(
   font-weight: bold;
   transition: opacity 2s linear;
   opacity: 0;
-  text-shadow: 0 0 20px #fff, 0 0 30px #49fb35, 0 0 40px #49fb35;
+  text-shadow: 0 0 20px #fff, 0 0 30px rgba(79, 195, 247, 0.9), 0 0 60px rgba(79, 195, 247, 0.5);
 }
 .universe-text-animation {
   opacity: 1;
@@ -419,9 +421,9 @@ $gradient-galaxy: linear-gradient(
   width: 400px;
   height: 400px;
   border-radius: 100%;
-  box-shadow: 0 0 20px rgba(255, 204, 255, 1);
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.8);
   filter: blur(15px);
-  background: rgba(76, 0, 153, 0.5);
+  background: rgba(50, 0, 130, 0.5);
   z-index: 2;
 }
 .galaxy-1.ring:after {
@@ -430,8 +432,8 @@ $gradient-galaxy: linear-gradient(
   width: 250px;
   height: 250px;
   border-radius: 100%;
-  box-shadow: 0 0 20px rgba(255, 204, 255, 1);
-  border: solid 150px rgba(255, 204, 255, 0.2);
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.8);
+  border: solid 150px rgba(124, 77, 255, 0.15);
   filter: blur(20px);
   background: none;
   z-index: 2;
@@ -441,9 +443,9 @@ $gradient-galaxy: linear-gradient(
   width: 150px;
   height: 200px;
   border-radius: 100%;
-  box-shadow: 0 0 50px rgba(255, 204, 255, 1);
+  box-shadow: 0 0 50px rgba(124, 77, 255, 0.9);
   filter: blur(3px);
-  background: rgba(255, 204, 255, 0.2);
+  background: rgba(124, 77, 255, 0.2);
   z-index: 2;
 }
 .galaxy-1.ring-3 {
@@ -451,9 +453,9 @@ $gradient-galaxy: linear-gradient(
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  box-shadow: 0 0 80px rgba(255, 204, 255, 1);
+  box-shadow: 0 0 80px rgba(124, 77, 255, 1);
   filter: blur(3px);
-  background: rgba(255, 153, 255, 0.3);
+  background: rgba(124, 77, 255, 0.3);
   z-index: 2;
 }
 .galaxy-1.ring-4 {
@@ -463,7 +465,7 @@ $gradient-galaxy: linear-gradient(
   border-radius: 100%;
   box-shadow: 0 0 40px rgba(255, 255, 255, 1);
   filter: blur(2px);
-  background: rgba(255, 204, 255, 0.2);
+  background: rgba(124, 77, 255, 0.25);
   z-index: 2;
 }
 .g-tails {
@@ -472,7 +474,7 @@ $gradient-galaxy: linear-gradient(
   width: calc(450px - 30px);
   height: 225px;
   filter: blur(10px);
-  border-left: solid rgba(255, 204, 255, 0.75) 30px;
+  border-left: solid rgba(124, 77, 255, 0.7) 30px;
   z-index: 20;
   transition-delay: 500ms;
   border-top-left-radius: 75%;
@@ -545,9 +547,9 @@ $gradient-galaxy: linear-gradient(
   width: 300px;
   height: 200px;
   border-radius: 100%;
-  box-shadow: 0 0 20px rgba(255, 204, 255, 1);
+  box-shadow: 0 0 20px rgba(79, 195, 247, 0.7);
   filter: blur(15px);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 80, 130, 0.3);
   z-index: 2;
 }
 .galaxy-2.ring:after {
@@ -556,8 +558,8 @@ $gradient-galaxy: linear-gradient(
   width: 100px;
   height: 75px;
   border-radius: 100%;
-  box-shadow: 0 0 20px rgb(127, 255, 0);
-  border: solid 150px rgba(127, 255, 0, 0.2);
+  box-shadow: 0 0 20px rgba(79, 195, 247, 0.9);
+  border: solid 150px rgba(79, 195, 247, 0.15);
   filter: blur(20px);
   background: none;
   z-index: 2;
@@ -567,9 +569,9 @@ $gradient-galaxy: linear-gradient(
   width: 150px;
   height: 125px;
   border-radius: 100%;
-  box-shadow: 0 0 50px rgb(127, 255, 0);
+  box-shadow: 0 0 50px rgba(79, 195, 247, 0.9);
   filter: blur(3px);
-  background: rgba(127, 255, 0, 0.2);
+  background: rgba(79, 195, 247, 0.15);
   z-index: 2;
 }
 .galaxy-2.ring-3 {
@@ -577,9 +579,9 @@ $gradient-galaxy: linear-gradient(
   width: 100px;
   height: 75px;
   border-radius: 100%;
-  box-shadow: 0 0 80px rgb(127, 255, 0);
+  box-shadow: 0 0 80px rgba(79, 195, 247, 1);
   filter: blur(3px);
-  background: rgba(127, 255, 0, 0.3);
+  background: rgba(79, 195, 247, 0.2);
   z-index: 2;
 }
 .galaxy-2.ring-4 {
@@ -587,9 +589,9 @@ $gradient-galaxy: linear-gradient(
   width: 60px;
   height: 60px;
   border-radius: 100%;
-  box-shadow: 0 0 40px rgb(127, 255, 0);
+  box-shadow: 0 0 40px rgba(79, 195, 247, 1);
   filter: blur(2px);
-  background: rgba(127, 255, 0, 0.2);
+  background: rgba(79, 195, 247, 0.15);
   z-index: 2;
 }
 .g-tails-2 {
@@ -597,13 +599,13 @@ $gradient-galaxy: linear-gradient(
   width: 350px;
   height: 149px;
   filter: blur(10px);
-  border-left: solid rgba(255, 255, 150, 0.75) 30px;
+  border-left: solid rgba(79, 195, 247, 0.7) 30px;
   z-index: 20;
   transition-delay: 500ms;
   transform-style: preserve-3d;
-  border-top: 15px solid rgba(255, 255, 120, 0.75);
+  border-top: 15px solid rgba(79, 195, 247, 0.6);
   border-bottom-left-radius: 100%;
-  border-bottom: rgba(255, 255, 200, 0.75) solid 30px;
+  border-bottom: rgba(79, 195, 247, 0.7) solid 30px;
   border-bottom-right-radius: 77%;
   border-top-left-radius: 40%;
 }

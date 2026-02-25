@@ -1,14 +1,21 @@
-import { Montserrat, Teko } from 'next/font/google'
+import { DM_Sans, DM_Serif_Display, Teko } from 'next/font/google'
 import './globals.scss'
 
-const montserrat = Montserrat({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-montserrat',
+  variable: '--font-dm-sans',
+  display: 'swap',
+})
+
+const dmSerifDisplay = DM_Serif_Display({
+  weight: ['400'],
+  subsets: ['latin'],
+  variable: '--font-dm-serif',
   display: 'swap',
 })
 
 const teko = Teko({
-  weight: ['500'],
+  weight: ['500', '600'],
   subsets: ['latin'],
   variable: '--font-teko',
   display: 'swap',
@@ -21,7 +28,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${teko.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${dmSerifDisplay.variable} ${teko.variable}`}>
       <body>{children}</body>
     </html>
   )

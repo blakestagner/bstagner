@@ -1,15 +1,39 @@
+$color-accent: #4fc3f7;
+$color-accent-purple: #7c4dff;
+$color-text-primary: #f0f4ff;
+$color-text-secondary: #8892aa;
+$bg-base: #080810;
+$bg-surface: #10101e;
+$border-subtle: rgba(255, 255, 255, 0.07);
+$border-accent: rgba(79, 195, 247, 0.2);
+
 .footer {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   height: fit-content;
-  color: #fff;
-  background: radial-gradient(circle, #3f51b5, #5f18af);
+  color: $color-text-primary;
+  background: $bg-surface;
+  border-top: 1px solid $border-accent;
+  position: relative;
 }
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, $color-accent, transparent);
+  box-shadow: 0 0 20px rgba(79, 195, 247, 0.4);
+}
+
 .footer-1 {
-  height: calc( 90vh - 2em );
+  height: calc(80vh - 2em);
   display: flex;
-  padding: 1em 1em;
+  padding: 2em 1em;
   align-items: center;
   justify-content: center;
   max-width: 1200px;
@@ -17,44 +41,72 @@
   margin: 0 auto;
   position: relative;
 }
+
 .footer-1 > div {
   width: 33vw;
 }
+
+.footer-1 > div h2 {
+  color: $color-text-primary;
+  letter-spacing: 0.03em;
+  margin-bottom: 1em;
+}
+
 .footer-1 > div:nth-child(2) h3 {
   font-size: 1.5em;
+  color: $color-text-secondary;
 }
+
 .footer-2 {
-  background-color: #282828;
+  background-color: $bg-base;
+  border-top: 1px solid $border-subtle;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .footer-2 p {
   margin: 0;
+  font-size: 0.85em;
+  color: $color-text-secondary;
+  letter-spacing: 0.05em;
 }
+
 .social-icon {
   width: 3em;
   height: 3em;
   margin: 0 10px 10px;
+  opacity: 0.7;
+  transition: opacity ease 200ms, transform ease 200ms, filter ease 200ms;
 }
+
+.social-icon:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  filter: drop-shadow(0 4px 12px rgba(79, 195, 247, 0.4));
+}
+
 .social-icon svg {
   width: 3em;
   height: 3em;
   margin: 0 10px 10px;
 }
+
 @media (max-width: 1200px) {
   .footer-1 {
     flex-wrap: wrap;
     justify-content: center;
   }
 }
+
 @media (max-width: 750px) {
   .footer-1 > div {
     width: 100%;
   }
 }
+
 @media (max-width: 380px) {
   h2 {
     font-size: 2.5em;

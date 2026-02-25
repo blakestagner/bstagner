@@ -1,22 +1,26 @@
-$shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-$neu-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25),
-  -2px -2px 5px rgba(255, 255, 255, 0.3);
-$gradient: linear-gradient(
-  90deg,
-  rgba(63, 81, 181, 1) 0%,
-  rgba(2, 119, 189, 1) 48%,
-  rgba(2, 189, 121, 1) 100%
-);
-$gradient-2: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
-$color-main: rgba(2, 119, 189, 1);
+$color-accent: #4fc3f7;
+$color-accent-purple: #7c4dff;
+$color-text-primary: #f0f4ff;
+$color-text-secondary: #8892aa;
+$bg-base: #080810;
+$bg-surface: #10101e;
+$bg-surface-2: #161628;
+$border-subtle: rgba(255, 255, 255, 0.07);
+$border-accent: rgba(79, 195, 247, 0.2);
+
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+$gradient: linear-gradient(135deg, $color-accent 0%, $color-accent-purple 100%);
+$gradient-2: linear-gradient(135deg, $color-accent 0%, $color-accent-purple 100%);
+$color-main: $color-accent;
 
 #components {
-  color: #000;
+  color: $color-text-primary;
+  background: $bg-base;
   height: 600px;
 }
-//menu
-/*timeline bar*/
+
+// Menu
 #components-menu {
   width: 100%;
   display: flex;
@@ -24,42 +28,66 @@ $color-main: rgba(2, 119, 189, 1);
   max-width: 600px;
   justify-content: space-between;
 }
+
 #components-menu img {
   width: 30px;
   padding: 10px 0;
+  filter: invert(1) opacity(0.5);
+  transition: filter ease 200ms;
 }
+
+#components-menu img:hover {
+  filter: invert(1) opacity(0.8);
+}
+
 .components-menu-inner {
   display: flex;
   overflow-x: scroll;
   align-items: center;
   max-width: 120vw;
+  background: $bg-surface;
+  border: 1px solid $border-subtle;
+  border-radius: 50px;
+  padding: 4px 8px;
 }
+
 .components-menu-inner div {
   flex: 0 0 auto;
-  padding: 5px;
-  margin: 0 10px;
+  padding: 5px 12px;
+  margin: 0 4px;
   text-decoration: none;
-  color: #000;
+  color: $color-text-secondary;
   cursor: pointer;
+  border-radius: 50px;
+  transition: color ease 200ms;
 }
+
 .components-menu-inner div p {
   margin: 0px;
-  font-size: 20px;
+  font-size: 18px;
+  letter-spacing: 0.03em;
 }
 
 .components-menu-inner div.selected {
   flex: 0 0 auto;
-  padding: 5px 15px;
-  margin-right: 1rem;
+  padding: 5px 16px;
+  margin-right: 4px;
   text-decoration: none;
-  color: #fff;
-  background-color: #3f51b5;
-  border-radius: 25px;
+  color: $bg-base;
+  background: $gradient;
+  border-radius: 50px;
+  box-shadow: 0 0 16px rgba(79, 195, 247, 0.25);
 }
+
+.components-menu-inner div.selected p {
+  color: #fff;
+}
+
 .components-menu-inner::-webkit-scrollbar {
   display: none;
 }
-//calendar
+
+// Calendar
 .calendar-container {
   display: table;
   margin: 0 auto;
@@ -70,11 +98,13 @@ $color-main: rgba(2, 119, 189, 1);
   height: 100%;
   border-radius: 1.5em;
   overflow: hidden;
+  border: 1px solid $border-subtle;
 }
+
 .date-select-row {
   margin: 5px auto 0;
   padding: 0.5em;
-  border-top: 10px solid $color-main;
+  border-top: 3px solid $color-accent;
   max-width: calc(300px - 1em);
   width: calc(100% - 1em);
   height: auto;
@@ -82,56 +112,80 @@ $color-main: rgba(2, 119, 189, 1);
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background: $bg-surface;
+  color: $color-text-primary;
 }
+
 .week {
   display: flex;
+  color: $color-text-primary;
+  background: $bg-surface;
 }
+
 .week > div {
   padding: 5px;
+  color: $color-text-secondary;
 }
+
 .day {
   width: calc(100% / 7);
   height: calc(100% / 7);
 }
+
 .today {
-  background-color: #000;
+  background: $gradient;
   color: #fff;
+  border-radius: 4px;
 }
+
 .calendar-header {
   color: #fff;
   background: $gradient;
   padding: 5px;
   font-size: 1.5em;
 }
+
 .not-month {
-  color: lightgrey;
+  color: rgba(136, 146, 170, 0.35);
 }
+
 input {
   border-radius: 10px;
-  border: solid 1px lightgrey;
-  padding: 5px;
+  border: solid 1px $border-subtle;
+  padding: 5px 10px;
   margin: 0 0.5em;
+  background: $bg-surface-2;
+  color: $color-text-primary;
+  transition: border-color ease 200ms, box-shadow ease 200ms;
 }
+
 input:focus {
   outline: none;
+  border-color: $border-accent;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.1);
 }
+
 input.error::placeholder,
 .error {
-  color: red;
+  color: #ff6b6b;
 }
+
 .submit-row {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 1em auto;
 }
+
 ul#notes {
   max-width: 400px;
   width: auto;
   margin: 1em auto;
   overflow-y: scroll;
   max-height: 60vh;
+  padding: 0;
 }
+
 ul#notes li {
   display: flex;
   align-items: center;
@@ -139,63 +193,99 @@ ul#notes li {
   width: 100%;
   animation: notes ease-out 500ms forwards;
 }
+
 ul#notes li > span {
   box-shadow: $shadow-md;
-  padding: 5px;
-  margin: 5px 0;
+  padding: 8px 12px;
+  margin: 4px 0;
   width: 80%;
-  background-color: #fff;
+  background-color: $bg-surface;
+  border: 1px solid $border-subtle;
   border-radius: 10px;
   display: flex;
   text-align: left;
+  color: $color-text-secondary;
+  transition: border-color ease 200ms;
 }
+
+ul#notes li > span:hover {
+  border-color: $border-accent;
+}
+
 ul#notes li > span > span:first-child {
   padding: 0 5px;
-  color: $color-main;
+  color: $color-accent;
 }
+
 ul#notes li img {
   width: 2em;
   height: 2em;
   margin: 0 5px;
   cursor: pointer;
+  filter: invert(1) opacity(0.5);
+  transition: filter ease 200ms;
+}
+
+ul#notes li img:hover {
+  filter: invert(1) opacity(0.85);
 }
 
 @keyframes notes {
   0% {
     opacity: 0;
+    transform: translateY(-8px);
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-//converter
+// Converter
 .units {
   margin: 0 0.5em;
   height: 2em;
   line-height: calc(2em - 3px);
+  color: $color-text-secondary;
 }
+
 select {
   margin: 0 0.5em 0 0;
   border-radius: 1em;
-  border: 1px solid lightgrey;
+  border: 1px solid $border-subtle;
   width: 6em;
+  background: $bg-surface;
+  color: $color-text-primary;
+  padding: 2px 4px;
+  cursor: pointer;
 }
+
+select:focus {
+  outline: none;
+  border-color: $border-accent;
+}
+
 .conversion-result {
   margin: 0 1em;
+  color: $color-text-primary;
 }
-//tictactoe
+
+// TicTacToe
 .tictactoe-main p.heading {
   font-size: 2em;
   margin: 0;
   background: $gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: -1em 0 0;
+  letter-spacing: 0.03em;
 }
+
 .tictactoe-main p.heading span {
   font-weight: bold;
 }
+
 .board {
   height: 40vh;
   width: 40vh;
@@ -204,30 +294,40 @@ select {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 .board button {
   flex: 0 calc(40vh / 3);
   height: calc(40vh / 3);
-  margin-bottom: 2%; /* (100-32*3)/2 */
   cursor: pointer;
   margin: 0;
   background: transparent;
-  border: solid 1px grey;
+  border: solid 1px $border-subtle;
+  transition: background ease 200ms;
 }
+
+.board button:hover {
+  background: rgba(79, 195, 247, 0.04);
+}
+
 .board button p {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   font-size: 5em;
-  color: $color-main;
+  color: $color-accent;
 }
+
 .winner p {
-  color: red;
-  -webkit-text-fill-color: red !important;
+  color: #ff6b6b;
+  -webkit-text-fill-color: #ff6b6b !important;
+  text-shadow: 0 0 12px rgba(255, 107, 107, 0.5);
 }
+
 .ttt-controller:first-of-type {
   margin: 0 auto 1em;
 }
+
 .ttt-controller {
   display: flex;
   align-items: center;
@@ -236,18 +336,21 @@ select {
   height: 2em;
   margin: 1em auto 0;
 }
+
 .ttt-controller > p {
-  color: #505050;
+  color: $color-text-secondary;
 }
+
 .ttt-controller > p > span {
-  color: #000;
+  color: $color-text-primary;
   font-weight: bold;
   padding-left: 0.5em;
 }
-//blue strip
+
+// Blue strip / accent line
 .blue-animation {
-  background: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
-  height: 24px;
+  background: $gradient;
+  height: 2px;
   width: 70%;
   position: absolute;
   left: -100vw;
@@ -255,7 +358,9 @@ select {
   top: 70px;
   transition: all ease-in-out 1000ms;
   z-index: 9;
+  box-shadow: 0 0 16px rgba(79, 195, 247, 0.3);
 }
+
 .blue-strip {
   left: -1em;
   transition: all ease-in-out 1000ms;

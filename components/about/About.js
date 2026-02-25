@@ -79,15 +79,15 @@ export default function About({ section }) {
                             <div>
                                 <img className='blake-img' src={blakeImg} alt='Blake Stagner' />
                                 <p className='mobile-intro'>
-                                    <span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more
+                                    <span>Who am I?</span> Software Engineer with a passion for building across the stack and exploring AI technology.
                                 </p>
                             </div>
                             <div>
                                 <p>
-                                    <span>Who am i?</span> I'm a Frontend Developer, Web Designer, Backend Enthusiast, & more.
+                                    <span>Who am I?</span> Software Engineer who dabbles in various technologies — from frontend interfaces to backend systems, and everything in between. Right now I'm deep into AI tech and what it can do.
                                 </p>
                                 <p>
-                                    <span>Experiance? </span> 10 years using variouse Web technologies.
+                                    <span>Experience?</span> 10+ years shipping real products — from pixel-perfect UIs to APIs, databases, and now AI-powered apps.
                                 </p>
                             </div>
                         </div>

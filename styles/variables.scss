@@ -1,14 +1,39 @@
-// SCSS Variables extracted from src/App.scss
-// Import this file in component SCSS files with: @import '@/styles/variables';
+// ============================================================
+// Dark & Refined Design System
+// ============================================================
 
-// Gradients
-$gradient: linear-gradient(90deg, rgba(63, 81, 181, 1) 0%, rgba(2, 119, 189, 1) 48%, rgba(2, 189, 121, 1) 100%);
-$gradient-2: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
+// --- Core Backgrounds ---
+$bg-base: #080810;
+$bg-surface: #10101e;
+$bg-surface-2: #161628;
+$bg-overlay: rgba(8, 8, 16, 0.85);
 
-// Colors
-$color-main: rgba(2, 119, 189, 1);
-$white: #f0f8ff;
+// --- Borders ---
+$border-subtle: rgba(255, 255, 255, 0.07);
+$border-accent: rgba(79, 195, 247, 0.2);
 
-// Shadows
-$shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+// --- Accent Colors ---
+$color-accent: #4fc3f7;
+$color-accent-purple: #7c4dff;
+$color-accent-glow: rgba(79, 195, 247, 0.15);
+$color-accent-glow-strong: rgba(79, 195, 247, 0.35);
+
+// --- Text ---
+$color-text-primary: #f0f4ff;
+$color-text-secondary: #8892aa;
+$color-text-muted: #4a5068;
+
+// --- Gradients ---
+$gradient: linear-gradient(135deg, $color-accent 0%, $color-accent-purple 100%);
+$gradient-2: linear-gradient(135deg, #4fc3f7 0%, #7c4dff 100%);
+$gradient-subtle: linear-gradient(135deg, rgba(79, 195, 247, 0.12) 0%, rgba(124, 77, 255, 0.12) 100%);
+
+// Legacy aliases (keep for backwards compatibility)
+$color-main: $color-accent;
+$white: $color-text-primary;
+
+// --- Shadows ---
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+$shadow-accent: 0 0 24px rgba(79, 195, 247, 0.2), 0 0 8px rgba(79, 195, 247, 0.1);
+$shadow-accent-strong: 0 0 40px rgba(79, 195, 247, 0.35);

@@ -1,32 +1,42 @@
-$shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-$gradient: linear-gradient(
-  90deg,
-  rgba(63, 81, 181, 1) 0%,
-  rgba(2, 119, 189, 1) 48%,
-  rgba(2, 189, 121, 1) 100%
-);
-$color-primary: #3f51b5;
+$color-accent: #4fc3f7;
+$color-accent-purple: #7c4dff;
+$color-text-primary: #f0f4ff;
+$color-text-secondary: #8892aa;
+$bg-base: #080810;
+$bg-surface: #10101e;
+$bg-surface-2: #161628;
+$border-subtle: rgba(255, 255, 255, 0.07);
+$border-accent: rgba(79, 195, 247, 0.2);
+
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+$gradient: linear-gradient(135deg, $color-accent 0%, $color-accent-purple 100%);
+$color-primary: $color-accent;
 
 #portfolio {
-  color: #000;
+  color: $color-text-primary;
+  background: $bg-base;
   height: auto;
 }
+
 .portfolio-items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .portfolio-card {
-  color: #000;
+  color: $color-text-primary;
   transition: all ease 500ms;
   display: flex;
   align-items: center;
   margin: 0 1em 0 0;
 }
+
 .portfolio-card.animate {
   transform: translate3d(100vw, 0px, 0px);
 }
+
 .portfolio-card > div {
   position: relative;
   z-index: 2;
@@ -35,12 +45,14 @@ $color-primary: #3f51b5;
   align-items: center;
   justify-content: flex-start;
 }
+
 .portfolio-icons {
   height: auto;
   max-height: 120px;
   min-height: 80px;
   width: auto;
 }
+
 .portfolio-proj-title {
   font-size: 3em;
   margin: 0;
@@ -48,7 +60,9 @@ $color-primary: #3f51b5;
   background: $gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: 0 0 16vh;
+  letter-spacing: 0.04em;
 }
 
 .portfolio {
@@ -61,66 +75,90 @@ $color-primary: #3f51b5;
   display: flex;
   justify-content: center;
 }
+
 .portfolio-sidenav ul {
   list-style-type: none;
   margin: 0.5em auto 0;
   padding: 0;
   display: flex;
+  gap: 4px;
 }
+
 .portfolio-sidenav ul li {
   cursor: pointer;
   margin: 0.5em auto 1em;
-  padding: 4px 8px;
+  padding: 4px 12px;
   border-radius: 2em;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+  transition: all ease-in 250ms;
+  border: 1px solid transparent;
 }
+
 .portfolio-sidenav ul li p {
   margin: 0;
-  font-size: 1em;
+  font-size: 0.95em;
   transition: all ease 250ms;
+  color: $color-text-secondary;
+  letter-spacing: 0.03em;
 }
-.portfolio-sidenav ul li {
-  transition: all ease-in 250ms;
-}
+
 .portfolio-sidenav ul li.active {
-  transform: scale(1.5);
-  padding: 0 5px;
+  transform: scale(1.1);
+  padding: 4px 12px;
+  border-color: $border-accent;
+  background: rgba(79, 195, 247, 0.06);
   transition: all ease-in 250ms;
-  background: linear-gradient(
-    90deg,
-    rgba(177, 177, 177, 1) 0%,
-    rgba(75, 75, 75, 1) 48%
-  );
+}
+
+.portfolio-sidenav ul li.active p {
+  background: $gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
 .portfolio-sidenav ul li p:hover {
-  transform: scale(1.25);
+  transform: scale(1.05);
   transition: all ease 250ms;
-  padding: 0 5px;
+  color: $color-text-primary;
 }
+
 .portfolio-details {
   width: 100%;
 }
+
 .portfolio-site-img {
   height: 100%;
   overflow: hidden;
 }
+
 .portfolio-site-img img {
   margin: 1em;
   height: 55vh;
   transition: all ease 500ms;
   cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid $border-subtle;
+  box-shadow: $shadow-lg, 0 0 40px rgba(79, 195, 247, 0.04);
 }
+
+.portfolio-site-img img:hover {
+  border-color: $border-accent;
+  box-shadow: $shadow-lg, 0 0 40px rgba(79, 195, 247, 0.12);
+}
+
 .portfolio-site-img.animate img {
   transform: translate3d(100vw, 0px, 0px);
 }
+
 .overlay {
   position: absolute;
-  background: #000;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   height: 100vh;
   width: 100vw;
   z-index: 100;
@@ -132,49 +170,65 @@ $color-primary: #3f51b5;
   justify-content: center;
   -webkit-overflow-scrolling: touch;
 }
+
 .overlay > img:nth-child(1) {
   margin: 10px 0 0 0;
-  width: 40px;
-  height: 40px;
-  padding: 2px;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: $bg-surface-2;
+  border: 1px solid $border-subtle;
   position: absolute;
   right: 5%;
   top: 5px;
-  box-shadow: $shadow-lg;
+  box-shadow: $shadow-md;
   cursor: pointer;
+  filter: invert(1);
+  transition: border-color ease 200ms;
 }
+
+.overlay > img:nth-child(1):hover {
+  border-color: $border-accent;
+}
+
 .overlay > img:nth-child(2) {
   width: 100%;
   max-width: 1200px;
   max-height: 100%;
   object-fit: contain;
   margin: 0 auto;
+  border-radius: 8px;
 }
+
 .portfolio-details > div:nth-child(1) {
   display: flex;
   width: 100%;
   justify-content: center;
 }
-//arrow
+
+// Arrow
 .arrow {
   display: none;
   transition: 0.25s ease-out;
 }
+
 .right {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   right: 5px;
 }
+
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
   left: 5px;
 }
+
 .arrow.left:active {
   left: 0;
 }
+
 .arrow.right:active {
   right: 0;
 }
@@ -183,9 +237,10 @@ $color-primary: #3f51b5;
   display: none;
   margin: 1em 0 0;
 }
+
 #blue-animation3 {
-  background: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
-  height: 25px;
+  background: $gradient;
+  height: 2px;
   width: 60%;
   position: absolute;
   left: 0;
@@ -193,15 +248,19 @@ $color-primary: #3f51b5;
   top: 70px;
   transition: all ease-in-out 1000ms;
   z-index: 1;
+  box-shadow: 0 0 16px rgba(79, 195, 247, 0.3);
 }
+
 .blue-strip3 {
   transform: translate3d(-100vw, 0px, 0px);
   transition: all ease-in-out 1000ms;
 }
+
 #arrow-mobile {
   display: none;
 }
-//media query
+
+// Media queries
 @media (max-width: 1000px) {
   .portfolio-sidenav,
   .portfolio-details {
@@ -229,8 +288,8 @@ $color-primary: #3f51b5;
     display: block;
   }
   .arrow {
-    border: solid #808080;
-    border-width: 0 3px 3px 0;
+    border: solid rgba(79, 195, 247, 0.5);
+    border-width: 0 2px 2px 0;
     display: inline-block;
     padding: 3px;
     height: 15px;
@@ -240,6 +299,7 @@ $color-primary: #3f51b5;
     cursor: pointer;
   }
 }
+
 @media only screen and (max-width: 900px) {
   .portfolio-site-img img {
     width: 100vw;
@@ -251,13 +311,16 @@ $color-primary: #3f51b5;
     height: 60vh !important;
   }
 }
+
 @media (max-width: 500px) {
   .portfolio-proj-title {
     font-size: 2em;
   }
 }
+
 .portfolio-placeholder {
-  border: solid 2px #d8dfe6;
+  border: solid 1px $border-subtle;
+  background: $bg-surface;
   height: 55vh;
   width: 85vw;
   max-width: 350px;
@@ -267,4 +330,5 @@ $color-primary: #3f51b5;
   align-items: center;
   position: relative;
   margin: 1em auto;
+  border-radius: 12px;
 }

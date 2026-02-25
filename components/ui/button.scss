@@ -1,8 +1,15 @@
-$shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$color-accent: #4fc3f7;
+$color-accent-purple: #7c4dff;
+$bg-surface: #10101e;
+$bg-surface-2: #161628;
+$border-subtle: rgba(255, 255, 255, 0.07);
+$border-accent: rgba(79, 195, 247, 0.2);
 
-$color-primary: #3f51b5;
-$gradient: radial-gradient(circle, #3f51b5, #5f18af);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+
+$color-primary: $color-accent;
+$gradient: linear-gradient(135deg, $color-accent 0%, $color-accent-purple 100%);
 
 .button {
     color: #fff;
@@ -14,75 +21,111 @@ $gradient: radial-gradient(circle, #3f51b5, #5f18af);
     padding: 0 1em;
     overflow: hidden;
     position: relative;
+    transition: box-shadow ease 250ms, transform ease 200ms;
 }
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
 .button p {
     margin: 0;
+    letter-spacing: 0.03em;
 }
+
 .button:focus {
     outline: none;
 }
+
 .button:active {
     box-shadow: none;
+    transform: translateY(0);
 }
+
 .ripple-animate {
     content: '';
     transition: all linear 100ms;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2);
     height: 300px;
     width: 300px;
     position: absolute;
     border-radius: 50%;
     opacity: 0;
 }
+
 .ripple {
     content: '';
-    background: #fff;
+    background: rgba(255, 255, 255, 0.25);
     height: 0px;
     width: 0px;
     position: absolute;
     border-radius: 50%;
     opacity: .7;
 }
+
 .sm {
     font-size: .9em;
     width: auto;
     max-width: 150px;
     height: 1.5em;
 }
+
 .md {
     font-size: 1.5em;
     width: 200px;
     height: 1.5em;
 }
+
 .icon-only {
     width: 40px;
     height: 40px;
     border-radius: 50%;
 }
+
 .color {
-    background: $color-primary;
+    background: $gradient;
     border: none;
-    box-shadow: $shadow-md;
+    box-shadow: $shadow-md, 0 0 20px rgba(79, 195, 247, 0.2);
 }
+
+.color:hover {
+    box-shadow: $shadow-lg, 0 0 30px rgba(79, 195, 247, 0.3);
+}
+
 .white {
-    background: none;
-    border: solid 2px #fff;
-    box-shadow: $shadow-lg;
+    background: transparent;
+    border: 1px solid $border-accent;
+    box-shadow: none;
+    color: $color-accent;
 }
+
+.white:hover {
+    background: rgba(79, 195, 247, 0.06);
+    box-shadow: 0 0 20px rgba(79, 195, 247, 0.1);
+}
+
 .center {
     margin: 0 auto;
 }
+
 .button.md.icon img {
     height: 1.25em;
     width: 1.25em;
     padding: 0 5px 0 0;
 }
+
 .secondary {
-    color: #000;
-    background: #fff;
-    border: 1px solid #808080;
+    color: rgba(240, 244, 255, 0.75);
+    background: $bg-surface-2;
+    border: 1px solid $border-subtle;
     box-shadow: $shadow-md;
 }
+
+.secondary:hover {
+    border-color: $border-accent;
+    color: #fff;
+}
+
 .fixed {
     position: absolute;
     bottom: 0;
