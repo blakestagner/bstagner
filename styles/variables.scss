@@ -1,0 +1,14 @@
+// SCSS Variables extracted from src/App.scss
+// Import this file in component SCSS files with: @import '@/styles/variables';
+
+// Gradients
+$gradient: linear-gradient(90deg, rgba(63, 81, 181, 1) 0%, rgba(2, 119, 189, 1) 48%, rgba(2, 189, 121, 1) 100%);
+$gradient-2: linear-gradient(90deg, #3f51b5 0%, #5f18af 100%);
+
+// Colors
+$color-main: rgba(2, 119, 189, 1);
+$white: #f0f8ff;
+
+// Shadows
+$shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
