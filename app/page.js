@@ -15,7 +15,7 @@ export default function Home() {
     const sectionMap = {
       about: 'About',
       portfolio: 'Portfolio',
-      components: 'Components',
+      components: 'Demos',
       hero: 'Hero',
     };
 

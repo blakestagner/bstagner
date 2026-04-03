@@ -129,7 +129,7 @@ function Toolbar() {
             </li>
             <li>
               <p className='navList' onClick={() => handleClick('#components')}>
-                Components
+                Demos
               </p>
             </li>
             <li>
@@ -160,7 +160,7 @@ function MobileNavMenu({ toggled, handleClick }) {
     <div className={toggled ? 'mobile-nav open' : 'mobile-nav closed'}>
       <p onClick={() => handleClick('#about')}>About</p>
       <p onClick={() => handleClick('#portfolio')}>Portfolio</p>
-      <p onClick={() => handleClick('#components')}>Components</p>
+      <p onClick={() => handleClick('#components')}>Demos</p>
       <p onClick={() => handleClick('#contact')}>Contact</p>
     </div>
   );

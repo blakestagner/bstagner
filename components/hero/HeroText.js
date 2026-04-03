@@ -72,8 +72,8 @@ export default function HeroText({ loading }) {
                     STAGNER
                 </h1>
                 <p id="anim3">
-                    <span className={loading ? 'welcome-text' : headingWelcome}>Welcome to my</span>
-                    <span className={loading ? 'universe-text' : headingUniverse}> UNIVERSE</span>
+                    <span className={loading ? 'welcome-text' : headingWelcome}>Full-Stack &amp;</span>
+                    <span className={loading ? 'universe-text' : headingUniverse}> AI Engineer</span>
                 </p>
             </div>
             {mobileGalaxyView}

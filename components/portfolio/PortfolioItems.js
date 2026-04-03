@@ -1,192 +1,88 @@
-'use client'
+'use client';
 
 import './portfolio.scss';
-import { useState, useEffect } from 'react';
-import PortfolioImg from './PortfolioImg';
 
 const portfolioDetails = [
-    {
-        name: 'The Charmed Creative',
-        site_home: '/images/portfolio/thecharmedcreative.webp',
-        site_landing: null,
-    },
-    {
-        name: 'My Wedding',
-        site_home: '/images/portfolio/wedding.webp',
-        site_landing: null,
-    },
-    {
-        name: 'Sound Medical',
-        site_home: '/images/portfolio/soundMedical.webp',
-        site_landing: null,
-    },
-    {
-        name: 'Dean Johnson',
-        site_home: '/images/portfolio/electdeanjohnson.webp',
-        site_landing: null,
-    },
-    {
-        name: 'Baz the Roadie',
-        site_home: '/images/portfolio/baztheroadie.webp',
-        site_landing: null,
-    },
-    {
-        name: 'Mark Lindquist',
-        site_home: '/images/portfolio/mlhome.webp',
-        site_landing: null,
-    },
-    {
-        name: 'Deanna Keller',
-        site_home: '/images/portfolio/deannakeller.webp',
-        site_landing: null,
-    },
+  {
+    name: 'AI Call Transcript Grader',
+    employer: 'SleepDoctor',
+    description: 'AI-powered grading system for sales call transcripts that identifies coaching opportunities and optimizes CPAP conversion scripts.',
+    impact: 'Improved CPAP conversions 15% in 3 months',
+    techStack: ['Anthropic Claude', 'Node.js', 'React', 'SQL'],
+    isAI: true,
+  },
+  {
+    name: 'ChatGPT Mattress Finder',
+    employer: 'SleepDoctor',
+    description: 'In-chat widget powered by ChatGPT that delivers personalized mattress recommendations based on user sleep preferences.',
+    impact: 'Personalized recommendations at scale',
+    techStack: ['OpenAI ChatGPT', 'React', 'Node.js', 'WordPress'],
+    isAI: true,
+  },
+  {
+    name: 'RAG Chatbot',
+    employer: 'SleepDoctor',
+    description: 'Retrieval-augmented generation chatbot using Google Gemini and company web content to guide users through sleep health resources.',
+    impact: 'Automated user guidance with company knowledge base',
+    techStack: ['Google Gemini', 'RAG', 'Node.js', 'React'],
+    isAI: true,
+  },
+  {
+    name: 'A/B Testing Platform',
+    employer: 'SleepDoctor',
+    description: 'Self-serve experimentation platform enabling the team to run A/B tests with automatic winner implementation.',
+    impact: 'Self-serve experiments with auto-winner implementation',
+    techStack: ['React', 'Node.js', 'SQL', 'Snowflake'],
+    isAI: false,
+  },
+  {
+    name: 'React WordPress Plugin',
+    employer: 'SleepDoctor',
+    description: 'Sleep product comparison tool built as a React-powered WordPress plugin, deployed across multiple web properties.',
+    impact: 'Cross-property product comparison at scale',
+    techStack: ['React', 'PHP', 'WordPress'],
+    isAI: false,
+  },
+  {
+    name: 'Flutter Mobile App',
+    employer: 'SleepDoctor',
+    description: 'Cross-platform iOS and Android mobile application for SleepFoundation.org and SleepDoctor.com content delivery.',
+    impact: 'Cross-platform mobile presence on iOS & Android',
+    techStack: ['Flutter', 'Dart', 'Firebase', 'iOS', 'Android'],
+    isAI: false,
+  },
+  {
+    name: 'React + Node.js Dashboards',
+    employer: 'Highline College',
+    description: 'WordPress editor monitoring and search tooling dashboards for content management and site performance tracking.',
+    impact: 'Editor monitoring & search tooling for content teams',
+    techStack: ['React', 'Node.js', 'Express', 'SQL'],
+    isAI: false,
+  },
 ];
 
 export default function PortfolioItems() {
-    const [item, setItem] = useState(0);
-    const [animate, setAnimate] = useState('');
-    const [enlarged, setEnlarged] = useState(null);
-
-    const handleClick = (i) => {
-        setAnimate('animate');
-        setTimeout(() => {
-            setItem(i);
-            setAnimate('');
-        }, 500);
-    };
-
-    const enlargeImage = (img) => {
-        setEnlarged(img);
-    };
-
-    const togglePortfolio = (direction) => {
-        const section = document.querySelector('#portfolio-items');
-        const sectionChildrenWidth = section.getBoundingClientRect().width;
-
-        let carouselPositions = [];
-        document.querySelectorAll('#portfolio-items > div').forEach(function (div) {
-            let child = div.getBoundingClientRect();
-            carouselPositions.push([child.left]);
-        });
-
-        for (let i in carouselPositions) {
-            if (carouselPositions[i] > -100 && carouselPositions[i] < 100) {
-            }
-        }
-
-        const nextBefore = (num) => {
-            const section = document.querySelector('#portfolio-items');
-            section.scrollTo({
-                left: num * sectionChildrenWidth,
-                behavior: 'smooth',
-            });
-        };
-
-        const nextItem = () => {
-            if (item > 5) {
-                setItem(0);
-                nextBefore(0);
-            } else {
-                nextBefore(item + 1);
-                setItem(item + 1);
-            }
-        };
-
-        const beforeItem = () => {
-            if (item === 0) {
-                nextBefore(6);
-                setItem(6);
-            } else {
-                nextBefore(item - 1);
-                setItem(item - 1);
-            }
-        };
-
-        direction === '+' ? nextItem() : beforeItem();
-    };
-
-    const swipePortfolio = () => {
-        let carouselPositions = [];
-        document.querySelectorAll('#portfolio-items > div').forEach(function (div) {
-            let child = div.getBoundingClientRect();
-            carouselPositions.push([child.left]);
-        });
-        for (let i in carouselPositions) {
-            if (carouselPositions[i] > -100 && carouselPositions[i] < 100) {
-                setItem(parseInt(i));
-            }
-        }
-    };
-
-    useEffect(() => {
-        const portfolioSwipe = document.querySelector('#portfolio-items');
-        if (portfolioSwipe) {
-            portfolioSwipe.addEventListener('scroll', swipePortfolio, false);
-            return () => {
-                portfolioSwipe.removeEventListener('scroll', swipePortfolio, false);
-            };
-        }
-    }, []);
-
-    return (
-        <div className='portfolio'>
-            {enlarged !== null && (
-                <div className='overlay'>
-                    <img
-                        src='/icons/toolbar/close-black.svg'
-                        alt='close'
-                        onClick={() => setEnlarged(null)}
-                    />
-                    <img src={enlarged} alt='enlarge' />
-                </div>
-            )}
-            <div className='portfolio-sidenav'>
-                <ul>
-                    {portfolioDetails.map((obj, i) => (
-                        <li key={i} onClick={() => handleClick(i)}>
-                            <p className={item === i ? 'active' : ''}>{obj.name}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div id='arrow' style={{ position: 'relative' }}>
-                <div onClick={() => togglePortfolio('+')} className='arrow right'></div>
-                <div onClick={() => togglePortfolio('-')} className='arrow left'></div>
-            </div>
-            <div className='portfolio-details'>
-                {portfolioDetails
-                    .filter((obj, i) => i === item)
-                    .map((obj) => (
-                        <div key={obj.name}>
-                            <div className={`portfolio-card ${animate}`}>
-                                <p className='portfolio-proj-title'>{obj.name}</p>
-                            </div>
-                            <div className={`portfolio-site-img ${animate}`}>
-                                <PortfolioImg
-                                    imgIndex={0}
-                                    click={() => enlargeImage(obj.site_home)}
-                                    image={obj.site_home}
-                                />
-                            </div>
-                        </div>
-                    ))}
-            </div>
-            <div id='portfolio-items'>
-                {portfolioDetails.map((obj, i) => (
-                    <div key={obj.name}>
-                        <div className={`portfolio-card`}>
-                            <p className='portfolio-proj-title'>{obj.name}</p>
-                        </div>
-                        <div className={`portfolio-site-img`}>
-                            <PortfolioImg
-                                imgIndex={i}
-                                click={() => enlargeImage(obj.site_home)}
-                                image={obj.site_home}
-                            />
-                        </div>
-                    </div>
-                ))}
-            </div>
+  return (
+    <div className="portfolio-grid">
+      {portfolioDetails.map((project) => (
+        <div
+          key={project.name}
+          className={`project-card ${project.isAI ? 'project-card--ai' : ''}`}
+        >
+          <div className="project-card-header">
+            <p className="project-name">{project.name}</p>
+            {project.isAI && <span className="ai-badge">AI</span>}
+          </div>
+          <p className="project-employer">{project.employer}</p>
+          <p className="project-description">{project.description}</p>
+          <p className="project-impact">{project.impact}</p>
+          <div className="project-tech-stack">
+            {project.techStack.map((tech) => (
+              <span key={tech} className="tech-tag">{tech}</span>
+            ))}
+          </div>
         </div>
-    );
+      ))}
+    </div>
+  );
 }

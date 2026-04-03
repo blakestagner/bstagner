@@ -13,7 +13,7 @@ function Components({ section }) {
     const [inView, setInView] = useState(false)
 
     useEffect(() => {
-        if (section === 'Components') {
+        if (section === 'Demos') {
             setInView(true)
         };
     }, [section])
@@ -24,7 +24,7 @@ function Components({ section }) {
                 <div className="heading">
                     <SectionTitle
                         inView={inView}
-                        title="Components" />
+                        title="Demos" />
                 </div>
                 <ComponentsMenu
                     component={(state) => setDisplayComponent(state)} />

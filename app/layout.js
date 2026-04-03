@@ -22,8 +22,8 @@ const teko = Teko({
 })
 
 export const metadata = {
-  title: 'Blake Stagner - Portfolio',
-  description: 'Blake Stagner\'s portfolio website showcasing web development projects and personal apps',
+  title: 'Blake Stagner - Senior Full-Stack & AI Engineer',
+  description: 'Blake Stagner — Senior Full-Stack Software Engineer specializing in AI integrations (Claude, ChatGPT, Gemini, RAG), React, Next.js, Node.js, and Flutter.',
 }
 
 export default function RootLayout({ children }) {

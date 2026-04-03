@@ -25,147 +25,6 @@ $gradient-2: linear-gradient(135deg, $color-accent 0%, $color-accent-purple 100%
   letter-spacing: 0.01em;
 }
 
-.about-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 2em 0 0;
-}
-
-#browser,
-#os,
-#lang,
-#soft {
-  margin: 1em 0 2em;
-  width: 50%;
-  background: $bg-surface;
-  border: 1px solid $border-subtle;
-  border-radius: 16px;
-  padding: 1em;
-  box-sizing: border-box;
-  transition: border-color ease 300ms, box-shadow ease 300ms;
-}
-
-#browser:hover,
-#os:hover,
-#lang:hover,
-#soft:hover {
-  border-color: $border-accent;
-  box-shadow: 0 0 24px rgba(79, 195, 247, 0.08);
-}
-
-@media (max-width: 750px) {
-  .about-container {
-    display: none !important;
-  }
-}
-
-.bottom-container {
-  display: flex;
-  margin: 2em auto 1em;
-  justify-content: center;
-}
-
-.about-container svg,
-.section svg {
-  height: 50px;
-  width: 50px;
-  margin: 5px;
-  filter: invert(1);
-}
-
-#browser > div,
-#os > div,
-#lang > div,
-#soft > div {
-  display: flex;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex: 0 0 auto;
-}
-
-#browser > div > div,
-#os > div > div,
-#lang > div > div,
-#soft > div > div {
-  display: flex;
-  flex-direction: column;
-  margin: 0.5em;
-  align-items: center;
-  color: $color-text-secondary;
-  font-size: 0.85em;
-  transition: color ease 200ms;
-}
-
-#browser > div > div:hover,
-#os > div > div:hover,
-#lang > div > div:hover,
-#soft > div > div:hover {
-  color: $color-text-primary;
-}
-
-.section {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scroll-padding: 1em;
-  margin: 0 auto;
-}
-
-.section > #browser,
-.section > #os,
-.section > #lang,
-.section > #soft {
-  min-width: 90vw;
-  display: inline-table;
-  scroll-snap-align: center;
-}
-
-.bottom-indicator-container {
-  position: relative;
-}
-
-#bottom-indicator {
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: -5vh;
-  left: 0;
-  right: 0;
-}
-
-#bottom-indicator > div {
-  width: 8px;
-  height: 8px;
-  margin: 0 0.75em;
-  border-radius: 50%;
-  border: solid 1.5px rgba(79, 195, 247, 0.4);
-  transition: all ease-in 500ms;
-  background: transparent;
-}
-
-#bottom-indicator > div.active {
-  background: $gradient;
-  width: 12px;
-  height: 12px;
-  border-color: $color-accent;
-  box-shadow: 0 0 8px rgba(79, 195, 247, 0.4);
-  transition: all ease-in 100ms;
-}
-
-@media (min-width: 750px) {
-  .section {
-    display: none;
-  }
-  #bottom-indicator {
-    display: none;
-  }
-}
-
 // Heading tabs
 .header-tab > h2 {
   padding: 0 0.25em;
@@ -293,5 +152,79 @@ $gradient-2: linear-gradient(135deg, $color-accent 0%, $color-accent-purple 100%
   }
   .mobile-intro {
     display: block;
+  }
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 2em 0 0;
+}
+
+.skill-card {
+  background: $bg-surface;
+  border: 1px solid $border-subtle;
+  border-radius: 16px;
+  padding: 1.25em;
+  text-align: left;
+  transition: border-color ease 300ms, box-shadow ease 300ms;
+}
+
+.skill-card:hover {
+  border-color: $border-accent;
+  box-shadow: 0 0 24px rgba(79, 195, 247, 0.08);
+}
+
+.skill-card--ai {
+  border-color: rgba(79, 195, 247, 0.15);
+  background: linear-gradient(
+    135deg,
+    rgba(79, 195, 247, 0.04) 0%,
+    rgba(124, 77, 255, 0.04) 100%
+  );
+}
+
+.skill-card--ai:hover {
+  border-color: rgba(79, 195, 247, 0.35);
+  box-shadow: 0 0 32px rgba(79, 195, 247, 0.15);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0.75em;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 2em;
+  font-size: 0.85em;
+  background: $bg-surface-2;
+  border: 1px solid $border-subtle;
+  color: $color-text-secondary;
+  letter-spacing: 0.03em;
+  transition: color ease 200ms, border-color ease 200ms;
+}
+
+.skill-tag:hover {
+  color: $color-text-primary;
+  border-color: $border-accent;
+}
+
+.skill-card--ai .skill-tag {
+  border-color: rgba(79, 195, 247, 0.12);
+  color: $color-accent;
+}
+
+.skill-card--ai .skill-tag:hover {
+  border-color: rgba(79, 195, 247, 0.35);
+}
+
+@media (max-width: 750px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
   }
 }
