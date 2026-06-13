@@ -15,6 +15,11 @@ const T_GALAXIES = 3000;    // distant spiral galaxies fade in
 const T_CAMERA = 2600;      // camera finishes pulling back to rest
 const T_INTRO_END = 5800;   // fully settled into the living state
 
+// Perspective-warp depth range and top speed (z-units / second).
+const Z_FAR = 5;
+const Z_NEAR = 0.16;
+const WARP_MAX = 5.4;
+
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -47,7 +52,8 @@ export default function CosmicBirth() {
     let lastTime = 0;
     let t = 0; // pausable animation clock (ms)
 
-    let travel = [];
+    let warp = [];
+    let spread = 1;
     let disk = [];
     let planets = [];
     let galaxies = [];
@@ -63,18 +69,17 @@ export default function CosmicBirth() {
       maxR = Math.hypot(Math.max(cx, width - cx), Math.max(cy, height - cy));
       orbitTilt = 0.38;
 
-      // reverse-hyperspace travel stars: streaks early, growing points on arrival
-      const travelCount = width < 700 ? 150 : 260;
-      travel = [];
-      for (let i = 0; i < travelCount; i++) {
-        travel.push({
-          angle: rand(0, Math.PI * 2),
-          rOuter: rand(0.45, 2.1),
-          speed: rand(0.85, 1.5),
-          trail: rand(120, 420) * unit,
-          size: rand(0.5, 1.9),
-          hue: Math.random(),
-        });
+      // perspective-warp star field: depth-based stars that stream past the camera
+      spread = maxR;
+      const warpCount = width < 700 ? 170 : 320;
+      warp = [];
+      for (let i = 0; i < warpCount; i++) {
+        const x = rand(-1, 1);
+        const y = rand(-1, 1);
+        const z = rand(Z_NEAR, Z_FAR);
+        const sx = cx + (x * spread) / z;
+        const sy = cy + (y * spread) / z;
+        warp.push({ x, y, z, sx, sy, px: sx, py: sy, sizeBase: rand(0, 1.2), hue: Math.random() });
       }
 
       // protoplanetary dust disk (Keplerian-ish: inner orbits faster)
@@ -182,48 +187,83 @@ export default function CosmicBirth() {
       ctx.globalCompositeOperation = 'source-over';
     };
 
-    // Reverse hyperspace: long radial streaks decelerate into growing star points.
-    const drawHyperspace = () => {
-      const hp = clamp01((t - HS_START) / (HS_END - HS_START));
-      if (hp >= 1) return;
-      const exit = clamp01((hp - 0.8) / 0.2); // fade travel stars as we arrive
+    // Warp speed envelope: launch hard out of the bang, hold, then coast to a
+    // stop as we arrive at the solar system.
+    const warpSpeed = () => {
+      const up = clamp01((t - HS_START) / 280);
+      const down = 1 - clamp01((t - (HS_END - 700)) / 700);
+      return WARP_MAX * up * (down > 0 ? down : 0);
+    };
+
+    const respawn = (s) => {
+      s.x = rand(-1, 1);
+      s.y = rand(-1, 1);
+      s.z = rand(Z_FAR * 0.7, Z_FAR);
+      s.sx = cx + (s.x * spread) / s.z;
+      s.sy = cy + (s.y * spread) / s.z;
+      s.px = s.sx;
+      s.py = s.sy;
+    };
+
+    // Advance each star toward the camera; recycle when it streams off-screen.
+    const updateWarp = (dtMs) => {
+      const sp = warpSpeed();
+      if (sp <= 0) return;
+      const dz = sp * (dtMs / 1000);
+      for (const s of warp) {
+        s.px = s.sx;
+        s.py = s.sy;
+        s.z -= dz;
+        if (s.z <= Z_NEAR) {
+          respawn(s);
+          continue;
+        }
+        s.sx = cx + (s.x * spread) / s.z;
+        s.sy = cy + (s.y * spread) / s.z;
+        if (Math.abs(s.sx - cx) > maxR * 1.7 || Math.abs(s.sy - cy) > maxR * 1.7) {
+          respawn(s);
+        }
+      }
+    };
+
+    // Reverse warp: stars stream past the camera, streaking as they near us.
+    const drawWarp = () => {
+      const vis = clamp01((t - HS_START) / 180) * (1 - clamp01((t - HS_END) / 450));
+      if (vis <= 0) return;
       ctx.globalCompositeOperation = 'lighter';
 
       // bright destination core we are travelling toward
-      const coreR = (10 + 40 * hp) * unit;
+      const arrive = clamp01((t - HS_START) / (HS_END - HS_START));
+      const coreR = (14 + 46 * arrive) * unit;
       const coreG = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
-      coreG.addColorStop(0, `rgba(255, 255, 255, ${0.9 * (1 - exit)})`);
-      coreG.addColorStop(0.5, `rgba(180, 215, 255, ${0.4 * (1 - exit)})`);
+      coreG.addColorStop(0, `rgba(255, 255, 255, ${0.85 * vis})`);
+      coreG.addColorStop(0.5, `rgba(180, 215, 255, ${0.4 * vis})`);
       coreG.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = coreG;
       ctx.beginPath();
       ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
       ctx.fill();
 
-      for (const s of travel) {
-        const prog = easeOut(clamp01(hp * s.speed));
-        const r = prog * s.rOuter * maxR;
-        const cosA = Math.cos(s.angle);
-        const sinA = Math.sin(s.angle);
-        const x = cx + cosA * r;
-        const y = cy + sinA * r;
-        const trail = (1 - hp) * s.trail * (0.3 + 0.7 * prog);
-        const size = (0.4 + prog * 1.8) * unit * (0.5 + s.size);
-        const alpha = (0.5 + 0.5 * prog) * (1 - exit);
-        const hue = s.hue < 0.5 ? '240, 248, 255' : '160, 200, 255';
+      for (const s of warp) {
+        const close = clamp01((Z_FAR - s.z) / Z_FAR);
+        const size = (0.5 + close * 2.4) * unit * (0.6 + s.sizeBase);
+        const alpha = vis * (0.22 + 0.78 * close);
+        const hue = s.hue < 0.5 ? '240, 248, 255' : '170, 205, 255';
+        const dx = s.sx - s.px;
+        const dy = s.sy - s.py;
 
-        if (trail > 1.5) {
+        if (dx * dx + dy * dy > 4) {
           ctx.strokeStyle = `rgba(${hue}, ${alpha})`;
           ctx.lineWidth = size;
           ctx.lineCap = 'round';
           ctx.beginPath();
-          ctx.moveTo(x - cosA * trail, y - sinA * trail);
-          ctx.lineTo(x, y);
+          ctx.moveTo(s.px, s.py);
+          ctx.lineTo(s.sx, s.sy);
           ctx.stroke();
         } else {
           ctx.fillStyle = `rgba(${hue}, ${alpha})`;
           ctx.beginPath();
-          ctx.arc(x, y, size, 0, Math.PI * 2);
+          ctx.arc(s.sx, s.sy, size, 0, Math.PI * 2);
           ctx.fill();
         }
       }
@@ -339,7 +379,7 @@ export default function CosmicBirth() {
     // Camera starts zoomed hard into the singularity and pulls back as we arrive.
     const cameraScale = () => {
       const p = clamp01(t / T_CAMERA);
-      return 1 + 5.2 * (1 - easeInOut(p));
+      return 1 + 2.6 * (1 - easeInOut(p));
     };
 
     const draw = () => {
@@ -373,16 +413,18 @@ export default function CosmicBirth() {
         if (s.form > 0 && s.pos.depth >= 0) drawPlanet(s.pl, s.pos, s.form);
       }
 
-      drawHyperspace();
-      drawFlash();
-
       ctx.restore();
+
+      // travel warp + flash render in screen space, undistorted by the camera
+      drawWarp();
+      drawFlash();
     };
 
     const loop = (now) => {
       const delta = Math.min(now - lastTime, 50) || 16;
       lastTime = now;
       t += delta;
+      updateWarp(delta);
       draw();
       rafId = requestAnimationFrame(loop);
     };
