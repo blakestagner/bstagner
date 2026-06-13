@@ -1,6 +1,6 @@
 # bstagner Portfolio — Claude Context
 
-Blake Stagner's personal portfolio. Next.js 15, React 19, SCSS Modules, deployed on Netlify.
+Blake Stagner's personal portfolio. Next.js 16, React 19, SCSS Modules, deployed on Netlify.
 
 ## Commands
 ```bash
@@ -24,3 +24,4 @@ Load these when relevant to your task:
 - No TypeScript — plain JS with JSConfig path aliases
 - SCSS modules co-located with components (not global)
 - App Router only — no `pages/` directory
+- `next-auth@5` is a dependency but not yet wired — `app/(auth)` and `app/api` are empty scaffolding
