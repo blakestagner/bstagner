@@ -32,6 +32,7 @@ export default function SpaceBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     let width = 0;
