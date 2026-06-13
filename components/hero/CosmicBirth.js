@@ -15,10 +15,11 @@ const T_GALAXIES = 3000;    // distant spiral galaxies fade in
 const T_CAMERA = 2600;      // camera finishes pulling back to rest
 const T_INTRO_END = 5800;   // fully settled into the living state
 
-// Perspective-warp depth range and top speed (z-units / second).
-const Z_FAR = 5;
-const Z_NEAR = 0.16;
-const WARP_MAX = 5.4;
+// Perspective-warp depth range and recede speed (z-units / second).
+// We fly BACKWARD: stars start close (near Z_NEAR) and recede toward Z_FAR.
+const Z_FAR = 6;
+const Z_NEAR = 0.45;
+const WARP_MAX = 5.6;
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
@@ -79,7 +80,7 @@ export default function CosmicBirth() {
         const z = rand(Z_NEAR, Z_FAR);
         const sx = cx + (x * spread) / z;
         const sy = cy + (y * spread) / z;
-        warp.push({ x, y, z, sx, sy, px: sx, py: sy, sizeBase: rand(0, 1.2), hue: Math.random() });
+        warp.push({ x, y, z, sx, sy, px: sx, py: sy, sizeBase: rand(0, 1.4), hue: Math.random() });
       }
 
       // protoplanetary dust disk (Keplerian-ish: inner orbits faster)
@@ -198,14 +199,14 @@ export default function CosmicBirth() {
     const respawn = (s) => {
       s.x = rand(-1, 1);
       s.y = rand(-1, 1);
-      s.z = rand(Z_FAR * 0.7, Z_FAR);
+      s.z = rand(Z_NEAR, Z_NEAR + 0.5);
       s.sx = cx + (s.x * spread) / s.z;
       s.sy = cy + (s.y * spread) / s.z;
       s.px = s.sx;
       s.py = s.sy;
     };
 
-    // Advance each star toward the camera; recycle when it streams off-screen.
+    // Recede each star away from the camera; recycle when it reaches the distance.
     const updateWarp = (dtMs) => {
       const sp = warpSpeed();
       if (sp <= 0) return;
@@ -213,20 +214,17 @@ export default function CosmicBirth() {
       for (const s of warp) {
         s.px = s.sx;
         s.py = s.sy;
-        s.z -= dz;
-        if (s.z <= Z_NEAR) {
+        s.z += dz;
+        if (s.z >= Z_FAR) {
           respawn(s);
           continue;
         }
         s.sx = cx + (s.x * spread) / s.z;
         s.sy = cy + (s.y * spread) / s.z;
-        if (Math.abs(s.sx - cx) > maxR * 1.7 || Math.abs(s.sy - cy) > maxR * 1.7) {
-          respawn(s);
-        }
       }
     };
 
-    // Reverse warp: stars stream past the camera, streaking as they near us.
+    // Backward warp: stars recede and shrink toward the center as we pull away.
     const drawWarp = () => {
       const vis = clamp01((t - HS_START) / 180) * (1 - clamp01((t - HS_END) / 450));
       if (vis <= 0) return;
@@ -379,7 +377,7 @@ export default function CosmicBirth() {
     // Camera starts zoomed hard into the singularity and pulls back as we arrive.
     const cameraScale = () => {
       const p = clamp01(t / T_CAMERA);
-      return 1 + 2.6 * (1 - easeInOut(p));
+      return 1 + 4.4 * (1 - easeInOut(p));
     };
 
     const draw = () => {
