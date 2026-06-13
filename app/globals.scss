@@ -177,3 +177,22 @@ html {
     margin: 0.25em 0 0;
   }
 }
+
+/* ============================================================
+   Reduced motion: kill all CSS animation/transitions site-wide
+   (JS animations are independently gated in lib/animation.js)
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
