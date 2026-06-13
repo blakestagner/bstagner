@@ -961,4 +961,10 @@ $gradient-galaxy: linear-gradient(
     transform: none;
     transition: none;
   }
+
+  .welcome-text,
+  .universe-text {
+    opacity: 1;
+    transition: none;
+  }
 }

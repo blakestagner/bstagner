@@ -25,22 +25,6 @@ $color-primary: $color-accent;
   grid-template-columns: repeat(2, 1fr);
   gap: 1em;
   margin: 1em 0 0;
-  max-height: calc(100vh - 14em);
-  overflow-y: auto;
-  padding-right: 4px;
-}
-
-.portfolio-grid::-webkit-scrollbar {
-  width: 4px;
-}
-
-.portfolio-grid::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.portfolio-grid::-webkit-scrollbar-thumb {
-  background: $border-subtle;
-  border-radius: 4px;
 }
 
 .project-card {

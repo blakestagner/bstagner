@@ -41,7 +41,7 @@ export default function Experience() {
         <div className='mission-log'>
           <span className='mission-path' aria-hidden='true'></span>
           {missions.map((mission, i) => (
-            <article key={mission.id} className='mission' data-reveal={i % 2 ? 'right' : 'left'}>
+            <article key={mission.id} className='mission' data-reveal={i % 2 ? 'left' : 'right'}>
               <span className='mission-node' aria-hidden='true'></span>
               <div className='mission-card'>
                 <p className='mission-period'>{mission.period}</p>
