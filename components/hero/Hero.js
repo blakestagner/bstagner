@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './hero.scss';
 import CosmicBirth from './CosmicBirth';
-import OrbitalRings from './OrbitalRings';
 import HeroText from './HeroText';
 import { getGsap, prefersReducedMotion } from '@/lib/animation';
 
@@ -39,7 +38,6 @@ export default function Hero() {
     if (window.matchMedia('(pointer: fine)').matches) {
       const layers = [
         { selector: '.cosmic-birth', depth: 16 },
-        { selector: '.orbital-rings', depth: 26 },
       ];
       const tweens = layers
         .map(({ selector, depth }) => {
@@ -74,7 +72,6 @@ export default function Hero() {
     <section id='hero' className='hero' ref={heroRef}>
       <span className='hero-background' aria-hidden='true'></span>
       <div className='hero-stage' aria-hidden='true'>
-        <OrbitalRings />
         <CosmicBirth />
       </div>
       <HeroText loading={loading} />

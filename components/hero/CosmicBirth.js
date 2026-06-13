@@ -3,15 +3,17 @@
 import { useEffect, useRef } from 'react';
 
 // Phase timing in ms from the animation clock start.
-const T_FLASH = 280;       // singularity flash
-const T_BANG = 1500;       // explosion sparks fully expanded + faded
-const T_SUN_FORM = 850;    // central sun starts igniting
-const T_PLANETS = 2100;    // planets begin condensing into orbits
-const T_GALAXIES = 2700;   // distant spiral galaxies fade in
+const T_FLASH = 260;       // singularity flash
+const T_BANG = 1600;       // explosion sparks fully expanded + faded
+const T_SUN_FORM = 700;    // central sun starts igniting
+const T_PLANETS = 1500;    // planets begin condensing into orbits
+const T_GALAXIES = 2200;   // distant spiral galaxies fade in
+const T_CAMERA = 2900;     // camera finishes pulling back to rest
 const T_INTRO_END = 5000;  // fully settled into the living state
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 const SPARK_COLORS = [
   '255, 255, 255',
@@ -298,9 +300,23 @@ export default function CosmicBirth() {
       ctx.fill();
     };
 
+    // Camera starts zoomed hard into the singularity and rapidly pulls back,
+    // so suns and planets appear to rush into being as the view recedes.
+    const cameraScale = () => {
+      const p = clamp01(t / T_CAMERA);
+      return 1 + 3.4 * (1 - easeInOut(p));
+    };
+
     const draw = () => {
       const sec = t / 1000;
       ctx.clearRect(0, 0, width, height);
+
+      const cam = cameraScale();
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(cam, cam);
+      ctx.translate(-cx, -cy);
+
       drawDust();
       drawGalaxies(sec);
 
@@ -324,6 +340,8 @@ export default function CosmicBirth() {
       drawShockwave();
       drawSparks();
       drawFlash();
+
+      ctx.restore();
     };
 
     const loop = (now) => {
