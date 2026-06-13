@@ -3,25 +3,21 @@
 import { useEffect, useRef } from 'react';
 
 // Phase timing in ms from the animation clock start.
-const T_FLASH = 260;       // singularity flash
-const T_BANG = 1600;       // explosion sparks fully expanded + faded
-const T_SUN_FORM = 700;    // central sun starts igniting
-const T_PLANETS = 1500;    // planets begin condensing into orbits
-const T_GALAXIES = 2200;   // distant spiral galaxies fade in
-const T_CAMERA = 2900;     // camera finishes pulling back to rest
-const T_INTRO_END = 5000;  // fully settled into the living state
+const T_FLASH = 240;        // singularity flash
+const HS_START = 120;       // reverse-hyperspace travel begins
+const HS_END = 2000;        // streaks resolve into stars, we "arrive"
+const T_SUN_BORN = 1700;    // protostar core appears and starts igniting
+const T_SUN_IGNITE = 2400;  // sun finishes flaring into a star
+const T_DISK = 2300;        // protoplanetary dust disk forms around the sun
+const T_PLANETS = 3100;     // planets condense out of the disk
+const T_DISK_FADE = 1300;   // ms over which the disk is swept up after T_PLANETS
+const T_GALAXIES = 2600;    // distant spiral galaxies fade in
+const T_CAMERA = 2200;      // camera finishes pulling back to rest
+const T_INTRO_END = 5400;   // fully settled into the living state
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-
-const SPARK_COLORS = [
-  '255, 255, 255',
-  '255, 214, 140',
-  '255, 138, 60',
-  '79, 195, 247',
-  '124, 77, 255',
-];
 
 const PLANET_PALETTE = [
   { c1: '#9fb4d8', c2: '#586a8c' },
@@ -45,11 +41,14 @@ export default function CosmicBirth() {
     let cx = 0;
     let cy = 0;
     let unit = 1;
+    let maxR = 1;
+    let orbitTilt = 0.38;
     let rafId = null;
     let lastTime = 0;
     let t = 0; // pausable animation clock (ms)
 
-    let sparks = [];
+    let travel = [];
+    let disk = [];
     let planets = [];
     let galaxies = [];
     let dust = [];
@@ -61,20 +60,41 @@ export default function CosmicBirth() {
       cx = wide ? width * 0.66 : width * 0.5;
       cy = wide ? height * 0.52 : height * 0.4;
       unit = Math.min(Math.max(Math.min(width, height) / 900, 0.5), 1.4);
+      maxR = Math.hypot(Math.max(cx, width - cx), Math.max(cy, height - cy));
+      orbitTilt = 0.38;
 
-      const sparkCount = width < 700 ? 140 : 250;
-      sparks = [];
-      for (let i = 0; i < sparkCount; i++) {
-        const speed = Math.pow(Math.random(), 0.5);
-        sparks.push({
+      // reverse-hyperspace travel stars: streaks early, growing points on arrival
+      const travelCount = width < 700 ? 120 : 200;
+      travel = [];
+      for (let i = 0; i < travelCount; i++) {
+        travel.push({
           angle: rand(0, Math.PI * 2),
-          maxDist: rand(140, 560) * unit * (0.4 + speed),
-          size: rand(0.6, 2.4) * unit,
-          color: SPARK_COLORS[(Math.random() * SPARK_COLORS.length) | 0],
-          delay: rand(0, 120),
+          rOuter: rand(0.25, 1.25),
+          speed: rand(0.7, 1.15),
+          trail: rand(60, 230) * unit,
+          size: rand(0.5, 1.8),
+          hue: Math.random(),
         });
       }
 
+      // protoplanetary dust disk (Keplerian-ish: inner orbits faster)
+      const innerR = 52 * unit;
+      const outerR = (96 + (width < 700 ? 2 : 4) * 60) * unit;
+      const diskCount = width < 700 ? 110 : 200;
+      disk = [];
+      for (let i = 0; i < diskCount; i++) {
+        const r = innerR + Math.pow(Math.random(), 0.7) * (outerR - innerR);
+        disk.push({
+          r,
+          ang: rand(0, Math.PI * 2),
+          speed: 0.55 * Math.sqrt((70 * unit) / r) * rand(0.9, 1.1),
+          size: rand(0.5, 1.6) * unit,
+          warm: Math.random() < 0.55,
+          alpha: rand(0.35, 0.9),
+        });
+      }
+
+      // planets condense from the disk
       const planetCount = width < 700 ? 3 : 5;
       planets = [];
       for (let i = 0; i < planetCount; i++) {
@@ -83,8 +103,7 @@ export default function CosmicBirth() {
           radius: rand(3.6, 7.4) * unit * (1 - i * 0.04),
           speed: (0.22 - i * 0.025) * rand(0.9, 1.1),
           phase: rand(0, Math.PI * 2),
-          tilt: rand(0.3, 0.44),
-          formDelay: i * 170,
+          formDelay: i * 180,
           ...PLANET_PALETTE[i % PLANET_PALETTE.length],
         });
       }
@@ -163,47 +182,61 @@ export default function CosmicBirth() {
       ctx.globalCompositeOperation = 'source-over';
     };
 
-    const drawSparks = () => {
-      if (t > T_BANG) return;
+    // Reverse hyperspace: long radial streaks decelerate into growing star points.
+    const drawHyperspace = () => {
+      const hp = clamp01((t - HS_START) / (HS_END - HS_START));
+      if (hp >= 1) return;
+      const exit = clamp01((hp - 0.8) / 0.2); // fade travel stars as we arrive
       ctx.globalCompositeOperation = 'lighter';
-      for (const s of sparks) {
-        const p = clamp01((t - s.delay) / (T_BANG - s.delay));
-        if (p <= 0) continue;
-        const d = easeOut(p) * s.maxDist;
-        const x = cx + Math.cos(s.angle) * d;
-        const y = cy + Math.sin(s.angle) * d;
-        const alpha = (1 - p) * 0.9;
-        const tail = 8 * unit * (1 - p);
-        ctx.strokeStyle = `rgba(${s.color}, ${alpha})`;
-        ctx.lineWidth = s.size;
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-        ctx.lineTo(x - Math.cos(s.angle) * tail, y - Math.sin(s.angle) * tail);
-        ctx.stroke();
-      }
-      ctx.globalCompositeOperation = 'source-over';
-    };
 
-    const drawShockwave = () => {
-      if (t > T_BANG) return;
-      const p = clamp01(t / T_BANG);
-      ctx.globalCompositeOperation = 'lighter';
-      const r = easeOut(p) * Math.max(width, height) * 0.6;
-      ctx.strokeStyle = `rgba(120, 170, 255, ${(1 - p) * 0.5})`;
-      ctx.lineWidth = 2 * unit * (1 - p) + 0.5;
+      // bright destination core we are travelling toward
+      const coreR = (10 + 40 * hp) * unit;
+      const coreG = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
+      coreG.addColorStop(0, `rgba(255, 255, 255, ${0.9 * (1 - exit)})`);
+      coreG.addColorStop(0.5, `rgba(180, 215, 255, ${0.4 * (1 - exit)})`);
+      coreG.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = coreG;
       ctx.beginPath();
-      ctx.arc(cx, cy, r, 0, Math.PI * 2);
-      ctx.stroke();
+      ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (const s of travel) {
+        const prog = easeOut(clamp01(hp * s.speed));
+        const r = prog * s.rOuter * maxR;
+        const cosA = Math.cos(s.angle);
+        const sinA = Math.sin(s.angle);
+        const x = cx + cosA * r;
+        const y = cy + sinA * r;
+        const trail = (1 - hp) * s.trail * (0.3 + 0.7 * prog);
+        const size = (0.4 + prog * 1.8) * unit * (0.5 + s.size);
+        const alpha = (0.5 + 0.5 * prog) * (1 - exit);
+        const hue = s.hue < 0.5 ? '240, 248, 255' : '160, 200, 255';
+
+        if (trail > 1.5) {
+          ctx.strokeStyle = `rgba(${hue}, ${alpha})`;
+          ctx.lineWidth = size;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(x - cosA * trail, y - sinA * trail);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        } else {
+          ctx.fillStyle = `rgba(${hue}, ${alpha})`;
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
       ctx.globalCompositeOperation = 'source-over';
     };
 
     const drawFlash = () => {
       if (t > T_FLASH * 2) return;
       const p = clamp01(t / (T_FLASH * 2));
-      const r = (1 - p) * Math.max(width, height) * 0.5 + 40 * unit;
+      const r = (1 - p) * Math.max(width, height) * 0.55 + 40 * unit;
       const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-      g.addColorStop(0, `rgba(255, 255, 255, ${(1 - p) * 0.9})`);
-      g.addColorStop(0.4, `rgba(180, 210, 255, ${(1 - p) * 0.4})`);
+      g.addColorStop(0, `rgba(255, 255, 255, ${(1 - p) * 0.95})`);
+      g.addColorStop(0.4, `rgba(190, 215, 255, ${(1 - p) * 0.45})`);
       g.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.globalCompositeOperation = 'lighter';
       ctx.fillStyle = g;
@@ -213,46 +246,49 @@ export default function CosmicBirth() {
       ctx.globalCompositeOperation = 'source-over';
     };
 
-    const drawSun = (sec) => {
-      const grow = easeOut(clamp01((t - T_SUN_FORM) / 950));
-      const base = 32 * unit * (0.14 + 0.86 * grow);
-      const pulse = 1 + 0.045 * Math.sin(sec * 1.6);
-      const r = base * pulse;
+    const drawDisk = (sec) => {
+      const appear = clamp01((t - T_DISK) / 700);
+      const fade = 1 - clamp01((t - T_PLANETS) / T_DISK_FADE);
+      const a = appear * fade;
+      if (a <= 0) return;
+      ctx.globalCompositeOperation = 'lighter';
+      for (const d of disk) {
+        const ang = d.ang + d.speed * sec;
+        const x = cx + Math.cos(ang) * d.r;
+        const y = cy + Math.sin(ang) * d.r * orbitTilt;
+        const tint = d.warm ? '255, 184, 120' : '150, 175, 255';
+        ctx.fillStyle = `rgba(${tint}, ${a * d.alpha})`;
+        ctx.beginPath();
+        ctx.arc(x, y, d.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+    };
 
-      // outer bloom
-      const bloom = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 4.2);
-      bloom.addColorStop(0, 'rgba(255, 210, 130, 0.5)');
-      bloom.addColorStop(0.3, 'rgba(255, 140, 70, 0.22)');
+    const drawSun = (sec) => {
+      const grow = easeOut(clamp01((t - T_SUN_BORN) / 1100));
+      if (grow <= 0) return;
+      const igniting = clamp01((t - T_SUN_BORN) / (T_SUN_IGNITE - T_SUN_BORN));
+      const flicker = igniting < 1 ? 0.82 + 0.18 * Math.sin(sec * 38) : 1;
+      const base = 32 * unit * (0.12 + 0.88 * grow);
+      const pulse = 1 + 0.045 * Math.sin(sec * 1.6);
+      const r = base * pulse * flicker;
+
+      const bloom = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 4.4);
+      bloom.addColorStop(0, `rgba(255, 210, 130, ${0.5 * (0.5 + 0.5 * igniting)})`);
+      bloom.addColorStop(0.3, `rgba(255, 140, 70, ${0.22 * (0.4 + 0.6 * igniting)})`);
       bloom.addColorStop(0.65, 'rgba(79, 130, 220, 0.12)');
       bloom.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.globalCompositeOperation = 'lighter';
       ctx.fillStyle = bloom;
       ctx.beginPath();
-      ctx.arc(cx, cy, r * 4.2, 0, Math.PI * 2);
+      ctx.arc(cx, cy, r * 4.4, 0, Math.PI * 2);
       ctx.fill();
 
-      // transient proto-suns merging in ("suns forming")
-      const merge = clamp01((t - T_SUN_FORM) / (T_PLANETS - T_SUN_FORM));
-      if (merge > 0 && merge < 1) {
-        const fade = Math.sin(merge * Math.PI) * 0.8;
-        for (const o of [[-1, -0.5], [1.1, 0.4]]) {
-          const px = cx + o[0] * r * (2.2 * (1 - merge));
-          const py = cy + o[1] * r * (2.2 * (1 - merge));
-          const pg = ctx.createRadialGradient(px, py, 0, px, py, r * 0.9);
-          pg.addColorStop(0, `rgba(255, 235, 190, ${fade})`);
-          pg.addColorStop(1, 'rgba(0, 0, 0, 0)');
-          ctx.fillStyle = pg;
-          ctx.beginPath();
-          ctx.arc(px, py, r * 0.9, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
-      // core
       const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
       core.addColorStop(0, 'rgba(255, 255, 250, 1)');
-      core.addColorStop(0.5, 'rgba(255, 224, 168, 0.98)');
-      core.addColorStop(1, 'rgba(255, 150, 80, 0.85)');
+      core.addColorStop(0.5, `rgba(255, 224, 168, ${0.9 + 0.1 * igniting})`);
+      core.addColorStop(1, `rgba(255, 150, 80, ${0.7 + 0.15 * igniting})`);
       ctx.fillStyle = core;
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
@@ -265,7 +301,7 @@ export default function CosmicBirth() {
       return {
         ang,
         x: cx + Math.cos(ang) * pl.orbit,
-        y: cy + Math.sin(ang) * pl.orbit * pl.tilt,
+        y: cy + Math.sin(ang) * pl.orbit * orbitTilt,
         depth: Math.sin(ang),
       };
     };
@@ -274,7 +310,7 @@ export default function CosmicBirth() {
       ctx.strokeStyle = `rgba(160, 190, 255, ${0.1 * form})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.ellipse(cx, cy, pl.orbit, pl.orbit * pl.tilt, 0, 0, Math.PI * 2);
+      ctx.ellipse(cx, cy, pl.orbit, pl.orbit * orbitTilt, 0, 0, Math.PI * 2);
       ctx.stroke();
     };
 
@@ -300,8 +336,7 @@ export default function CosmicBirth() {
       ctx.fill();
     };
 
-    // Camera starts zoomed hard into the singularity and rapidly pulls back,
-    // so suns and planets appear to rush into being as the view recedes.
+    // Camera starts zoomed hard into the singularity and pulls back as we arrive.
     const cameraScale = () => {
       const p = clamp01(t / T_CAMERA);
       return 1 + 3.4 * (1 - easeInOut(p));
@@ -319,9 +354,10 @@ export default function CosmicBirth() {
 
       drawDust();
       drawGalaxies(sec);
+      drawDisk(sec);
 
       const states = planets.map((pl) => {
-        const form = clamp01((t - T_PLANETS - pl.formDelay) / 650);
+        const form = clamp01((t - T_PLANETS - pl.formDelay) / 700);
         return { pl, pos: planetPos(pl, sec), form };
       });
       for (const s of states) {
@@ -337,8 +373,7 @@ export default function CosmicBirth() {
         if (s.form > 0 && s.pos.depth >= 0) drawPlanet(s.pl, s.pos, s.form);
       }
 
-      drawShockwave();
-      drawSparks();
+      drawHyperspace();
       drawFlash();
 
       ctx.restore();
