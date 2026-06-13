@@ -19,23 +19,6 @@ $color-primary: $color-accent;
   height: auto;
 }
 
-#blue-animation3 {
-  background: $gradient;
-  height: 2px;
-  width: 60%;
-  position: absolute;
-  left: 0;
-  border-bottom-right-radius: 50px;
-  top: 70px;
-  transition: all ease-in-out 1000ms;
-  z-index: 1;
-  box-shadow: 0 0 16px rgba(79, 195, 247, 0.3);
-}
-
-.blue-strip3 {
-  transform: translate3d(-100vw, 0px, 0px);
-  transition: all ease-in-out 1000ms;
-}
 
 .portfolio-grid {
   display: grid;
@@ -61,19 +44,21 @@ $color-primary: $color-accent;
 }
 
 .project-card {
-  background: $bg-surface;
+  background: rgba(16, 16, 30, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid $border-subtle;
   border-radius: 16px;
   padding: 1.25em;
   text-align: left;
-  transition: border-color ease 300ms, box-shadow ease 300ms, transform ease 300ms;
+  transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
   cursor: default;
 }
 
 .project-card:hover {
+  transform: translateY(-6px);
   border-color: $border-accent;
-  box-shadow: 0 0 40px rgba(79, 195, 247, 0.08);
-  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(79, 195, 247, 0.18), 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
 .project-card--ai {

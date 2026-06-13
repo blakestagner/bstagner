@@ -64,10 +64,11 @@ const portfolioDetails = [
 export default function PortfolioItems() {
   return (
     <div className="portfolio-grid">
-      {portfolioDetails.map((project) => (
+      {portfolioDetails.map((project, i) => (
         <div
           key={project.name}
           className={`project-card ${project.isAI ? 'project-card--ai' : ''}`}
+          data-reveal={i % 2 ? 'right' : 'left'}
         >
           <div className="project-card-header">
             <p className="project-name">{project.name}</p>

@@ -1,30 +1,21 @@
 'use client'
 
 import './portfolio.scss';
-import { useState, useEffect } from 'react';
 import PortfolioItems from './PortfolioItems';
 import SectionTitle from '@/components/shared/SectionTitle';
+import useReveal from '@/lib/useReveal';
 
-function Portfolio({ section }) {
-    const [inView, setInView] = useState(false)
+export default function Portfolio() {
+  const ref = useReveal();
 
-    useEffect(() => {
-        if (section === 'Portfolio') {
-            setInView(true)
-        };
-    }, [section])
-
-    return (
-        <div id="portfolio">
-            <div className="main-container">
-                <div className="heading">
-                    <SectionTitle
-                        inView={inView}
-                        title="Portfolio" />
-                </div>
-                <PortfolioItems />
-            </div>
+  return (
+    <section id='portfolio' ref={ref}>
+      <div className='main-container'>
+        <div className='heading'>
+          <SectionTitle title='Projects' />
         </div>
-    )
+        <PortfolioItems />
+      </div>
+    </section>
+  );
 }
-export default Portfolio;
