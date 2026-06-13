@@ -22,6 +22,8 @@ export default function ScrollRocket() {
     let curRot = 0;
     let curFlame = 0.4;
     let smoothVel = 0;
+    let facing = 1; // 1 = travelling down (nose down), -1 = travelling up
+    let curFlip = 0; // eased flip angle in degrees (0 or 180)
     let lastScroll = window.scrollY;
 
     const tick = () => {
@@ -41,6 +43,12 @@ export default function ScrollRocket() {
       curY += (targetY - curY) * 0.12;
       curX += (targetX - curX) * 0.08;
 
+      // flip to face travel direction (hysteresis avoids jitter near zero)
+      if (smoothVel > 0.4) facing = 1;
+      else if (smoothVel < -0.4) facing = -1;
+      const targetFlip = facing === 1 ? 0 : 180;
+      curFlip += (targetFlip - curFlip) * 0.12;
+
       // bank toward horizontal travel, nudged by scroll direction
       const targetRot = clamp((curX - prevX) * 3.2 + smoothVel * 0.25, -26, 26);
       curRot += (targetRot - curRot) * 0.1;
@@ -48,7 +56,7 @@ export default function ScrollRocket() {
       const targetFlame = clamp(0.45 + Math.abs(smoothVel) * 0.05, 0.45, 2.4);
       curFlame += (targetFlame - curFlame) * 0.15;
 
-      el.style.transform = `translate3d(${curX}px, ${curY}px, 0) rotate(${curRot}deg)`;
+      el.style.transform = `translate3d(${curX}px, ${curY}px, 0) rotate(${curRot + curFlip}deg)`;
       if (flame) flame.style.transform = `scaleY(${curFlame})`;
 
       rafId = requestAnimationFrame(tick);
