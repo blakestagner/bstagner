@@ -122,17 +122,19 @@ html {
   color: var(--color-text-primary);
 }
 
-.header-title-text {
+.section-title h1 {
   z-index: 2;
   color: var(--color-text-primary);
-  opacity: 0;
-  transform: translateY(-20px) translateX(-10px);
-  transition: all ease-in-out 1000ms;
 }
 
-.animate {
-  opacity: 1;
-  transform: translateY(0px) translateX(0px);
+.title-strip {
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 0 auto;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-purple));
+  box-shadow: 0 0 12px var(--color-accent-glow);
 }
 
 .heading h2 {
