@@ -5,15 +5,15 @@ import { useEffect, useRef } from 'react';
 // Phase timing in ms from the animation clock start.
 const T_FLASH = 240;        // singularity flash
 const HS_START = 120;       // reverse-hyperspace travel begins
-const HS_END = 2000;        // streaks resolve into stars, we "arrive"
-const T_SUN_BORN = 1700;    // protostar core appears and starts igniting
-const T_SUN_IGNITE = 2400;  // sun finishes flaring into a star
-const T_DISK = 2300;        // protoplanetary dust disk forms around the sun
-const T_PLANETS = 3100;     // planets condense out of the disk
+const HS_END = 2350;        // streaks resolve into stars, we "arrive"
+const T_SUN_BORN = 2050;    // protostar core appears and starts igniting
+const T_SUN_IGNITE = 2750;  // sun finishes flaring into a star
+const T_DISK = 2650;        // protoplanetary dust disk forms around the sun
+const T_PLANETS = 3450;     // planets condense out of the disk
 const T_DISK_FADE = 1300;   // ms over which the disk is swept up after T_PLANETS
-const T_GALAXIES = 2600;    // distant spiral galaxies fade in
-const T_CAMERA = 2200;      // camera finishes pulling back to rest
-const T_INTRO_END = 5400;   // fully settled into the living state
+const T_GALAXIES = 3000;    // distant spiral galaxies fade in
+const T_CAMERA = 2600;      // camera finishes pulling back to rest
+const T_INTRO_END = 5800;   // fully settled into the living state
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
@@ -64,15 +64,15 @@ export default function CosmicBirth() {
       orbitTilt = 0.38;
 
       // reverse-hyperspace travel stars: streaks early, growing points on arrival
-      const travelCount = width < 700 ? 120 : 200;
+      const travelCount = width < 700 ? 150 : 260;
       travel = [];
       for (let i = 0; i < travelCount; i++) {
         travel.push({
           angle: rand(0, Math.PI * 2),
-          rOuter: rand(0.25, 1.25),
-          speed: rand(0.7, 1.15),
-          trail: rand(60, 230) * unit,
-          size: rand(0.5, 1.8),
+          rOuter: rand(0.45, 2.1),
+          speed: rand(0.85, 1.5),
+          trail: rand(120, 420) * unit,
+          size: rand(0.5, 1.9),
           hue: Math.random(),
         });
       }
@@ -339,7 +339,7 @@ export default function CosmicBirth() {
     // Camera starts zoomed hard into the singularity and pulls back as we arrive.
     const cameraScale = () => {
       const p = clamp01(t / T_CAMERA);
-      return 1 + 3.4 * (1 - easeInOut(p));
+      return 1 + 5.2 * (1 - easeInOut(p));
     };
 
     const draw = () => {
