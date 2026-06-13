@@ -16,8 +16,8 @@ export default function HeroText({ loading }) {
           STAGNER
         </h1>
         <p id='anim3'>
-          <span className={loading ? 'welcome-text' : 'welcome-text welcome-text-animation'}>Full-Stack &amp;</span>
-          <span className={loading ? 'universe-text' : 'universe-text universe-text-animation'}> AI Engineer</span>
+          <span className={loading ? 'welcome-text' : 'welcome-text welcome-text-animation'}>Full-Stack</span>
+          <span className={loading ? 'universe-text' : 'universe-text universe-text-animation'}> Engineer</span>
         </p>
         <div className={loading ? 'hero-cta' : 'hero-cta hero-cta--in'}>
           <button className='hero-btn hero-btn--primary' onClick={() => goTo('portfolio')}>
