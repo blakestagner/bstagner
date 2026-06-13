@@ -92,35 +92,20 @@ a {
   z-index: 0;
 }
 
-/* Critical scroll container styles */
+/* Free-flowing document scroll */
+html {
+  scroll-behavior: smooth;
+}
+
 #sections {
-  height: 100vh;
-  max-height: 100dvh;
-  overflow: hidden;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 
+#sections > section,
 #sections > div {
-  scroll-snap-align: center;
-  height: 100vh;
-  max-height: 100dvh;
-}
-
-#sections > div#about,
-div#portfolio,
-div#components,
-div#contact {
+  position: relative;
   margin: 0 auto;
-}
-
-#sections > div:first-of-type {
-  scroll-snap-align: center;
-  height: 125vh;
-}
-
-#sections > div:last-of-type {
-  padding: 0;
 }
 
 /* ============================================================
@@ -170,8 +155,8 @@ div#contact {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
-  padding: 4em 1em 2em;
-  height: calc(100vh - 6em);
+  padding: 6em 1em 4em;
+  min-height: 60vh;
   color: var(--color-text-primary);
 }
 
@@ -184,8 +169,7 @@ div#contact {
 @media (max-width: 400px) {
   .main-container {
     text-align: center;
-    padding: 2em 1em;
-    height: calc(100vh - 4em);
+    padding: 4em 1em 3em;
   }
   .heading h2 {
     margin: 0.25em 0 0;

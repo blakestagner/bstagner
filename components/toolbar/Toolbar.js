@@ -3,165 +3,84 @@
 import { useState, useEffect, useRef } from 'react';
 import './toolbar.scss';
 
-const closeWhite = '/icons/toolbar/close-white.svg';
-const closeBlack = '/icons/toolbar/close-black.svg';
-const menuWhite = '/icons/toolbar/menu-white.svg';
-const menuBlack = '/icons/toolbar/menu-black.svg';
+const menuIcon = '/icons/toolbar/menu-white.svg';
+const closeIcon = '/icons/toolbar/close-white.svg';
 
-function Toolbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuToggle, setMenuToggle] = useState(false);
-  const [mobileMenu, setMobileMenu] = useState(menuWhite);
+const NAV_LINKS = [
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'portfolio', label: 'Projects' },
+  { id: 'components', label: 'Demos' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+];
+
+export default function Toolbar() {
+  const [solid, setSolid] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
-  const [navHide, setNavHide] = useState(true);
-  const prevScrollposRef = useRef(0);
+  const [active, setActive] = useState('');
+  const prevScrollRef = useRef(0);
 
   useEffect(() => {
-    const section = document.querySelector('#sections');
-    section.addEventListener('scroll', sectionScroll);
-    return () => {
-      section.removeEventListener('scroll', sectionScroll);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setSolid(y > 40);
+      setHidden(y > prevScrollRef.current && y > 300);
+      prevScrollRef.current = y;
+
+      let current = '';
+      for (const link of NAV_LINKS) {
+        const el = document.getElementById(link.id);
+        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.5) {
+          current = link.id;
+        }
+      }
+      setActive(current);
     };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const sectionScroll = () => {
-    const windowScroll = () => {
-      const hero = document.querySelector('#hero');
-      let currentScrollPos = hero.getBoundingClientRect().y * -1;
-      if (currentScrollPos * -1 === -0) {
-        setScrolled(false);
-        if (mobileMenu === menuBlack || mobileMenu === closeBlack) {
-          if (mobileMenu === menuBlack) {
-            setMobileMenu(menuWhite);
-          } else {
-            setMobileMenu(closeWhite);
-          }
-        } else {
-          if (mobileMenu === menuWhite) {
-            setMobileMenu(menuWhite);
-          } else {
-            setMobileMenu(closeWhite);
-          }
-        }
-      } else {
-        setScrolled(true);
-        if (mobileMenu === menuWhite || mobileMenu === closeWhite) {
-          if (mobileMenu === menuWhite) {
-            setMobileMenu(menuBlack);
-          } else setMobileMenu(closeBlack);
-        }
-      }
-    };
-
-    const scrollNavHide = () => {
-      const hero = document.querySelector('#hero');
-      let currentScrollPos = hero.getBoundingClientRect().y * -1;
-      if (currentScrollPos * -1 === -0) {
-        setNavHide(true);
-      } else if (prevScrollposRef.current > currentScrollPos) {
-        setNavHide(true);
-      } else {
-        setNavHide(false);
-      }
-      prevScrollposRef.current = currentScrollPos;
-    };
-    windowScroll();
-    scrollNavHide();
-  };
-
-  const mobileMenuToggle = () => {
-    setMenuToggle(menuToggle === true ? false : true);
-    setMobileNav(mobileNav === true ? false : true);
-    if (mobileMenu === menuWhite || mobileMenu === menuBlack) {
-      if (mobileMenu === menuWhite) {
-        setTimeout(() => {
-          setMenuToggle(false);
-          setMobileMenu(closeWhite);
-        }, 200);
-      } else {
-        setTimeout(() => {
-          setMenuToggle(false);
-          setMobileMenu(closeBlack);
-        }, 200);
-      }
-    } else if (mobileMenu === closeWhite || mobileMenu === closeBlack) {
-      if (mobileMenu === closeWhite) {
-        setTimeout(() => {
-          setMenuToggle(false);
-          setMobileMenu(menuWhite);
-        }, 200);
-      } else {
-        setTimeout(() => {
-          setMenuToggle(false);
-          setMobileMenu(menuBlack);
-        }, 200);
-      }
-    }
-  };
-
-  const handleClick = (link) => {
+  const handleClick = (id) => {
     setMobileNav(false);
-    const anchor = document.querySelector(link);
-    anchor.scrollIntoView({ behavior: 'smooth', block: 'center' }, true);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <div
-      className={`${scrolled ? 'navBar scrollBar' : 'navBar'} ${
-        navHide ? '' : 'scrolled'
-      }`}
+    <nav
+      className={`navBar ${solid ? 'navBar--solid' : ''} ${hidden && !mobileNav ? 'navBar--hidden' : ''}`}
       id='mainNav'>
       <div className='navBarContainer'>
         <p id='main-title'>
-          <span onClick={() => handleClick('#hero')}>BS</span>
+          <span onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>BS</span>
         </p>
         <div>
           <ul id='mainMenuList'>
-            <li>
-              <p className='navList' onClick={() => handleClick('#about')}>
-                About
-              </p>
-            </li>
-            <li>
-              <p className='navList' onClick={() => handleClick('#portfolio')}>
-                Portfolio
-              </p>
-            </li>
-            <li>
-              <p className='navList' onClick={() => handleClick('#components')}>
-                Demos
-              </p>
-            </li>
-            <li>
-              <p className='navList' onClick={() => handleClick('#contact')}>
-                Contact
-              </p>
-            </li>
+            {NAV_LINKS.map((link) => (
+              <li key={link.id}>
+                <p
+                  className={`navList ${active === link.id ? 'active' : ''}`}
+                  onClick={() => handleClick(link.id)}>
+                  {link.label}
+                </p>
+              </li>
+            ))}
           </ul>
         </div>
         <img
-          onClick={() => mobileMenuToggle()}
-          className={menuToggle ? 'menu-icon' : 'menu-icon-animation'}
-          src={mobileMenu}
+          onClick={() => setMobileNav(!mobileNav)}
+          className='menu-icon-animation'
+          src={mobileNav ? closeIcon : menuIcon}
           alt='menu toggle'
         />
       </div>
-      <MobileNavMenu
-        handleClick={(section) => handleClick(section)}
-        toggled={mobileNav}
-      />
-    </div>
-  );
-}
-export default Toolbar;
-
-function MobileNavMenu({ toggled, handleClick }) {
-  return (
-    <div className={toggled ? 'mobile-nav open' : 'mobile-nav closed'}>
-      <p onClick={() => handleClick('#about')}>About</p>
-      <p onClick={() => handleClick('#portfolio')}>Portfolio</p>
-      <p onClick={() => handleClick('#components')}>Demos</p>
-      <p onClick={() => handleClick('#contact')}>Contact</p>
-    </div>
+      <div className={mobileNav ? 'mobile-nav open' : 'mobile-nav closed'}>
+        {NAV_LINKS.map((link) => (
+          <p key={link.id} onClick={() => handleClick(link.id)}>{link.label}</p>
+        ))}
+      </div>
+    </nav>
   );
 }

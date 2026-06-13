@@ -6,11 +6,7 @@ import moment from 'moment';
 
 function Footer() {
     const scrollTop = () => {
-        const topElm = document.querySelector('#sections');
-        topElm.scrollTo({
-            behavior: 'smooth',
-            top: 0,
-        });
+        window.scrollTo({ behavior: 'smooth', top: 0 });
     };
 
     return (

@@ -2,34 +2,39 @@ $color-accent: #4fc3f7;
 $border-subtle: rgba(255, 255, 255, 0.07);
 
 .navBar {
-  background-color: transparent;
+  background: transparent;
   color: #fff !important;
   position: fixed;
-  width: 100vw;
-  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   font-weight: 500;
   height: auto;
   overflow: hidden;
-  top: 0;
   border-bottom-left-radius: 1.5em;
   border-bottom-right-radius: 1.5em;
-  transition: all ease 400ms;
-  transition-delay: 150ms;
+  transition: transform 300ms ease, background 300ms ease, box-shadow 300ms ease;
 }
 
-.scrollBar {
-  overflow: hidden;
-  color: #fff !important;
-  box-shadow: 0 1px 0 $border-subtle;
-  background-color: rgba(8, 8, 20, 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+.navBar--solid {
+  background: rgba(8, 8, 16, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid $border-subtle;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
-.scrolled {
-  transform: translate3d(0px, -50px, 0px);
-  transition: all ease 500ms;
+.navBar--hidden {
+  transform: translateY(-100%);
+}
+
+.navList.active {
+  color: $color-accent;
+}
+
+#mainMenuList li p.active::after {
+  width: 100%;
 }
 
 .navBarContainer {
