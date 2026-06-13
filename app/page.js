@@ -5,6 +5,7 @@ import Hero from '@/components/hero/Hero';
 import About from '@/components/about/About';
 import Portfolio from '@/components/portfolio/Portfolio';
 import Components from '@/components/sections/Components';
+import Experience from '@/components/experience/Experience';
 import Footer from '@/components/footer/Footer';
 import SpaceBackground from '@/components/space/SpaceBackground';
 import Skills from '@/components/skills/Skills';
@@ -20,6 +21,7 @@ export default function Home() {
         <Skills />
         <Portfolio />
         <Components />
+        <Experience />
         <Footer />
       </main>
     </div>
