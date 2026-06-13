@@ -2,9 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import './hero.scss';
-import Sun from './Sun';
-import PurpleGalaxy from './PurpleGalaxy';
-import GreenGalaxy from './GreenGalaxy';
+import CosmicBirth from './CosmicBirth';
 import OrbitalRings from './OrbitalRings';
 import HeroText from './HeroText';
 import { getGsap, prefersReducedMotion } from '@/lib/animation';
@@ -40,10 +38,8 @@ export default function Hero() {
     let removeMove;
     if (window.matchMedia('(pointer: fine)').matches) {
       const layers = [
-        { selector: '#sun', depth: 18 },
-        { selector: '.galaxy-1-container', depth: 30 },
-        { selector: '.galaxy-2-container', depth: 24 },
-        { selector: '.orbital-rings', depth: 12 },
+        { selector: '.cosmic-birth', depth: 16 },
+        { selector: '.orbital-rings', depth: 26 },
       ];
       const tweens = layers
         .map(({ selector, depth }) => {
@@ -79,9 +75,7 @@ export default function Hero() {
       <span className='hero-background' aria-hidden='true'></span>
       <div className='hero-stage' aria-hidden='true'>
         <OrbitalRings />
-        <Sun loading={loading} />
-        <PurpleGalaxy />
-        <GreenGalaxy />
+        <CosmicBirth />
       </div>
       <HeroText loading={loading} />
     </section>
