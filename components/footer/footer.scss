@@ -8,14 +8,14 @@ $border-subtle: rgba(255, 255, 255, 0.07);
 $border-accent: rgba(79, 195, 247, 0.2);
 
 .footer {
+  position: relative;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  height: fit-content;
-  color: $color-text-primary;
+  justify-content: flex-end;
+  min-height: 70vh;
   background: linear-gradient(180deg, rgba(16, 16, 30, 0) 0%, rgba(16, 16, 30, 0.7) 45%);
   border-top: 1px solid $border-accent;
-  position: relative;
+  color: $color-text-primary;
 }
 
 .footer::before {
@@ -30,48 +30,70 @@ $border-accent: rgba(79, 195, 247, 0.2);
   box-shadow: 0 0 20px rgba(79, 195, 247, 0.4);
 }
 
-.footer-1 {
-  height: calc(80vh - 2em);
+.contact-main {
+  flex: 1;
   display: flex;
-  padding: 2em 1em;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
+  padding: 4em 1em;
 }
 
-.footer-1 > div {
-  width: 33vw;
-}
-
-.footer-1 > div h2 {
+.contact-main h2 {
   color: $color-text-primary;
-  letter-spacing: 0.03em;
-  margin-bottom: 1em;
+  font-size: 3.5em;
 }
 
-.footer-1 > div:nth-child(2) h3 {
-  font-size: 1.5em;
+.contact-sub {
+  margin: 0.25em 0 1.5em;
   color: $color-text-secondary;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+.contact-links {
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+}
+
+.to-top {
+  margin-top: 2.5em;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid $border-accent;
+  background: rgba(16, 16, 30, 0.6);
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+}
+
+.to-top img {
+  width: 22px;
 }
 
 .footer-2 {
+  padding: 1.25em;
   background-color: rgba(8, 8, 16, 0.6);
   border-top: 1px solid $border-subtle;
-  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .footer-2 p {
   margin: 0;
-  font-size: 0.85em;
   color: $color-text-secondary;
-  letter-spacing: 0.05em;
+  font-size: 0.85em;
 }
 
 .social-icon {
@@ -94,24 +116,8 @@ $border-accent: rgba(79, 195, 247, 0.2);
   margin: 0 10px 10px;
 }
 
-@media (max-width: 1200px) {
-  .footer-1 {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 750px) {
-  .footer-1 > div {
-    width: 100%;
-  }
-}
-
 @media (max-width: 380px) {
-  h2 {
+  .contact-main h2 {
     font-size: 2.5em;
-  }
-  h3 {
-    font-size: 1em;
   }
 }
