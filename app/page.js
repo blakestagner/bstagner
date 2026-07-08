@@ -9,11 +9,13 @@ import Experience from '@/components/experience/Experience';
 import Footer from '@/components/footer/Footer';
 import SpaceBackground from '@/components/space/SpaceBackground';
 import Space3D from '@/components/space3d/Space3D';
+import SmoothScroll from '@/components/shared/SmoothScroll';
 import Skills from '@/components/skills/Skills';
 
 export default function Home() {
   return (
     <div className="app">
+      <SmoothScroll />
       <SpaceBackground />
       <Space3D />
       <Toolbar />

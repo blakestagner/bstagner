@@ -92,9 +92,10 @@ a {
   z-index: 0;
 }
 
-/* Free-flowing document scroll */
+/* Scroll smoothing is handled by Lenis (components/shared/SmoothScroll.js);
+   CSS smooth-behavior would fight it on anchor jumps */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 #sections {
