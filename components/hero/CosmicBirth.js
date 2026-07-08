@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react';
-import { T, intro, introSeen, markIntroSeen } from '@/components/space3d/introState';
+import { T, intro } from '@/components/space3d/introState';
 
 // Phase timing lives in introState.js so the WebGL layer can sync to it.
 const {
@@ -54,9 +54,8 @@ export default function CosmicBirth() {
     let orbitTilt = 0.38;
     let rafId = null;
     let lastTime = 0;
-    // pausable animation clock (ms); repeat visits replay only the arrival
-    let t = introSeen() ? HS_END - 400 : 0;
-    markIntroSeen();
+    // pausable animation clock (ms); full intro every visit — skip is the out
+    let t = 0;
     intro.skipRequested = false;
     intro.t = t;
     intro.active = t < T_INTRO_END && !reduceMotion;
@@ -126,6 +125,9 @@ export default function CosmicBirth() {
           ...PLANET_PALETTE[i % PLANET_PALETTE.length],
         });
       }
+      // the blue planet is Earth: slow, stately orbit — the WebGL layer rides it
+      planets[1].earth = true;
+      planets[1].speed = 0.045;
 
       const galaxyDefs = [
         { gx: width * 0.17, gy: height * 0.26, r: 95 * unit, arms: 2, tint: '124, 77, 255' },
@@ -445,17 +447,32 @@ export default function CosmicBirth() {
       for (const s of states) {
         if (s.form > 0) drawOrbit(s.pl, s.form);
       }
+      // once the textured WebGL Earth exists, it replaces the gradient stand-in
+      const skipEarth = (pl) => pl.earth && intro.earthClaimed;
       for (const s of states) {
-        if (s.form > 0 && s.pos.depth < 0) drawPlanet(s.pl, s.pos, s.form);
+        if (s.form > 0 && s.pos.depth < 0 && !skipEarth(s.pl)) drawPlanet(s.pl, s.pos, s.form);
       }
 
       drawSun(sec);
 
       for (const s of states) {
-        if (s.form > 0 && s.pos.depth >= 0) drawPlanet(s.pl, s.pos, s.form);
+        if (s.form > 0 && s.pos.depth >= 0 && !skipEarth(s.pl)) drawPlanet(s.pl, s.pos, s.form);
       }
 
       ctx.restore();
+
+      // publish the blue "Earth" planet's live viewport position so the
+      // textured WebGL Earth can sit exactly on it and fly out on scroll
+      const ePl = states[1];
+      if (ePl) {
+        const rect = canvas.getBoundingClientRect();
+        const sxr = width > 0 ? rect.width / width : 1;
+        const syr = height > 0 ? rect.height / height : 1;
+        intro.earthX = rect.left + ((ePl.pos.x - cx) * cam + cx) * sxr;
+        intro.earthY = rect.top + ((ePl.pos.y - cy) * cam + cy) * syr;
+        intro.earthR = ePl.pl.radius * easeOut(ePl.form) * cam * sxr;
+        intro.earthDepth = ePl.pos.depth;
+      }
 
       // travel warp + flash render in screen space, undistorted by the camera
       drawWarp();

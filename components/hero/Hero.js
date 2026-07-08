@@ -5,7 +5,7 @@ import './hero.scss';
 import CosmicBirth from './CosmicBirth';
 import HeroText from './HeroText';
 import { getGsap, prefersReducedMotion } from '@/lib/animation';
-import { T, intro } from '@/components/space3d/introState';
+import { intro } from '@/components/space3d/introState';
 
 export default function Hero() {
   const heroRef = useRef(null);
@@ -16,8 +16,14 @@ export default function Hero() {
     setLoading(false);
     if (prefersReducedMotion()) return;
     setShowSkip(true);
-    const id = setTimeout(() => setShowSkip(false), T.INTRO_END + 400);
-    return () => clearTimeout(id);
+    // hide when the intro actually ends — covers full, replay, and skip paths
+    const id = setInterval(() => {
+      if (!intro.active) {
+        setShowSkip(false);
+        clearInterval(id);
+      }
+    }, 250);
+    return () => clearInterval(id);
   }, []);
 
   useEffect(() => {

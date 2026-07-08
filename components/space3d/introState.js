@@ -23,20 +23,14 @@ export const intro = {
   cy: 0,
   active: true,   // true while the intro timeline is still playing
   skipRequested: false,
+  // live position of the blue "Earth" planet in the hero solar system
+  // (viewport CSS px) — the WebGL Earth latches onto it and flies out on scroll
+  earthX: 0,
+  earthY: 0,
+  earthR: 0,
+  earthDepth: 1, // <0 while the canvas planet orbits behind the sun
+  // set by Space3D once the textured Earth exists — CosmicBirth then stops
+  // drawing its gradient stand-in so there's only ever one Earth
+  earthClaimed: false,
 };
 
-export const INTRO_SEEN_KEY = 'bs-intro-seen';
-
-export const introSeen = () => {
-  try {
-    return !!sessionStorage.getItem(INTRO_SEEN_KEY);
-  } catch {
-    return false;
-  }
-};
-
-export const markIntroSeen = () => {
-  try {
-    sessionStorage.setItem(INTRO_SEEN_KEY, '1');
-  } catch {}
-};

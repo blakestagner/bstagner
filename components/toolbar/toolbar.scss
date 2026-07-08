@@ -2,233 +2,235 @@ $color-accent: #4fc3f7;
 $border-subtle: rgba(255, 255, 255, 0.07);
 
 .navBar {
-  background: transparent;
-  color: #fff !important;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  font-weight: 500;
-  height: auto;
-  overflow: hidden;
-  border-bottom-left-radius: 1.5em;
-  border-bottom-right-radius: 1.5em;
-  transition: transform 300ms ease, background 300ms ease, box-shadow 300ms ease;
+    background: transparent;
+    color: #fff !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    font-weight: 500;
+    height: auto;
+    overflow: hidden;
+    border-bottom-left-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
+    transition:
+        transform 300ms ease,
+        background 300ms ease,
+        box-shadow 300ms ease;
 }
 
 .navBar--solid {
-  background: rgba(8, 8, 16, 0.7);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid $border-subtle;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    background: rgba(8, 8, 16, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid $border-subtle;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .navBar--hidden {
-  transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
 .navList.active {
-  color: $color-accent;
+    color: $color-accent;
 }
 
 #mainMenuList li p.active::after {
-  width: 100%;
+    width: 100%;
 }
 
 .navBarContainer {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  height: 38px;
-  padding: 6px 20px;
-  z-index: 1;
-  position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 38px;
+    padding: 6px 20px;
+    z-index: 1;
+    position: relative;
 }
 
 #main-title {
-  margin: 0;
-  font-weight: 600;
-  font-size: 1.2em;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  background: linear-gradient(135deg, $color-accent 0%, #7c4dff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: opacity ease 200ms;
-  font-family: var(--font-teko), 'Teko', sans-serif;
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.2em;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    background: linear-gradient(135deg, $color-accent 0%, #7c4dff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: opacity ease 200ms;
+    font-family: var(--font-teko), 'Teko', sans-serif;
 }
 
 #main-title:hover {
-  opacity: 0.75;
+    opacity: 0.75;
 }
 
 #main-title > a {
-  display: inline-block;
-  font-weight: 600;
-  margin: 0 0.5em 0;
-  font-size: 1.5em;
-  line-height: inherit;
-  white-space: nowrap;
-  cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    margin: 0 0.5em 0;
+    font-size: 1.5em;
+    line-height: inherit;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
 .navBar ul {
-  flex-direction: row;
-  display: flex;
-  flex-basis: auto;
-  margin-left: auto;
-  padding-right: 50px;
-  list-style: none;
-  gap: 4px;
+    flex-direction: row;
+    display: flex;
+    flex-basis: auto;
+    margin-left: auto;
+    padding-right: 50px;
+    list-style: none;
+    gap: 4px;
 }
 
 .navBar ul li {
-  display: flex;
-  margin-left: 8px;
-  margin-right: 8px;
+    display: flex;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 #mainMenuList li p {
-  cursor: pointer;
-  position: relative;
-  font-size: 0.9em;
-  letter-spacing: 0.05em;
-  color: rgba(240, 244, 255, 0.75);
-  transition: color ease 200ms;
-  margin: 0;
-  padding: 4px 2px;
+    cursor: pointer;
+    position: relative;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+    color: rgba(240, 244, 255, 0.75);
+    transition: color ease 200ms;
+    margin: 0;
+    padding: 4px 2px;
 }
 
 #mainMenuList li p::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: $color-accent;
-  transition: width ease 250ms;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: $color-accent;
+    transition: width ease 250ms;
 }
 
 #mainMenuList li p:hover {
-  color: #fff;
+    color: #fff;
 }
 
 #mainMenuList li p:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
 .navList {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 @media (max-width: 650px) {
-  #main-title {
-    font-size: 1em;
-  }
-  .navBarContainer {
-    height: 32px;
-    padding: 4px 15px;
-  }
+    #main-title {
+        font-size: 1em;
+    }
+    .navBarContainer {
+        height: 32px;
+        padding: 4px 15px;
+    }
 }
 
 @media (max-width: 600px) {
-  #mainMenuList {
-    display: none;
-  }
-  .menu-icon,
-  .menu-icon-animation {
-    display: block !important;
-  }
+    #mainMenuList {
+        display: none;
+    }
+    .menu-icon,
+    .menu-icon-animation {
+        display: block !important;
+    }
 }
 
 .menu-icon {
-  height: 0px;
-  width: 0px;
-  margin-right: 20px;
-  cursor: pointer;
-  display: none;
-  transition: all ease 200ms;
-  filter: invert(1);
+    height: 0px;
+    width: 0px;
+    margin-right: 20px;
+    cursor: pointer;
+    display: none;
+    transition: all ease 200ms;
+    filter: invert(1);
 }
 
 .menu-icon-animation {
-  height: 36px;
-  width: 36px;
-  display: none;
-  transition: all ease 200ms;
-  filter: invert(1);
+    height: 36px;
+    width: 36px;
+    display: none;
+    transition: all ease 200ms;
 }
 
 #indicator {
-  background: linear-gradient(90deg, $color-accent, #7c4dff);
-  height: 2px;
-  margin: 0 0 4px;
-  position: absolute;
-  transition: all ease-in 100ms;
-  border-radius: 2px;
+    background: linear-gradient(90deg, $color-accent, #7c4dff);
+    height: 2px;
+    margin: 0 0 4px;
+    position: absolute;
+    transition: all ease-in 100ms;
+    border-radius: 2px;
 }
 
 .mobile-nav {
-  height: calc(100vh - 80px);
-  width: 100vw;
-  position: fixed;
-  background-color: rgba(8, 8, 20, 0.97);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-top: 1px solid $border-subtle;
-  z-index: 10;
-  transition: all ease-in 300ms;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 40px 2em;
-  gap: 8px;
+    height: calc(100vh - 80px);
+    width: 100vw;
+    position: fixed;
+    background-color: rgba(8, 8, 20, 0.97);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-top: 1px solid $border-subtle;
+    z-index: 10;
+    transition: all ease-in 300ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 2em;
+    gap: 8px;
 }
 
 .mobile-nav p {
-  font-size: 2.5em;
-  padding: 16px 0;
-  color: rgba(240, 244, 255, 0.85);
-  cursor: pointer;
-  font-family: var(--font-teko), 'Teko', sans-serif;
-  letter-spacing: 0.08em;
-  transition: color ease 200ms;
-  margin: 0;
-  position: relative;
+    font-size: 2.5em;
+    padding: 16px 0;
+    color: rgba(240, 244, 255, 0.85);
+    cursor: pointer;
+    font-family: var(--font-teko), 'Teko', sans-serif;
+    letter-spacing: 0.08em;
+    transition: color ease 200ms;
+    margin: 0;
+    position: relative;
 }
 
 .mobile-nav p::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, $color-accent, #7c4dff);
-  transition: width ease 250ms;
-  border-radius: 2px;
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $color-accent, #7c4dff);
+    transition: width ease 250ms;
+    border-radius: 2px;
 }
 
 .mobile-nav p:hover {
-  color: #fff;
+    color: #fff;
 }
 
 .mobile-nav p:hover::after {
-  width: 60%;
+    width: 60%;
 }
 
 .mobile-nav.closed {
-  left: -120vw;
+    left: -120vw;
 }
 
 .mobile-nav.open {
-  left: 0;
-  color: #fff !important;
+    left: 0;
+    color: #fff !important;
 }
