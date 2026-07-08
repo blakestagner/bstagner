@@ -2,42 +2,37 @@
 
 import './components.scss';
 import { useState, useEffect } from 'react';
+import useReveal from '@/lib/useReveal';
 import Calendar from '@/components/interactive/Calendar/Calendar';
 import Todo from '@/components/interactive/Todo/Todo';
 import MeasurementConverter from '@/components/interactive/MeasurementConverter/MeasurementConverter';
 import TicTacToe from '@/components/interactive/TicTacToe/TicTacToe';
 import SectionTitle from '@/components/shared/SectionTitle';
 
-function Components({ section }) {
+function Components() {
     const [displayComponent, setDisplayComponent] = useState(0);
-    const [inView, setInView] = useState(false)
-
-    useEffect(() => {
-        if (section === 'Demos') {
-            setInView(true)
-        };
-    }, [section])
+    const ref = useReveal();
 
     return (
-        <div id="components">
+        <section id="components" ref={ref}>
             <div className="main-container">
                 <div className="heading">
-                    <SectionTitle
-                        inView={inView}
-                        title="Demos" />
+                    <SectionTitle title="Demos" />
                 </div>
-                <ComponentsMenu
-                    component={(state) => setDisplayComponent(state)} />
-                {displayComponent === 0 ?
-                    <Calendar /> : ''}
-                {displayComponent === 1 ?
-                    <Todo /> : ''}
-                {displayComponent === 2 ?
-                    <MeasurementConverter /> : ''}
-                {displayComponent === 3 ?
-                    <TicTacToe /> : ''}
+                <div data-reveal>
+                    <ComponentsMenu
+                        component={(state) => setDisplayComponent(state)} />
+                    {displayComponent === 0 ?
+                        <Calendar /> : ''}
+                    {displayComponent === 1 ?
+                        <Todo /> : ''}
+                    {displayComponent === 2 ?
+                        <MeasurementConverter /> : ''}
+                    {displayComponent === 3 ?
+                        <TicTacToe /> : ''}
+                </div>
             </div>
-        </div>
+        </section>
     )
 }
 export default Components;

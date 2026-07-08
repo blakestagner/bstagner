@@ -8,7 +8,7 @@ const portfolioDetails = [
     employer: 'SleepDoctor',
     description: 'AI-powered grading system for sales call transcripts that identifies coaching opportunities and optimizes CPAP conversion scripts.',
     impact: 'Improved CPAP conversions 15% in 3 months',
-    techStack: ['Anthropic Claude', 'Node.js', 'React', 'SQL'],
+    techStack: ['Google Gemini', 'Next.js', 'React', 'SQL'],
     isAI: true,
   },
   {
@@ -30,9 +30,9 @@ const portfolioDetails = [
   {
     name: 'A/B Testing Platform',
     employer: 'SleepDoctor',
-    description: 'Self-serve experimentation platform enabling the team to run A/B tests with automatic winner implementation.',
+    description: 'Internal WordPress-based experimentation platform enabling configurable CTA tests with automated deployment of winning variants.',
     impact: 'Self-serve experiments with auto-winner implementation',
-    techStack: ['React', 'Node.js', 'SQL', 'Snowflake'],
+    techStack: ['WordPress', 'PHP', 'SQL', 'Snowflake'],
     isAI: false,
   },
   {
@@ -64,10 +64,11 @@ const portfolioDetails = [
 export default function PortfolioItems() {
   return (
     <div className="portfolio-grid">
-      {portfolioDetails.map((project) => (
+      {portfolioDetails.map((project, i) => (
         <div
           key={project.name}
           className={`project-card ${project.isAI ? 'project-card--ai' : ''}`}
+          data-reveal={i % 2 ? 'right' : 'left'}
         >
           <div className="project-card-header">
             <p className="project-name">{project.name}</p>

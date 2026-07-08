@@ -48,7 +48,7 @@ h3 {
   font-size: 1.75em;
   margin: 0px;
   font-weight: normal;
-  font-family: var(--font-dm-serif), Georgia, serif;
+  font-family: var(--font-teko), 'Teko', sans-serif;
   letter-spacing: 0.01em;
 }
 
@@ -92,35 +92,20 @@ a {
   z-index: 0;
 }
 
-/* Critical scroll container styles */
+/* Free-flowing document scroll */
+html {
+  scroll-behavior: smooth;
+}
+
 #sections {
-  height: 100vh;
-  max-height: 100dvh;
-  overflow: hidden;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 
+#sections > section,
 #sections > div {
-  scroll-snap-align: center;
-  height: 100vh;
-  max-height: 100dvh;
-}
-
-#sections > div#about,
-div#portfolio,
-div#components,
-div#contact {
+  position: relative;
   margin: 0 auto;
-}
-
-#sections > div:first-of-type {
-  scroll-snap-align: center;
-  height: 125vh;
-}
-
-#sections > div:last-of-type {
-  padding: 0;
 }
 
 /* ============================================================
@@ -137,17 +122,19 @@ div#contact {
   color: var(--color-text-primary);
 }
 
-.header-title-text {
+.section-title h1 {
   z-index: 2;
   color: var(--color-text-primary);
-  opacity: 0;
-  transform: translateY(-20px) translateX(-10px);
-  transition: all ease-in-out 1000ms;
 }
 
-.animate {
-  opacity: 1;
-  transform: translateY(0px) translateX(0px);
+.title-strip {
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 0 auto;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-purple));
+  box-shadow: 0 0 12px var(--color-accent-glow);
 }
 
 .heading h2 {
@@ -170,8 +157,8 @@ div#contact {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
-  padding: 4em 1em 2em;
-  height: calc(100vh - 6em);
+  padding: 6em 1em 4em;
+  min-height: 60vh;
   color: var(--color-text-primary);
 }
 
@@ -184,10 +171,28 @@ div#contact {
 @media (max-width: 400px) {
   .main-container {
     text-align: center;
-    padding: 2em 1em;
-    height: calc(100vh - 4em);
+    padding: 4em 1em 3em;
   }
   .heading h2 {
     margin: 0.25em 0 0;
+  }
+}
+
+/* ============================================================
+   Reduced motion: kill all CSS animation/transitions site-wide
+   (JS animations are independently gated in lib/animation.js)
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

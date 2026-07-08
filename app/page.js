@@ -1,52 +1,31 @@
 'use client'
 
-import { useState, useEffect } from 'react';
 import Toolbar from '@/components/toolbar/Toolbar';
 import Hero from '@/components/hero/Hero';
 import About from '@/components/about/About';
 import Portfolio from '@/components/portfolio/Portfolio';
 import Components from '@/components/sections/Components';
+import Experience from '@/components/experience/Experience';
 import Footer from '@/components/footer/Footer';
+import SpaceBackground from '@/components/space/SpaceBackground';
+import Space3D from '@/components/space3d/Space3D';
+import Skills from '@/components/skills/Skills';
 
 export default function Home() {
-  const [section, setSection] = useState('hero');
-
-  useEffect(() => {
-    const sectionMap = {
-      about: 'About',
-      portfolio: 'Portfolio',
-      components: 'Demos',
-      hero: 'Hero',
-    };
-
-    const observers = Object.keys(sectionMap).map(id => {
-      const el = document.querySelector(`#${id}`);
-      if (!el) return null;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setSection(sectionMap[id]);
-          }
-        },
-        { root: document.querySelector('#sections'), threshold: 0.4 }
-      );
-      observer.observe(el);
-      return observer;
-    });
-
-    return () => observers.forEach(o => o?.disconnect());
-  }, [])
-
   return (
     <div className="app">
-      <Toolbar section={section} />
-      <div id="sections">
+      <SpaceBackground />
+      <Space3D />
+      <Toolbar />
+      <main id="sections">
         <Hero />
-        <About section={section} />
-        <Portfolio section={section} />
-        <Components section={section} />
+        <About />
+        <Skills />
+        <Experience />
+        <Portfolio />
+        <Components />
         <Footer />
-      </div>
+      </main>
     </div>
-  )
+  );
 }

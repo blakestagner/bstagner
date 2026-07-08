@@ -1,0 +1,126 @@
+$color-accent: #4fc3f7;
+$color-accent-purple: #7c4dff;
+$color-text-primary: #f0f4ff;
+$color-text-secondary: #8892aa;
+$border-subtle: rgba(255, 255, 255, 0.07);
+$border-accent: rgba(79, 195, 247, 0.2);
+
+#experience {
+  position: relative;
+  background: transparent;
+}
+
+.mission-log {
+  position: relative;
+  max-width: 860px;
+  margin: 3em auto 0;
+  padding: 1em 0;
+}
+
+.mission-path {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(79, 195, 247, 0.5) 12%,
+    rgba(124, 77, 255, 0.5) 88%,
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(79, 195, 247, 0.25);
+}
+
+.mission {
+  position: relative;
+  width: 50%;
+  padding: 0 2.5em 2.5em;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.mission:nth-child(odd) {
+  left: 0;
+}
+
+.mission:nth-child(even) {
+  left: 50%;
+}
+
+.mission-node {
+  position: absolute;
+  top: 0.4em;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: $color-accent;
+  box-shadow: 0 0 14px rgba(79, 195, 247, 0.9), 0 0 4px rgba(255, 255, 255, 0.8) inset;
+}
+
+.mission:nth-child(odd) .mission-node {
+  right: -6px;
+}
+
+.mission:nth-child(even) .mission-node {
+  left: -6px;
+}
+
+.mission-card {
+  padding: 1.5em;
+  background: rgba(16, 16, 30, 0.66);
+  border: 1px solid $border-subtle;
+  border-radius: 12px;
+  transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-3px);
+  border-color: $border-accent;
+  box-shadow: 0 0 20px rgba(79, 195, 247, 0.12);
+}
+
+.mission-period {
+  margin: 0 0 0.4em;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-accent;
+}
+
+.mission-card h3 {
+  color: $color-text-primary;
+}
+
+.mission-org {
+  margin: 0.3em 0 0.6em;
+  color: $color-text-secondary;
+  font-weight: 600;
+}
+
+.mission-summary {
+  margin: 0;
+  color: $color-text-secondary;
+}
+
+@media (max-width: 750px) {
+  .mission-path {
+    left: 8px;
+    transform: none;
+  }
+
+  .mission,
+  .mission:nth-child(even) {
+    width: 100%;
+    left: 0;
+    padding: 0 0 2em 2.2em;
+  }
+
+  .mission:nth-child(odd) .mission-node,
+  .mission:nth-child(even) .mission-node {
+    left: 2px;
+    right: auto;
+  }
+}

@@ -16,8 +16,8 @@ $color-main: $color-accent;
 
 #components {
   color: $color-text-primary;
-  background: $bg-base;
-  height: 600px;
+  background: transparent;
+  height: 100%;
 }
 
 // Menu
@@ -45,8 +45,10 @@ $color-main: $color-accent;
   overflow-x: scroll;
   align-items: center;
   max-width: 120vw;
-  background: $bg-surface;
+  background: rgba(16, 16, 30, 0.6);
   border: 1px solid $border-subtle;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 50px;
   padding: 4px 8px;
 }
@@ -76,7 +78,7 @@ $color-main: $color-accent;
   color: $bg-base;
   background: $gradient;
   border-radius: 50px;
-  box-shadow: 0 0 16px rgba(79, 195, 247, 0.25);
+  box-shadow: 0 0 16px rgba(79, 195, 247, 0.3);
 }
 
 .components-menu-inner div.selected p {
@@ -89,13 +91,10 @@ $color-main: $color-accent;
 
 // Calendar
 .calendar-container {
-  display: table;
   margin: 0 auto;
   box-shadow: $shadow-lg;
   max-width: 300px;
   width: 100%;
-  max-height: 300px;
-  height: 100%;
   border-radius: 1.5em;
   overflow: hidden;
   border: 1px solid $border-subtle;
@@ -347,21 +346,3 @@ select:focus {
   padding-left: 0.5em;
 }
 
-// Blue strip / accent line
-.blue-animation {
-  background: $gradient;
-  height: 2px;
-  width: 70%;
-  position: absolute;
-  left: -100vw;
-  border-bottom-right-radius: 50px;
-  top: 70px;
-  transition: all ease-in-out 1000ms;
-  z-index: 9;
-  box-shadow: 0 0 16px rgba(79, 195, 247, 0.3);
-}
-
-.blue-strip {
-  left: -1em;
-  transition: all ease-in-out 1000ms;
-}
