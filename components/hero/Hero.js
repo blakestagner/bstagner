@@ -5,13 +5,19 @@ import './hero.scss';
 import CosmicBirth from './CosmicBirth';
 import HeroText from './HeroText';
 import { getGsap, prefersReducedMotion } from '@/lib/animation';
+import { T, intro } from '@/components/space3d/introState';
 
 export default function Hero() {
   const heroRef = useRef(null);
   const [loading, setLoading] = useState(true);
+  const [showSkip, setShowSkip] = useState(false);
 
   useEffect(() => {
     setLoading(false);
+    if (prefersReducedMotion()) return;
+    setShowSkip(true);
+    const id = setTimeout(() => setShowSkip(false), T.INTRO_END + 400);
+    return () => clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -75,6 +81,18 @@ export default function Hero() {
         <CosmicBirth />
       </div>
       <HeroText loading={loading} />
+      {showSkip && (
+        <button
+          className='intro-skip'
+          aria-label='Skip intro'
+          onClick={() => {
+            intro.skipRequested = true;
+            setShowSkip(false);
+          }}
+        >
+          Skip intro
+        </button>
+      )}
     </section>
   );
 }

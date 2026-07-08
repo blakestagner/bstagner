@@ -8,7 +8,7 @@ const portfolioDetails = [
     employer: 'SleepDoctor',
     description: 'AI-powered grading system for sales call transcripts that identifies coaching opportunities and optimizes CPAP conversion scripts.',
     impact: 'Improved CPAP conversions 15% in 3 months',
-    techStack: ['Anthropic Claude', 'Node.js', 'React', 'SQL'],
+    techStack: ['Google Gemini', 'Next.js', 'React', 'SQL'],
     isAI: true,
   },
   {
@@ -30,9 +30,9 @@ const portfolioDetails = [
   {
     name: 'A/B Testing Platform',
     employer: 'SleepDoctor',
-    description: 'Self-serve experimentation platform enabling the team to run A/B tests with automatic winner implementation.',
+    description: 'Internal WordPress-based experimentation platform enabling configurable CTA tests with automated deployment of winning variants.',
     impact: 'Self-serve experiments with auto-winner implementation',
-    techStack: ['React', 'Node.js', 'SQL', 'Snowflake'],
+    techStack: ['WordPress', 'PHP', 'SQL', 'Snowflake'],
     isAI: false,
   },
   {

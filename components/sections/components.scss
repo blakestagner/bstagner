@@ -17,7 +17,7 @@ $color-main: $color-accent;
 #components {
   color: $color-text-primary;
   background: transparent;
-  height: 600px;
+  height: 100%;
 }
 
 // Menu
@@ -91,13 +91,10 @@ $color-main: $color-accent;
 
 // Calendar
 .calendar-container {
-  display: table;
   margin: 0 auto;
   box-shadow: $shadow-lg;
   max-width: 300px;
   width: 100%;
-  max-height: 300px;
-  height: 100%;
   border-radius: 1.5em;
   overflow: hidden;
   border: 1px solid $border-subtle;

@@ -1,19 +1,22 @@
 'use client'
 
 import { useEffect, useRef } from 'react';
+import { T, intro, introSeen, markIntroSeen } from '@/components/space3d/introState';
 
-// Phase timing in ms from the animation clock start.
-const T_FLASH = 240;        // singularity flash
-const HS_START = 120;       // reverse-hyperspace travel begins
-const HS_END = 2350;        // streaks resolve into stars, we "arrive"
-const T_SUN_BORN = 2050;    // protostar core appears and starts igniting
-const T_SUN_IGNITE = 2750;  // sun finishes flaring into a star
-const T_DISK = 2650;        // protoplanetary dust disk forms around the sun
-const T_PLANETS = 3450;     // planets condense out of the disk
-const T_DISK_FADE = 1300;   // ms over which the disk is swept up after T_PLANETS
-const T_GALAXIES = 3000;    // distant spiral galaxies fade in
-const T_CAMERA = 2600;      // camera finishes pulling back to rest
-const T_INTRO_END = 5800;   // fully settled into the living state
+// Phase timing lives in introState.js so the WebGL layer can sync to it.
+const {
+  FLASH: T_FLASH,
+  HS_START,
+  HS_END,
+  SUN_BORN: T_SUN_BORN,
+  SUN_IGNITE: T_SUN_IGNITE,
+  DISK: T_DISK,
+  PLANETS: T_PLANETS,
+  DISK_FADE: T_DISK_FADE,
+  GALAXIES: T_GALAXIES,
+  CAMERA: T_CAMERA,
+  INTRO_END: T_INTRO_END,
+} = T;
 
 // Perspective-warp depth range and recede speed (z-units / second).
 // We fly BACKWARD: stars start close (near Z_NEAR) and recede toward Z_FAR.
@@ -51,7 +54,12 @@ export default function CosmicBirth() {
     let orbitTilt = 0.38;
     let rafId = null;
     let lastTime = 0;
-    let t = 0; // pausable animation clock (ms)
+    // pausable animation clock (ms); repeat visits replay only the arrival
+    let t = introSeen() ? HS_END - 400 : 0;
+    markIntroSeen();
+    intro.skipRequested = false;
+    intro.t = t;
+    intro.active = t < T_INTRO_END && !reduceMotion;
 
     let warp = [];
     let spread = 1;
@@ -69,6 +77,11 @@ export default function CosmicBirth() {
       unit = Math.min(Math.max(Math.min(width, height) / 900, 0.5), 1.4);
       maxR = Math.hypot(Math.max(cx, width - cx), Math.max(cy, height - cy));
       orbitTilt = 0.38;
+
+      // publish the bang center in viewport coords for the WebGL ship
+      const rect = canvas.getBoundingClientRect();
+      intro.cx = rect.left + cx;
+      intro.cy = rect.top + cy;
 
       // perspective-warp star field: depth-based stars that stream past the camera
       spread = maxR;
@@ -230,17 +243,48 @@ export default function CosmicBirth() {
       if (vis <= 0) return;
       ctx.globalCompositeOperation = 'lighter';
 
-      // bright destination core we are travelling toward
       const arrive = clamp01((t - HS_START) / (HS_END - HS_START));
-      const coreR = (14 + 46 * arrive) * unit;
-      const coreG = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
-      coreG.addColorStop(0, `rgba(255, 255, 255, ${0.85 * vis})`);
-      coreG.addColorStop(0.5, `rgba(180, 215, 255, ${0.4 * vis})`);
-      coreG.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = coreG;
-      ctx.beginPath();
-      ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
-      ctx.fill();
+
+      // the receding big bang: a huge fireball we outrun — it keeps expanding,
+      // but we pull away faster, so on screen it shrinks behind us
+      const recede = easeOut(clamp01(arrive / 0.72));
+      const bangA = (1 - clamp01((arrive - 0.5) / 0.35)) * vis;
+      if (bangA > 0) {
+        const bangR = Math.max(width, height) * (0.55 - 0.52 * recede) + 10 * unit;
+        const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, bangR);
+        bg.addColorStop(0, `rgba(255, 246, 234, ${0.92 * bangA})`);
+        bg.addColorStop(0.35, `rgba(255, 176, 96, ${0.55 * bangA})`);
+        bg.addColorStop(0.75, `rgba(255, 110, 60, ${0.18 * bangA})`);
+        bg.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = bg;
+        ctx.beginPath();
+        ctx.arc(cx, cy, bangR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // shock front: still expanding relative to the fireball, yet falling
+        // behind us — reads as "it grows, we escape faster"
+        const ringR = bangR * (1.15 + 0.6 * arrive);
+        ctx.strokeStyle = `rgba(255, 190, 130, ${0.35 * bangA})`;
+        ctx.lineWidth = 2.5 * unit * (1 - arrive * 0.5);
+        ctx.beginPath();
+        ctx.arc(cx, cy, ringR, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // arrival core — the bright solar system we're flying toward, fading in
+      // only for the tail of the journey
+      const arriveA = clamp01((arrive - 0.6) / 0.4) * vis;
+      if (arriveA > 0) {
+        const coreR = (14 + 46 * arrive) * unit;
+        const coreG = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
+        coreG.addColorStop(0, `rgba(255, 255, 255, ${0.85 * arriveA})`);
+        coreG.addColorStop(0.5, `rgba(180, 215, 255, ${0.4 * arriveA})`);
+        coreG.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = coreG;
+        ctx.beginPath();
+        ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
       for (const s of warp) {
         const close = clamp01((Z_FAR - s.z) / Z_FAR);
@@ -274,7 +318,7 @@ export default function CosmicBirth() {
       const r = (1 - p) * Math.max(width, height) * 0.55 + 40 * unit;
       const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
       g.addColorStop(0, `rgba(255, 255, 255, ${(1 - p) * 0.95})`);
-      g.addColorStop(0.4, `rgba(190, 215, 255, ${(1 - p) * 0.45})`);
+      g.addColorStop(0.4, `rgba(255, 214, 150, ${(1 - p) * 0.45})`);
       g.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.globalCompositeOperation = 'lighter';
       ctx.fillStyle = g;
@@ -422,6 +466,13 @@ export default function CosmicBirth() {
       const delta = Math.min(now - lastTime, 50) || 16;
       lastTime = now;
       t += delta;
+      // skip: fast-forward the clock to the settled state over ~350ms
+      if (intro.skipRequested && t < T_INTRO_END) {
+        t += (T_INTRO_END - t) * 0.16;
+        if (T_INTRO_END - t < 40) t = T_INTRO_END;
+      }
+      intro.t = t;
+      intro.active = t < T_INTRO_END;
       updateWarp(delta);
       draw();
       rafId = requestAnimationFrame(loop);
@@ -452,6 +503,8 @@ export default function CosmicBirth() {
       build();
       if (reduceMotion) {
         t = T_INTRO_END;
+        intro.t = t;
+        intro.active = false;
         draw();
       }
     };

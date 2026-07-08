@@ -48,6 +48,28 @@ $gradient-galaxy: linear-gradient(
   position: relative;
   z-index: 2;
 }
+.intro-skip {
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+  z-index: 10;
+  padding: 0.45em 1.1em;
+  font: inherit;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  color: #8892aa;
+  background: rgba(16, 16, 30, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: color 0.2s, border-color 0.2s;
+}
+.intro-skip:hover,
+.intro-skip:focus-visible {
+  color: #f0f4ff;
+  border-color: rgba(79, 195, 247, 0.5);
+}
 .blake-stagner {
   display: flex;
   flex-direction: column;
